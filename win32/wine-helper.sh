@@ -278,7 +278,7 @@ helper_setup()
   mkdir -p "$distdir" "$tmpdir"
   touch "$installed"
   # Bare minimum for running MComix.
-  install 'Python' 'https://www.python.org/ftp/python/2.7.15/python-2.7.15.msi' 70830dd027e250a17b2265e24440785b1e2f3a16 install_msi /q
+  install 'Python' 'https://www.python.org/ftp/python/2.7.10/python-2.7.10.msi' 9e62f37407e6964ee0374b32869b7b4ab050d12a install_msi /q
   install 'PyGObject for Windows' 'https://downloads.sourceforge.net/project/pygobjectwin32/pygi-aio-3.24.1_rev1-setup_049a323fe25432b10f7e9f543b74598d4be74a39.exe' 049a323fe25432b10f7e9f543b74598d4be74a39 install_pygobject GTK
   install 'PyGObject for Windows: legacy PyGTK' 'https://downloads.sourceforge.net/project/pygobjectwin32/legacy_pygtk-2.24.0_gtk-2.24.31%2Bthemes_py27_win32_win64.7z' 324f1fc7802266c8fe21647df1baea86ca43cc55 install_pygtk
   install 'Pillow' 'https://files.pythonhosted.org/packages/96/cf/774c98b2669ff61d3a53257bda074508bf8e75434e5ed481eac2112c2a06/Pillow-5.2.0.win32-py2.7.exe' bf2fff24db8d42f7652b9b71b0331d512c066c83 install_exe
