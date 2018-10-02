@@ -300,8 +300,8 @@ helper_setup()
   install 'PyInstaller' 'https://github.com/pyinstaller/pyinstaller/releases/download/v2.1/PyInstaller-2.1.tar.gz' 530e0496087ea955ebed6f11b0172c50c73952af install_python_source # last Python 2-only release of PyInstaller
   # Install pytest and dependencies.
   install 'PyTest dependency: colorama' 'https://files.pythonhosted.org/packages/e6/76/257b53926889e2835355d74fec73d82662100135293e17d382e2b74d1669/colorama-0.3.9.tar.gz' 3ab1a3cf1d35332f995acc444c120b6543776b73 install_python_source
-  install 'PyTest dependency: py' 'https://files.pythonhosted.org/packages/35/77/a0a2a4126cf454e6ac772942898379e2fe78f2b7885df0461a5b8f8a8040/py-1.5.4.tar.gz' 4285f5f1234a939bfc828ed41ff34008d2c89197 install_python_source
-  install 'PyTest' 'https://files.pythonhosted.org/packages/55/50/399419c03c39bf41faa7cbd5a8976c076037b2d76adf2535610919806d67/pytest-3.6.3.tar.gz' 6c6026e000d4463bf9b0399a63567b75a8faa4c2 install_python_source
+  install 'PyTest dependency: py' 'https://files.pythonhosted.org/packages/2f/f3/cdc7d90b0a01572d5494a88c08ae3e56e0c430e6ff31d71fea7b41d0aca9/py-1.4.26.tar.gz' 5d9aaa67c1da2ded5f978aa13e03dfe780771fea install_python_source
+  install 'PyTest' 'https://files.pythonhosted.org/packages/a6/41/012f1af02151e7a4a6a737e148ae7edc35ded57a25a28386338a759d4e49/pytest-2.7.0.tar.gz' 297b27dc5a77ec3a22bb2bee1dfa178ec162d9e4 install_python_source
   # Install last 2 releases of MComix for easier regression testing.
   install 'MComix 1.01' https://downloads.sourceforge.net/project/mcomix/MComix-1.01/mcomix-1.01-2.win32.all-in-one.zip 44b24db3cec4fd66c2df05d25d70f47125da2100 install_mcomix 1.01
   install 'MComix 1.2.1' https://downloads.sourceforge.net/project/mcomix/MComix-1.2.1/mcomix-1.2.1.win32.all-in-one.zip 833f7268e44e1621b9b7a059fb006b4df6d54db8 install_mcomix 1.2.1
