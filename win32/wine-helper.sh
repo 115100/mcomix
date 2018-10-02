@@ -382,8 +382,9 @@ helper_dist_setup()
 helper_dist_mcomix()
 {(
   winedir="$win32dir/.wine-dist"
+  programfiles="$winedir/drive_c/Program Files"
   export WINEARCH='win32' WINEPREFIX="$winedir"
-  winecmd wine MComix.exe "$@"
+  winecmd wine "$programfiles/MComix/MComix.exe" "$@"
 )}
 
 helper_dist_shell()
