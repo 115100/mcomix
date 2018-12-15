@@ -3,6 +3,7 @@
 from mcomix import constants
 from mcomix.preferences import prefs
 from mcomix import tools
+from mcomix import box
 
 IDENTITY_ZOOM = 1.0
 IDENTITY_ZOOM_LOG = 0
@@ -46,8 +47,23 @@ class ZoomModel(object):
         self._set_user_zoom_log(IDENTITY_ZOOM_LOG)
 
     def get_zoomed_size(self, image_sizes, screen_size, distribution_axis,
-        do_not_transform):
+        do_not_transform, prefer_same_size):
         scale_up = self._scale_up
+        if prefer_same_size:
+            # Preprocessing step: scale all images to the same size
+            image_boxes = [box.Box(s) for s in image_sizes]
+            # Scale up to the same size if this is allowed, otherwise scale down.
+            if scale_up:
+                # Scale up to union.
+                pre_limits = box.Box.bounding_box(image_boxes).get_size()
+            else:
+                # Scale down to intersection.
+                pre_limits = reduce(box.Box.intersect, image_boxes, image_boxes[0]).get_size()
+            new_image_sizes = [tuple(tools.scale(s, ZoomModel._preferred_scale( \
+                s, pre_limits, distribution_axis))) for s in image_sizes]
+            new_image_sizes2 = [new_image_sizes[i] if not do_not_transform[i] else image_sizes[i] \
+                for i in range(len(new_image_sizes))]
+            image_sizes = new_image_sizes2
         union_size = _union_size(image_sizes, distribution_axis)
         limits = ZoomModel._calc_limits(union_size, screen_size, self._fitmode,
             scale_up)

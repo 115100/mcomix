@@ -409,6 +409,7 @@ class MainWindow(gtk.Window):
                 orientation = tools.vector_opposite(orientation)
 
             viewport_size = () # dummy
+            prefer_same_size = prefs['double page fit mode'] == constants.DOUBLE_PAGE_FIT_MODE_SAME_SIZE
             expand_area = False
             scrollbar_requests = [False] * len(self._scroll)
             # Visible area size is recomputed depending on scrollbar visibility
@@ -425,7 +426,7 @@ class MainWindow(gtk.Window):
                     dasize = 1
                 zoom_dummy_size[distribution_axis] = dasize
                 scaled_sizes = self.zoom.get_zoomed_size(size_list, zoom_dummy_size,
-                    distribution_axis, do_not_transform)
+                    distribution_axis, do_not_transform, prefer_same_size)
                 self.layout = layout.FiniteLayout(scaled_sizes,
                                                   viewport_size,
                                                   orientation,
