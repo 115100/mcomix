@@ -5,20 +5,19 @@ from mcomix import tools
 
 class Box(object):
 
-    def __init__(self, position, size=None):
+    def __init__(self, size, position=None):
         """ A Box is immutable and always axis-aligned.
         Each component of size should be positive (i.e. non-zero).
         Both position and size must have equal number of dimensions.
         If there is only one argument, it must be the size. In this case, the
         position is set to origin (i.e. all coordinates are 0) by definition.
-        @param position: The position of this Box.
-        @param size: The size of this Box."""
-        if size is None:
-            self.position = (0,) * len(position)
-            self.size = tuple(position)
+        @param size: The size of this Box.
+        @param position: The position of this Box."""
+        if position is None:
+            self.position = (0,) * len(size)
         else:
             self.position = tuple(position)
-            self.size = tuple(size)
+        self.size = tuple(size)
         if len(self.position) != len(self.size):
             raise ValueError("different number of dimensions: " +
                 str(len(self.position)) + " != " + str(len(self.size)))
@@ -58,14 +57,14 @@ class Box(object):
         """ Returns a new Box that has the same size as this Box and the
         specified position.
         @return: A new Box as specified above. """
-        return Box(position, self.get_size())
+        return Box(self.get_size(), position)
 
 
     def set_size(self, size):
         """ Returns a new Box that has the same position as this Box and the
         specified size.
         @return: A new Box as specified above. """
-        return Box(self.get_position(), size)
+        return Box(size, self.get_position())
 
 
     def distance_point_squared(self, point):
@@ -96,8 +95,8 @@ class Box(object):
         translated position as specified by delta.
         @param delta: The distance to the position of this Box.
         @return: A new Box as specified above. """
-        return Box(tools.vector_add(self.get_position(), delta),
-            self.get_size())
+        return Box(self.get_size(),
+            tools.vector_add(self.get_position(), delta))
 
 
     def translate_opposite(self, delta):
@@ -106,8 +105,8 @@ class Box(object):
         @param delta: The distance to the position of this Box, with opposite
         direction.
         @return: A new Box as specified above. """
-        return Box(tools.vector_sub(self.get_position(), delta),
-            self.get_size())
+        return Box(self.get_size(),
+            tools.vector_sub(self.get_position(), delta))
 
 
     @staticmethod
@@ -242,7 +241,7 @@ class Box(object):
             p = list(b.get_position())
             p[axis] = cp + Box._box_to_center_offset_1d(cs - s[axis],
                 orientation)
-            result.append(Box(p, s))
+            result.append(Box(s, p))
         return result
 
 
@@ -264,7 +263,7 @@ class Box(object):
             s = b.get_size()
             p = list(b.get_position())
             p[axis] = partial_sum
-            result[bi] = Box(p, s)
+            result[bi] = Box(s, p)
             partial_sum += s[axis] + spacing
         partial_sum = initialSum
         for bi in range(fix - 1, -1, -1):
@@ -273,7 +272,7 @@ class Box(object):
             p = list(b.get_position())
             partial_sum -= s[axis] + spacing
             p[axis] = partial_sum
-            result[bi] = Box(p, s)
+            result[bi] = Box(s, p)
         return result
 
 
@@ -293,7 +292,7 @@ class Box(object):
             result_size[i] = max(c, v)
             result_position[i] = Box._box_to_center_offset_1d(c - result_size[i],
                 orientation[i]) + position[i]
-        return Box(result_position, result_size)
+        return Box(result_size, result_position)
 
 
     @staticmethod
@@ -315,7 +314,7 @@ class Box(object):
                 ps = p[i] + s[i]
                 if (maxes[i] is None) or (ps > maxes[i]):
                     maxes[i] = ps
-        return Box(mins, tools.vector_sub(maxes, mins))
+        return Box(tools.vector_sub(maxes, mins), mins)
 
 
     @staticmethod
@@ -340,7 +339,7 @@ class Box(object):
             ax2 -= ax1
             resPos[i] = ax1
             resSize[i] = ax2
-        return Box(resPos, resSize)
+        return Box(resSize, resPos)
 
 
 # vim: expandtab:sw=4:ts=4
