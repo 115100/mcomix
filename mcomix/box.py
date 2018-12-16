@@ -318,7 +318,17 @@ class Box(object):
 
 
     @staticmethod
-    def intersect(boxA, boxB): # TODO test! docs!
+    def intersect(boxA, boxB):
+        """ Returns the intersection of the two specified Boxes (that is, the
+        largest Box that is contained by the two specified Boxes).
+        @param boxA: The first Box to calculate the intersection from.
+        @param boxB: The second Box to calculate the intersection from.
+        @return: A Box as specified above. """
+        # TODO Add tests.
+        # TODO What if there is no intersection?
+        # TODO What if the intersection is a single point?
+        # TODO Make interfaces of intersect and bounding_box consistent with
+        # each other, and then rename bounding_box to union.
         aPos = boxA.get_position()
         bPos = boxB.get_position()
         aSize = boxA.get_size()

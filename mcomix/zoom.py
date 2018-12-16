@@ -242,7 +242,7 @@ class ZoomModel(object):
                 dirty=True
         else:
             # If we are here and total_axis_size < max_size, we could try to
-            # upscale some tuples similarily to the other loop (i.e. smallest
+            # upscale some tuples similarly to the other loop (i.e. smallest
             # relative volume error first, equal boxes in conjunction with each
             # other). However, this is not as useful as the other loop, slightly
             # more complicated and it won't do anything if all tuples are equal.
