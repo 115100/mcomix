@@ -101,7 +101,7 @@ prefs = {
     'scan for new books on library startup': True,
     'openwith commands': [],  # (label, command) pairs
     'animation mode': constants.ANIMATION_NORMAL,
-    'double page fit mode': constants.DOUBLE_PAGE_FIT_MODE_SAME_SIZE,
+    'double page autoresize': constants.DOUBLE_PAGE_AUTORESIZE_SIZE,
 }
 
 def read_preferences_file():

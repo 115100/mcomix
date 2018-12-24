@@ -181,6 +181,9 @@ class _PreferencesDialog(gtk.Dialog):
         page.add_row(gtk.Label(_('Show only one page where appropriate:')),
             self._create_doublepage_as_one_control())
 
+        page.add_row(gtk.Label(_('Page auto-resizing:')),
+            self._create_double_page_autoresize_control())
+
         page.new_section(_('Files'))
 
         page.add_row(self._create_pref_check_button(
@@ -416,6 +419,29 @@ class _PreferencesDialog(gtk.Dialog):
         if combobox.get_model().iter_is_valid(iter):
             value = combobox.get_model().get_value(iter, 1)
             prefs['virtual double page for fitting images'] = value
+            self._window.draw_image()
+
+    def _create_double_page_autoresize_control(self):
+        """ Creates the ComboBox control for selecting double page autoresize options. """
+        items = (
+                (_('Prefer same scale'), constants.DOUBLE_PAGE_AUTORESIZE_SCALE),
+                (_('Fit to same size'), constants.DOUBLE_PAGE_AUTORESIZE_SIZE))
+
+        box = self._create_combobox(items,
+                prefs['double page autoresize'],
+                self._double_page_autoresize_changed_cb)
+
+        box.set_tooltip_text(
+            _("Maintain relative size or fit to same size."))
+
+        return box
+
+    def _double_page_autoresize_changed_cb(self, combobox, *args):
+        """ Called when a new option was selected for the double page autoresize option. """
+        iter = combobox.get_active_iter()
+        if combobox.get_model().iter_is_valid(iter):
+            value = combobox.get_model().get_value(iter, 1)
+            prefs['double page autoresize'] = value
             self._window.draw_image()
 
     def _create_fitmode_control(self):

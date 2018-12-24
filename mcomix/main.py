@@ -409,7 +409,7 @@ class MainWindow(gtk.Window):
                 orientation = tools.vector_opposite(orientation)
 
             viewport_size = () # dummy
-            prefer_same_size = prefs['double page fit mode'] == constants.DOUBLE_PAGE_FIT_MODE_SAME_SIZE
+            prefer_same_size = prefs['double page autoresize'] == constants.DOUBLE_PAGE_AUTORESIZE_SIZE
             expand_area = False
             scrollbar_requests = [False] * len(self._scroll)
             # Visible area size is recomputed depending on scrollbar visibility
