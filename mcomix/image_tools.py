@@ -363,7 +363,7 @@ def load_pixbuf(path):
                         pixbuf = GdkPixbuf.PixbufAnimation.new_from_file(path)
                         if pixbuf.is_static_image():
                             pixbuf = pixbuf.get_static_image()
-                    except glib.GError:
+                    except GLib.GError:
                         # NOTE: Broken JPEGs sometimes result in this exception.
                         # However, one may be able to load them using
                         # Gdk.pixbuf_new_from_file, so we need to continue.

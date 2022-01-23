@@ -1,11 +1,7 @@
 """recent.py - Recent files handler."""
 
 import urllib.request, urllib.parse, urllib.error
-import itertools
-from gi.repository import Gtk
-from gi.repository import Gtk
-import glib
-from gi.repository import GObject
+from gi.repository import Gtk, GLib, GObject
 import sys
 
 from mcomix import preferences
@@ -68,7 +64,7 @@ class RecentFilesMenu(Gtk.RecentChooserMenu):
         uri = portability.uri_prefix() + urllib.request.pathname2url(i18n.to_utf8(path))
         try:
             self._manager.remove_item(uri)
-        except glib.GError:
+        except GLib.GError:
             # Could not remove item
             pass
 
