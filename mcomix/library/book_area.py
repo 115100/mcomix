@@ -249,7 +249,7 @@ class _BookArea(Gtk.ScrolledWindow):
         for book in books:
             # Fill the liststore with a filler pixbuf.
             self._liststore.append([filler, book.id,
-                                    book.path.encode('utf-8'),
+                                    book.path,
                                     book.size, book.added, False])
 
         self._iconview.draw_thumbnails_on_screen()

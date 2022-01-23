@@ -10,6 +10,7 @@ import mimetypes
 import threading
 import itertools
 import traceback
+import locale
 import PIL.Image as Image
 from urllib.request import pathname2url
 
@@ -262,6 +263,7 @@ class Thumbnailer(object):
     def _uri_to_thumbpath(self, uri):
         """ Return the full path to the thumbnail for <uri> with <dst_dir>
         being the base thumbnail directory. """
+        uri = uri.encode(locale.getpreferredencoding()) if isinstance(uri, str) else uri
         md5hash = md5(uri).hexdigest()
         thumbpath = os.path.join(self.dst_dir, md5hash + '.png')
         return thumbpath
