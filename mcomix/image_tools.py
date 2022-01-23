@@ -12,9 +12,9 @@ from PIL import ImageEnhance
 from PIL import ImageOps
 from PIL.JpegImagePlugin import _getexif
 try:
-    from PIL import PILLOW_VERSION
-    PIL_VERSION = ('Pillow', PILLOW_VERSION)
-except ImportError:
+    import PIL
+    PIL_VERSION = ('Pillow', PIL.__version__)
+except AttributeError:
     from PIL import VERSION as PIL_VERSION
     PIL_VERSION = ('PIL', PIL_VERSION)
 from io import StringIO
