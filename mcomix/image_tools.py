@@ -268,7 +268,7 @@ def get_most_common_edge_colour(pixbufs, edge=2):
 
     # Sum up colors from all edges
     ungrouped_colors.sort(key=operator.itemgetter(1))
-    most_used = group_colors(ungrouped_colors)
+    most_used = group_colors(ungrouped_colors)[:3]
     return [color * 257 for color in most_used]
 
 def pil_to_pixbuf(im, keep_orientation=False):
