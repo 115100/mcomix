@@ -4,6 +4,7 @@ from gi.repository import Gdk, GdkPixbuf, Gtk, GObject
 
 from mcomix import constants
 from mcomix import bookmark_menu_item
+from mcomix import tools
 
 class _BookmarksDialog(Gtk.Dialog):
 
@@ -143,7 +144,7 @@ class _BookmarksDialog(Gtk.Dialog):
         bookmark2 = treemodel.get_value(iter2, 5)
 
         for field in user_data:
-            result = cmp(getattr(bookmark1, field),
+            result = tools.cmp(getattr(bookmark1, field),
                 getattr(bookmark2, field))
             if result != 0:
                 return result
