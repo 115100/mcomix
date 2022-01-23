@@ -42,7 +42,7 @@ def make_archive(outfile, contents, format='zip', solid=False, password=None, he
     cleanup = []
     try:
         outpath = os.path.abspath(outfile)
-        tmp_dir = tempfile.mkdtemp(dir=u'test/tmp', prefix=u'make_archive.')
+        tmp_dir = tempfile.mkdtemp(dir='test/tmp', prefix='make_archive.')
         cleanup.append(lambda: shutil.rmtree(tmp_dir))
         entry_list = []
         for name, filename in contents:
@@ -66,8 +66,8 @@ def make_archive(outfile, contents, format='zip', solid=False, password=None, he
                 assert not header_encryption
             cmd.extend(('--', outpath))
             # To avoid @ being treated as a special character...
-            tmp_file = tempfile.NamedTemporaryFile(dir=u'test/tmp',
-                                                   prefix=u'make_archive.',
+            tmp_file = tempfile.NamedTemporaryFile(dir='test/tmp',
+                                                   prefix='make_archive.',
                                                    delete=False)
             cleanup.append(lambda: os.unlink(tmp_file.name))
             for entry in entry_list:
@@ -161,7 +161,7 @@ class ArchiveFormatTest(object):
     def setUpClass(cls):
         if cls.skip is not None:
             raise unittest.SkipTest(cls.skip)
-        cls.archive_path = u'%s.%s' % (get_testfile_path('archives', cls.archive), cls.format)
+        cls.archive_path = '%s.%s' % (get_testfile_path('archives', cls.archive), cls.format)
         cls.archive_contents = dict([
             (archive_name, filename)
             for name, archive_name, filename
@@ -183,7 +183,7 @@ class ArchiveFormatTest(object):
 
     def setUp(self):
         super(ArchiveFormatTest, self).setUp()
-        self.dest_dir = tempfile.mkdtemp(prefix=u'extract.')
+        self.dest_dir = tempfile.mkdtemp(prefix='extract.')
         self.archive = None
 
     def tearDown(self):
@@ -201,14 +201,14 @@ class ArchiveFormatTest(object):
     def test_list_contents(self):
         self.archive = self.handler(self.archive_path)
         contents = self.archive.list_contents()
-        self.assertItemsEqual(contents, self.archive_contents.keys())
+        self.assertItemsEqual(contents, list(self.archive_contents.keys()))
 
     def test_iter_contents(self):
         self.archive = self.handler(self.archive_path)
         contents = []
         for name in self.archive.iter_contents():
             contents.append(name)
-        self.assertItemsEqual(contents, self.archive_contents.keys())
+        self.assertItemsEqual(contents, list(self.archive_contents.keys()))
 
     def test_is_solid(self):
         self.archive = self.handler(self.archive_path)
@@ -223,7 +223,7 @@ class ArchiveFormatTest(object):
     def test_extract(self):
         self.archive = self.handler(self.archive_path)
         contents = self.archive.list_contents()
-        self.assertItemsEqual(contents, self.archive_contents.keys())
+        self.assertItemsEqual(contents, list(self.archive_contents.keys()))
         # Use out-of-order extraction to try to trip implementation.
         for name in reversed(contents):
             self.archive.extract(name, self.dest_dir)
@@ -236,7 +236,7 @@ class ArchiveFormatTest(object):
     def test_iter_extract(self):
         self.archive = self.handler(self.archive_path)
         contents = self.archive.list_contents()
-        self.assertItemsEqual(contents, self.archive_contents.keys())
+        self.assertItemsEqual(contents, list(self.archive_contents.keys()))
         extracted = []
         for name in self.archive.iter_extract(reversed(contents), self.dest_dir):
             extracted.append(name)
@@ -328,10 +328,10 @@ for name, handler, is_available, format, not_solid, solid, password, header_encr
             ('meh.png'             , 'meh.png'             , 'images/03-PNG-RGB.png'    ),
         )),
         ('Unicode', True, (
-            (u'1-قفهسا.jpg'        , u'1-قفهسا.jpg'        , 'images/01-JPG-Indexed.jpg'),
-            (u'2-רדןקמא.png'       , u'2-רדןקמא.png'       , 'images/04-PNG-Indexed.png'),
-            (u'3-りえsち.jpg'      , u'3-りえsち.jpg'      , 'images/02-JPG-RGB.jpg'    ),
-            (u'4-щжвщджл.png'      , u'4-щжвщджл.png'      , 'images/03-PNG-RGB.png'    ),
+            ('1-قفهسا.jpg'        , '1-قفهسا.jpg'        , 'images/01-JPG-Indexed.jpg'),
+            ('2-רדןקמא.png'       , '2-רדןקמא.png'       , 'images/04-PNG-Indexed.png'),
+            ('3-りえsち.jpg'      , '3-りえsち.jpg'      , 'images/02-JPG-RGB.jpg'    ),
+            ('4-щжвщджл.png'      , '4-щжвщджл.png'      , 'images/03-PNG-RGB.png'    ),
         )),
         # Check we don't treat an entry name as an option or command line switch.
         ('OptEntry', True, (
@@ -369,7 +369,7 @@ for name, handler, is_available, format, not_solid, solid, password, header_encr
         if not is_supported:
             continue
         contents = [
-            map(lambda s: s.replace('/', os.sep), names)
+            [s.replace('/', os.sep) for s in names]
             for names in contents
         ]
         for variant, params in base_class_list:

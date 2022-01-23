@@ -1,6 +1,6 @@
 """ Gtk.IconView subclass for dynamically generated thumbnails. """
 
-import Queue
+import queue
 from gi.repository import Gtk
 from gi.repository import GObject
 
@@ -63,8 +63,8 @@ class ThumbnailViewBase(object):
         # Read ahead/back and start caching a few more icons. Currently invisible
         # icons are always cached only after the visible icons have been completed.
         additional = (end - start) // 2
-        required = range(start, end + additional + 1) + \
-                   range(max(0, start - additional), start)
+        required = list(range(start, end + additional + 1)) + \
+                   list(range(max(0, start - additional), start))
         model = self.get_model()
         # Filter invalid paths.
         required = [path for path in required if 0 <= path < len(model)]

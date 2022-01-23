@@ -17,7 +17,7 @@ try:
 except ImportError:
     from PIL import VERSION as PIL_VERSION
     PIL_VERSION = ('PIL', PIL_VERSION)
-from cStringIO import StringIO
+from io import StringIO
 
 from mcomix.preferences import prefs
 from mcomix import constants
@@ -377,7 +377,7 @@ def load_pixbuf(path):
                 pixbuf = pil_to_pixbuf(im, keep_orientation=True)
             else:
                 raise TypeError()
-        except Exception, e:
+        except Exception as e:
             # current provider could not load image
             last_error = e
         if pixbuf is not None:
@@ -421,7 +421,7 @@ def load_pixbuf_size(path, width, height):
                 pixbuf = pil_to_pixbuf(im, keep_orientation=True)
             else:
                 raise TypeError()
-        except Exception, e:
+        except Exception as e:
             # current provider could not load image
             last_error = e
         if pixbuf is not None:
@@ -451,7 +451,7 @@ def load_pixbuf_data(imgdata):
                 pixbuf = pil_to_pixbuf(Image.open(StringIO(imgdata)), keep_orientation=True)
             else:
                 raise TypeError()
-        except Exception, e:
+        except Exception as e:
             # current provider could not load image
             last_error = e
         if pixbuf is not None:
@@ -650,15 +650,15 @@ def get_supported_formats():
             'PPM': (['image/x-portable-pixmap'], []),
             'TGA': (['image/x-tga'], []),
         }
-        for name, mime in Image.MIME.items():
+        for name, mime in list(Image.MIME.items()):
             mime_types, extensions = supported_formats_pil.get(name, ([], []))
             supported_formats_pil[name] = mime_types + [mime], extensions
-        for ext, name in Image.EXTENSION.items():
+        for ext, name in list(Image.EXTENSION.items()):
             assert '.' == ext[0]
             mime_types, extensions = supported_formats_pil.get(name, ([], []))
             supported_formats_pil[name] = mime_types, extensions + [ext[1:]]
         # Remove formats with no mime type or extension.
-        for name in supported_formats_pil.keys():
+        for name in list(supported_formats_pil.keys()):
             mime_types, extensions = supported_formats_pil[name]
             if not mime_types or not extensions:
                 del supported_formats_pil[name]
@@ -683,7 +683,7 @@ def get_supported_formats():
         # Step 3: merge format collections
         supported_formats = {}
         for provider in (supported_formats_gdk, supported_formats_pil):
-            for name in provider.keys():
+            for name in list(provider.keys()):
                 mime_types, extentions = provider[name]
                 new_name = name.upper()
                 new_mime_types, new_extensions = supported_formats.get( \

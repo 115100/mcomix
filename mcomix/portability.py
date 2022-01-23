@@ -3,7 +3,7 @@
 import sys
 import locale
 import ctypes
-import cStringIO
+import io
 
 def uri_prefix():
     """ The prefix used for creating file URIs. This is 'file://' on
@@ -66,9 +66,9 @@ def get_commandline_args():
 def invalid_filesystem_chars():
     """ List of characters that cannot be used in filenames on the target platform. """
     if sys.platform == 'win32':
-        return ur':*?"<>|' + u"".join([unichr(i) for i in range(0, 32)])
+        return r':*?"<>|' + "".join([chr(i) for i in range(0, 32)])
     else:
-        return u''
+        return ''
 
 def get_default_locale():
     """ Gets the user's default locale. """
@@ -79,8 +79,8 @@ def get_default_locale():
     else:
         lang, _ = locale.getdefaultlocale(['LANGUAGE', 'LC_ALL', 'LC_MESSAGES', 'LANG'])
         if lang:
-            return unicode(lang)
+            return str(lang)
         else:
-            return u"C"
+            return "C"
 
 # vim: expandtab:sw=4:ts=4

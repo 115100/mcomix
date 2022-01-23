@@ -2,7 +2,7 @@
 write them.  """
 
 import os
-import cPickle
+import pickle
 import json
 
 from mcomix import constants
@@ -117,8 +117,8 @@ def read_preferences_file():
         except:
             # Gettext might not be installed yet at this point.
             corrupt_name = "%s.broken" % constants.PREFERENCE_PATH
-            print ('! Corrupt preferences file, moving to "%s".' %
-                   corrupt_name)
+            print(('! Corrupt preferences file, moving to "%s".' %
+                   corrupt_name))
             if os.path.isfile(corrupt_name):
                 os.unlink(corrupt_name)
 
@@ -133,16 +133,16 @@ def read_preferences_file():
     elif os.path.isfile(constants.PREFERENCE_PICKLE_PATH):
         try:
             config_file = open(constants.PREFERENCE_PICKLE_PATH, 'rb')
-            version = cPickle.load(config_file)
-            saved_prefs = cPickle.load(config_file)
+            version = pickle.load(config_file)
+            saved_prefs = pickle.load(config_file)
             config_file.close()
 
             # Remove legacy format preferences file
             os.unlink(constants.PREFERENCE_PICKLE_PATH)
         except Exception:
             # Gettext might not be installed yet at this point.
-            print ('! Corrupt legacy preferences file "%s", ignoring...' %
-                   constants.PREFERENCE_PICKLE_PATH)
+            print(('! Corrupt legacy preferences file "%s", ignoring...' %
+                   constants.PREFERENCE_PICKLE_PATH))
 
     if saved_prefs:
         for key in saved_prefs:

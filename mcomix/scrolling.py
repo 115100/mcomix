@@ -251,12 +251,12 @@ class Scrolling(object):
 
     @staticmethod
     def _map_remap_axes(vectors, order):
-        return map(lambda v: Scrolling._remap_axes(v, order), vectors)
+        return [Scrolling._remap_axes(v, order) for v in vectors]
 
 
     @staticmethod
     def _inverse_axis_map(order):
-        identity = range(len(order))
+        identity = list(range(len(order)))
         return [identity[order[i]] for i in identity]
 
 

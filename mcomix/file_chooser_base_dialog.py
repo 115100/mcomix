@@ -103,7 +103,7 @@ class _BaseFileChooserDialog(Gtk.Dialog):
                     self.filechooser.set_current_folder(
                         constants.HOME_DIR)
 
-        except Exception, ex: # E.g. broken prefs values.
+        except Exception as ex: # E.g. broken prefs values.
             log.debug(ex)
 
         self.show_all()
@@ -161,12 +161,8 @@ class _BaseFileChooserDialog(Gtk.Dialog):
 
         match_patterns, match_mimes = data
 
-        matches_mime = bool(filter(
-            lambda match_mime: match_mime == filter_info.mime_type,
-            match_mimes))
-        matches_pattern = bool(filter(
-            lambda match_pattern: fnmatch.fnmatch(filter_info.filename, match_pattern),
-            match_patterns))
+        matches_mime = bool([match_mime for match_mime in match_mimes if match_mime == filter_info.mime_type])
+        matches_pattern = bool([match_pattern for match_pattern in match_patterns if fnmatch.fnmatch(filter_info.filename, match_pattern)])
 
         return matches_mime or matches_pattern
 

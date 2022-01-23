@@ -443,9 +443,9 @@ class MainWindow(Gtk.Window):
                                                   distribution_axis,
                                                   alignment_axis)
                 union_scaled_size = self.layout.get_union_box().get_size()
-                scrollbar_requests = map(operator.or_, scrollbar_requests,
-                    tools.smaller(viewport_size, union_scaled_size))
-                if len(filter(None, scrollbar_requests)) > 1 and not expand_area:
+                scrollbar_requests = list(map(operator.or_, scrollbar_requests,
+                    tools.smaller(viewport_size, union_scaled_size)))
+                if len([_f for _f in scrollbar_requests if _f]) > 1 and not expand_area:
                     expand_area = True
                     viewport_size = () # start anew
 
@@ -1001,7 +1001,7 @@ class MainWindow(Gtk.Window):
             archive_name = self.filehandler.get_pretty_current_filename()
             file_name = self.imagehandler.get_path_to_page()
             suggested_name = os.path.splitext(archive_name)[0] + \
-                u'_' + os.path.split(file_name)[-1]
+                '_' + os.path.split(file_name)[-1]
         else:
             suggested_name = os.path.split(self.imagehandler.get_path_to_page())[-1]
 
@@ -1068,18 +1068,18 @@ class MainWindow(Gtk.Window):
         if not self.filehandler.file_loaded:
             return
 
-        text = u''
+        text = ''
         filename = self.imagehandler.get_pretty_current_filename()
         if filename:
-            text += u'%s\n' % filename
+            text += '%s\n' % filename
         file_number, file_count = self.filehandler.get_file_number()
         if file_count:
-            text += u'(%d / %d)\n' % (file_number, file_count)
+            text += '(%d / %d)\n' % (file_number, file_count)
         else:
-            text += u'\n'
+            text += '\n'
         page_number = self.imagehandler.get_current_page()
         if page_number:
-            text += u'%s %s' % (_('Page'), page_number)
+            text += '%s %s' % (_('Page'), page_number)
         text = text.strip('\n')
         if text:
             self.osd.show(text)

@@ -8,6 +8,7 @@ import bisect
 import operator
 import math
 import itertools
+from functools import reduce
 
 
 NUMERIC_REGEXP = re.compile(r"\d+|\D+")  # Split into numerics and characters
@@ -25,7 +26,7 @@ def alphanumeric_sort(filenames):
 
         return s.lower()
 
-    filenames.sort(key=lambda s: map(_format_substring, NUMERIC_REGEXP.findall(s)))
+    filenames.sort(key=lambda s: list(map(_format_substring, NUMERIC_REGEXP.findall(s))))
 
 def alphanumeric_compare(s1, s2):
     """ Compares two strings by their natural order (i.e. 1 before 10)
@@ -144,27 +145,27 @@ def relerr(approx, ideal):
 def smaller(a, b):
     """ Returns a list with the i-th element set to True if and only if the i-th
     element in a is less than the i-th element in b. """
-    return map(operator.lt, a, b)
+    return list(map(operator.lt, a, b))
 
 def smaller_or_equal(a, b):
     """ Returns a list with the i-th element set to True if and only if the i-th
     element in a is less than or equal to the i-th element in b. """
-    return map(operator.le, a, b)
+    return list(map(operator.le, a, b))
 
 def scale(t, factor):
     return [x * factor for x in t]
 
 def vector_sub(a, b):
     """ Subtracts vector b from vector a. """
-    return map(operator.sub, a, b)
+    return list(map(operator.sub, a, b))
 
 def vector_add(a, b):
     """ Adds vector a to vector b. """
-    return map(operator.add, a, b)
+    return list(map(operator.add, a, b))
 
 def vector_opposite(a):
     """ Returns the opposite vector -a. """
-    return map(operator.neg, a)
+    return list(map(operator.neg, a))
 
 def fixed_strings_regex(strings):
     # introduces a matching group
@@ -175,7 +176,7 @@ def formats_to_regex(formats):
     """ Returns a compiled regular expression that can be used to search for
     file extensions specified in C{formats}. """
     return re.compile(r'\.' + fixed_strings_regex( \
-        itertools.chain.from_iterable([e[1] for e in formats.itervalues()])) \
+        itertools.chain.from_iterable([e[1] for e in formats.values()])) \
         + r'$', re.I)
 
 # vim: expandtab:sw=4:ts=4

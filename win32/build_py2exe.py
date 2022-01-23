@@ -54,7 +54,7 @@ def clear_distdir(distdir):
 	files = [os.path.join(distdir, file)
 			for file in os.listdir(distdir)]
 
-	print 'Cleaning %s...' % distdir
+	print('Cleaning %s...' % distdir)
 	for file in files:
 		if os.path.isfile(file):
 			os.unlink(file)
@@ -63,7 +63,7 @@ def clear_distdir(distdir):
 
 def create_py2exe():
 	""" Runs setup.py py2exe. """
-	print 'Executing py2exe...'
+	print('Executing py2exe...')
 	return os.system('setup.py py2exe')
 
 def complete_library_zip():
@@ -72,7 +72,7 @@ def complete_library_zip():
 	library = zipfile.ZipFile('dist_py2exe/library.zip', 'a')
 
 	messages = list_files('mcomix/messages', '*.mo')
-	print 'Adding messages to library.zip...'
+	print('Adding messages to library.zip...')
 	add_files_to_archive(library, messages)
 
 	images = list_files('mcomix/images', '*.png')
@@ -83,7 +83,7 @@ def complete_library_zip():
 		if fixed_path in images:
 			images.remove(fixed_path)
 
-	print 'Adding images to library.zip...'
+	print('Adding images to library.zip...')
 	add_files_to_archive(library, images)
 
 	library.close()
@@ -97,7 +97,7 @@ def copy_gtk_runtime_files():
 			'runtime')
 
 	if not os.path.isdir(runtime_dir):
-		print 'Detection of GTK runtime failed.'
+		print('Detection of GTK runtime failed.')
 		return False
 
 	locales = [
@@ -108,26 +108,26 @@ def copy_gtk_runtime_files():
 			 'etc/gtk-2.0/gtkrc',
 			 'lib/gtk-2.0/2.10.0/engines/libwimp.dll']
 
-	print 'Copying GTK theme and language files...'
+	print('Copying GTK theme and language files...')
 	for filename in locales + theme:
 		source = os.path.join(runtime_dir, filename)
 		destination = os.path.join('dist_py2exe', filename)
 
 		if not os.path.exists(source):
-			print '{0} doesn\'t exist!'.format(source)
+			print('{0} doesn\'t exist!'.format(source))
 			return False
 
 		if os.path.isfile(destination):
 			os.unlink(destination)
 		if not os.path.isdir(os.path.dirname(destination)):
-			os.makedirs(os.path.dirname(destination), 0755)
+			os.makedirs(os.path.dirname(destination), 0o755)
 		shutil.copy(source, destination)
 
 	return True
 
 def rename_executable():
 	""" Rename the executable into something reasonable. """
-	print 'Renaming executable...'
+	print('Renaming executable...')
 	if os.path.isfile('dist_py2exe/MComix.exe'):
 		os.unlink('dist_py2exe/MComix.exe')
 	if os.path.isfile('dist_py2exe/mcomixstarter.exe'):
@@ -147,7 +147,7 @@ def win32_newline(source, dest):
 
 def copy_other_files():
 	""" Copy other relevant files into dist directory. """
-	print "Copying misc files into dist directory..."
+	print("Copying misc files into dist directory...")
 	win32_newline('ChangeLog', 'dist_py2exe/ChangeLog.txt')
 	win32_newline('README', 'dist_py2exe/README.txt')
 	win32_newline('COPYING', 'dist_py2exe/COPYING.txt')

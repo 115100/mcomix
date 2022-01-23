@@ -1,7 +1,7 @@
 """library_book_area.py - The window of the library that displays the covers of books."""
 
 import os
-import urllib
+import urllib.request, urllib.parse, urllib.error
 from gi.repository import Gdk, GdkPixbuf, Gtk, GObject
 import PIL.Image as Image
 import PIL.ImageDraw as ImageDraw
@@ -709,7 +709,7 @@ class _BookArea(Gtk.ScrolledWindow):
             return
 
         uris = [ portability.normalize_uri(uri) for uri in uris ]
-        paths = [ urllib.url2pathname(uri).decode('utf-8') for uri in uris ]
+        paths = [ urllib.request.url2pathname(uri).decode('utf-8') for uri in uris ]
 
         collection = self._library.collection_area.get_current_collection()
         collection_name = self._library.backend.get_collection_name(collection)

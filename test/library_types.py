@@ -29,10 +29,10 @@ class CollectionTest(unittest.TestCase):
         # Add first two archives to no collection, remaining two
         # to subcollections.
         directory = 'test/files/archives'
-        zip_archive = unicode(os.path.join(directory, '01-ZIP-Normal.zip'))
-        tar_archive = unicode(os.path.join(directory, '02-TAR-Normal.tar'))
-        rar_archive = unicode(os.path.join(directory, '03-RAR-Normal.rar'))
-        sz_archive = unicode(os.path.join(directory, '04-7Z-Normal.7z'))
+        zip_archive = str(os.path.join(directory, '01-ZIP-Normal.zip'))
+        tar_archive = str(os.path.join(directory, '02-TAR-Normal.tar'))
+        rar_archive = str(os.path.join(directory, '03-RAR-Normal.rar'))
+        sz_archive = str(os.path.join(directory, '04-7Z-Normal.7z'))
 
         self.library.add_book(zip_archive, None)
         self.library.add_book(tar_archive, None)
@@ -130,7 +130,7 @@ class CollectionTest(unittest.TestCase):
 class WatchListEntryTest(unittest.TestCase):
 
     def test_invalid_dir(self):
-        tmpdir = tempfile.mkdtemp(dir=u'test', prefix=u'tmp.library_types.')
+        tmpdir = tempfile.mkdtemp(dir='test', prefix='tmp.library_types.')
         entry = backend_types._WatchListEntry(os.path.join(tmpdir, "invalid-directory"), False, None)
         self.assertFalse(entry.is_valid())
         self.assertIsInstance(entry.get_new_files([]), list)
@@ -138,10 +138,10 @@ class WatchListEntryTest(unittest.TestCase):
         shutil.rmtree(tmpdir)
 
     def test_valid_dir(self):
-        tmpdir = os.path.abspath(tempfile.mkdtemp(dir=u'test', prefix=u'tmp.library_types.'))
-        directory = unicode(os.path.abspath('test/files/archives'))
-        available = [u'01-ZIP-Normal.zip', u'02-TAR-Normal.tar']
-        others = [u'03-RAR-Normal.rar', u'04-7Z-Normal.7z']
+        tmpdir = os.path.abspath(tempfile.mkdtemp(dir='test', prefix='tmp.library_types.'))
+        directory = str(os.path.abspath('test/files/archives'))
+        available = ['01-ZIP-Normal.zip', '02-TAR-Normal.tar']
+        others = ['03-RAR-Normal.rar', '04-7Z-Normal.7z']
         for entry_list in (available, others):
             for n, entry in enumerate(entry_list):
                 src = os.path.join(directory, entry)

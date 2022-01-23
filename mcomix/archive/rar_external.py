@@ -33,23 +33,23 @@ class RarArchive(archive_base.ExternalExecutableArchive):
         if not self._is_encrypted:
             # Add a dummy password anyway, to prevent deadlock on reading for
             # input if we did not correctly detect the archive is encrypted.
-            return u'-p-'
+            return '-p-'
         self._get_password()
         # Check for invalid empty password, see comment above.
         if not self._password:
-            return u'-p-'
-        return u'-p' + self._password
+            return '-p-'
+        return '-p' + self._password
 
     def _get_list_arguments(self):
-        args = [self._get_executable(), u'vt']
+        args = [self._get_executable(), 'vt']
         args.append(self._get_password_argument())
-        args.extend((u'--', self.archive))
+        args.extend(('--', self.archive))
         return args
 
     def _get_extract_arguments(self):
-        args = [self._get_executable(), u'p', u'-inul', u'-@']
+        args = [self._get_executable(), 'p', '-inul', '-@']
         args.append(self._get_password_argument())
-        args.extend((u'--', self.archive))
+        args.extend(('--', self.archive))
         return args
 
     def _parse_list_output_line(self, line):
@@ -119,8 +119,8 @@ class RarArchive(archive_base.ExternalExecutableArchive):
 
     def extract(self, filename, destination_dir):
         """ Extract <filename> from the archive to <destination_dir>. """
-        assert isinstance(filename, unicode) and \
-                isinstance(destination_dir, unicode)
+        assert isinstance(filename, str) and \
+                isinstance(destination_dir, str)
 
         if not self._get_executable():
             return
@@ -186,7 +186,7 @@ class RarArchive(archive_base.ExternalExecutableArchive):
                         log.warning('RAR executable %s is unrar-free, ignoring', exe)
                         return False
                     return True
-            _rar_executable = process.find_executable((u'unrar-nonfree', u'unrar', u'rar'),
+            _rar_executable = process.find_executable(('unrar-nonfree', 'unrar', 'rar'),
                                                       is_valid_candidate=is_not_unrar_free)
         return _rar_executable
 

@@ -16,8 +16,8 @@ class OpenLastPageBasicTest(unittest.TestCase):
         constants.LIBRARY_DATABASE_PATH = self.db
 
         # Dummy archive (files are checked for existance)
-        self.archive1 = os.path.abspath(u'test/files/archives/01-ZIP-Normal.zip')
-        self.archive2 = os.path.abspath(u'test/files/archives/02-TAR-Normal.tar')
+        self.archive1 = os.path.abspath('test/files/archives/01-ZIP-Normal.zip')
+        self.archive2 = os.path.abspath('test/files/archives/02-TAR-Normal.tar')
 
         # Library backend
         self.backend = backend.LibraryBackend()

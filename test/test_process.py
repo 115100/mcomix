@@ -48,7 +48,7 @@ class ProcessTest(MComixTest):
     def test_find_executable(self):
         cleanup = []
         try:
-            root_dir = tempfile.mkdtemp(dir=u'test', prefix=u'tmp.path.')
+            root_dir = tempfile.mkdtemp(dir='test', prefix='tmp.path.')
             # cleanup.append(lambda: shutil.rmtree(root_dir))
 
             if 'win32' == sys.platform:

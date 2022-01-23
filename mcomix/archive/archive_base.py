@@ -22,7 +22,7 @@ class BaseArchive(object):
     support_concurrent_extractions = False
 
     def __init__(self, archive):
-        assert isinstance(archive, unicode), "File should be an Unicode string."
+        assert isinstance(archive, str), "File should be an Unicode string."
 
         self.archive = archive
         self._password = None
@@ -52,8 +52,8 @@ class BaseArchive(object):
         be obtained by calling list_contents(). The file is saved to
         <destination_dir>. """
 
-        assert isinstance(filename, unicode) and \
-            isinstance(destination_dir, unicode)
+        assert isinstance(filename, str) and \
+            isinstance(destination_dir, str)
 
     def iter_extract(self, entries, destination_dir):
         """ Generator to extract <entries> from archive to <destination_dir>. """
@@ -83,7 +83,7 @@ class BaseArchive(object):
 
         unsafe_chars = portability.invalid_filesystem_chars()
         translation_table = {}
-        replacement_char = u'_'
+        replacement_char = '_'
         for char in unsafe_chars:
             translation_table[ord(char)] = replacement_char
 
@@ -101,7 +101,7 @@ class BaseArchive(object):
             return
         try:
             os.makedirs(directory)
-        except OSError, e:
+        except OSError as e:
             # Can happen with concurrent calls.
             if e.errno != errno.EEXIST:
                 raise e
@@ -223,8 +223,8 @@ class ExternalExecutableArchive(NonUnicodeArchive):
 
     def extract(self, filename, destination_dir):
         """ Extract <filename> from the archive to <destination_dir>. """
-        assert isinstance(filename, unicode) and \
-                isinstance(destination_dir, unicode)
+        assert isinstance(filename, str) and \
+                isinstance(destination_dir, str)
 
         if not self._get_executable():
             return

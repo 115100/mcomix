@@ -19,7 +19,7 @@ class KeybindingEditorWindow(Gtk.ScrolledWindow):
 
         accel_column_num = max([
             len(self.keymanager.get_bindings_for_action(action))
-            for action in keybindings.BINDING_INFO.keys()
+            for action in list(keybindings.BINDING_INFO.keys())
         ])
         accel_column_num = self.accel_column_num = max([3, accel_column_num])
 
@@ -58,7 +58,7 @@ class KeybindingEditorWindow(Gtk.ScrolledWindow):
         manager. """
         self.treestore.clear()
         section_order = list(set(d['group']
-             for d in keybindings.BINDING_INFO.values()))
+             for d in list(keybindings.BINDING_INFO.values())))
         section_order.sort()
         section_parent_map = {}
         for section_name in section_order:
@@ -70,7 +70,7 @@ class KeybindingEditorWindow(Gtk.ScrolledWindow):
 
         action_treeiter_map = self.action_treeiter_map = {}
         # Sort actions by action name
-        actions = sorted(keybindings.BINDING_INFO.items(),
+        actions = sorted(list(keybindings.BINDING_INFO.items()),
                 key=lambda item: item[1]['title'])
         for action_name, action_data in actions:
             title = action_data['title']

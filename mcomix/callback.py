@@ -82,7 +82,7 @@ class CallbackList(object):
             if callback:
                 try:
                     callback(*args, **kwargs)
-                except Exception, e:
+                except Exception as e:
                     log.error(_('! Callback %(function)r failed: %(error)s'),
                               { 'function' : callback, 'error' : e })
                     log.debug('Traceback:\n%s', traceback.format_exc())
@@ -90,8 +90,7 @@ class CallbackList(object):
     def __callback_deleted(self, obj_ref):
         """ Called whenever one of the callback objects is collected by gc.
         This removes all callback functions registered by the object. """
-        self.__callbacks = filter(lambda callback: callback[0] != obj_ref,
-            self.__callbacks)
+        self.__callbacks = [callback for callback in self.__callbacks if callback[0] != obj_ref]
 
     def __get_function(self, func):
         """ If <func> is a normal function, return (None, func).
@@ -100,7 +99,7 @@ class CallbackList(object):
         weak references do not work on bound methods. """
 
         if hasattr(func, "im_self") and getattr(func, "im_self") is not None:
-            return (weakref.ref(func.im_self, self.__callback_deleted), func.im_func)
+            return (weakref.ref(func.__self__, self.__callback_deleted), func.__func__)
         else:
             return (None, func)
 

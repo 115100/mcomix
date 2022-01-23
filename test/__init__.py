@@ -17,10 +17,10 @@ locale.setlocale(locale.LC_ALL, '')
 # Since some of MComix' modules depend on gettext being installed for _(),
 # add such a function here that simply returns the string passed into it.
 
-import __builtin__
+import builtins
 
-if '_' not in __builtin__.__dict__:
-    __builtin__.__dict__['_'] = unicode
+if '_' not in builtins.__dict__:
+    builtins.__dict__['_'] = str
 
 # Enable debug logging to make post-mortem analysis easier.
 
@@ -52,7 +52,7 @@ class MComixTest(unittest.TestCase):
             self.__module__.split('.')[-1],
             self.__class__.__name__,
             self._testMethodName))
-        self.tmp_dir = tempfile.mkdtemp(dir=base_tmpdir, prefix=u'%s.' % name)
+        self.tmp_dir = tempfile.mkdtemp(dir=base_tmpdir, prefix='%s.' % name)
         # Change storage directories.
         home_dir = os.path.join(self.tmp_dir, 'home')
         os.mkdir(home_dir)
@@ -95,5 +95,5 @@ class MComixTest(unittest.TestCase):
 # Helper to get path to testsuite sample files.
 
 def get_testfile_path(*components):
-    return unicode(os.path.join(os.path.dirname(__file__), 'files', *components))
+    return str(os.path.join(os.path.dirname(__file__), 'files', *components))
 

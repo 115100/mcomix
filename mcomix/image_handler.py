@@ -65,7 +65,7 @@ class ImageHandler(object):
                 pixbuf = image_tools.load_pixbuf(self._image_files[index])
                 self._raw_pixbufs[index] = pixbuf
                 tools.garbage_collect()
-            except Exception, e:
+            except Exception as e:
                 self._raw_pixbufs[index] = image_tools.MISSING_IMAGE_ICON
                 log.error('Could not load pixbuf for page %u: %r', index + 1, e)
         else:
@@ -329,11 +329,11 @@ class ImageHandler(object):
                 try:
                     first = tools.format_byte_size(os.stat(first_path).st_size)
                 except OSError:
-                    first = u''
+                    first = ''
                 try:
                     second = tools.format_byte_size(os.stat(second_path).st_size)
                 except OSError:
-                    second = u''
+                    second = ''
             else:
                 return
             return first, second
@@ -341,7 +341,7 @@ class ImageHandler(object):
         try:
             size = tools.format_byte_size(os.stat(first_path).st_size)
         except OSError:
-            size = u''
+            size = ''
 
         return size
 
@@ -358,7 +358,7 @@ class ImageHandler(object):
                 os.path.basename(img_file)
             )
         else:
-            name = u''
+            name = ''
 
         return i18n.to_unicode(name)
 
@@ -455,7 +455,7 @@ class ImageHandler(object):
         else:
             num_pages = self._cache_pages
 
-        page_list = [page - 1 - page_width + n for n in xrange(num_pages)]
+        page_list = [page - 1 - page_width + n for n in range(num_pages)]
 
         # Current and next page first, followed by previous page.
         previous_page = page_list[0:page_width]

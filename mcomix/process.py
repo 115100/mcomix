@@ -27,7 +27,7 @@ STDOUT = subprocess.STDOUT
 def _fix_args(args):
     fixed_args = []
     for arg in args:
-        if isinstance(arg, unicode):
+        if isinstance(arg, str):
             fixed_args.append(arg.encode(sys.getfilesystemencoding()))
         else:
             fixed_args.append(arg)

@@ -1,7 +1,7 @@
 """ pixbuf_cache.py - Caches book covers for the library display."""
 # -*- coding: utf-8 -*-
 
-from __future__ import with_statement
+
 import threading
 
 __all__ = ["get_pixbuf_cache"]
@@ -29,7 +29,7 @@ class _PixbufCache(object):
 
         with self._lock:
             if len(self._cache) > self.cachesize:
-                first = self._cache.items()[0]
+                first = list(self._cache.items())[0]
                 self.invalidate(first[0])
 
             self._cache[id] = pixbuf

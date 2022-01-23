@@ -28,9 +28,9 @@ def print_(*args, **options):
     args = [ i18n.to_unicode(val) for val in args ]
 
     if 'sep' in options: sep = options['sep']
-    else: sep = u' '
+    else: sep = ' '
     if 'end' in options: end = options['end']
-    else: end = u'\n'
+    else: end = '\n'
 
     def print_generic(text):
         if text:

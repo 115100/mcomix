@@ -5,8 +5,8 @@ import optparse
 import signal
 
 if __name__ == '__main__':
-    print >> sys.stderr, 'PROGRAM TERMINATED'
-    print >> sys.stderr, 'Please do not run this script directly! Use mcomixstarter.py instead.'
+    print('PROGRAM TERMINATED', file=sys.stderr)
+    print('Please do not run this script directly! Use mcomixstarter.py instead.', file=sys.stderr)
     sys.exit(1)
 
 # These modules must not depend on GTK, pkg_resources, PIL,
@@ -23,13 +23,13 @@ def wait_and_exit():
     the user find possibly missing dependencies when starting, since the
     Python window will not close down immediately after the error. """
     if sys.platform == 'win32' and not sys.stdin.closed and not sys.stdout.closed:
-        print
-        raw_input("Press ENTER to continue...")
+        print()
+        input("Press ENTER to continue...")
     sys.exit(1)
 
 def print_version(opt, value, parser, *args, **kwargs):
     """Print the version number and exit."""
-    print constants.APPNAME + ' ' + constants.VERSION
+    print(constants.APPNAME + ' ' + constants.VERSION)
     sys.exit(0)
 
 def parse_arguments(argv):
@@ -116,9 +116,9 @@ def run():
     except ImportError:
         # gettext isn't initialized yet, since pkg_resources is required to find translation files.
         # Thus, localizing these messages is pointless.
-        log._print("The package 'pkg_resources' could not be found.")
-        log._print("You need to install the 'setuptools' package, which also includes pkg_resources.")
-        log._print("Note: On most distributions, 'distribute' supersedes 'setuptools'.")
+        log.print_("The package 'pkg_resources' could not be found.")
+        log.print_("You need to install the 'setuptools' package, which also includes pkg_resources.")
+        log.print_("Note: On most distributions, 'distribute' supersedes 'setuptools'.")
         wait_and_exit()
 
     # Load configuration and setup localisation.
@@ -196,16 +196,19 @@ def run():
 
     try:
         import PIL.Image
+        pil_version = 'unknown'
         try:
-            assert PIL.Image.VERSION >= '1.1.5'
+            pil_version = PIL.Image.VERSION
+            assert pil_version >= '1.1.5'
         except AttributeError:
             # Field VERSION deprecated in Pillow 5.2.0 and dropped in 6.0.0
-            assert PIL.__version__ >= '5.2.0'
+            pil_version = PIL.__version__
+            assert pil_version >= '5.2.0'
 
     except AssertionError:
         log.error( _("You don't have the required version of the Python Imaging"), end=' ')
         log.error( _('Library (PIL) installed.') )
-        log.error( _('Installed PIL version is: %s') % Image.VERSION )
+        log.error( _('Installed PIL version is: %s') % pil_version )
         log.error( _('Required PIL version is: 1.1.5 or higher') )
         wait_and_exit()
 
@@ -215,10 +218,10 @@ def run():
         wait_and_exit()
 
     if not os.path.exists(constants.DATA_DIR):
-        os.makedirs(constants.DATA_DIR, 0700)
+        os.makedirs(constants.DATA_DIR, 0o700)
 
     if not os.path.exists(constants.CONFIG_DIR):
-        os.makedirs(constants.CONFIG_DIR, 0700)
+        os.makedirs(constants.CONFIG_DIR, 0o700)
 
     from mcomix import icons
     icons.load_icons()

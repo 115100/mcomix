@@ -1,6 +1,6 @@
 """thumbbar.py - Thumbnail sidebar for main window."""
 
-import urllib
+import urllib.request, urllib.parse, urllib.error
 from gi.repository import GObject, Gdk, GdkPixbuf, Gtk
 import cairo
 
@@ -230,7 +230,7 @@ class ThumbnailSidebar(Gtk.ScrolledWindow):
 
         selected = self._get_selected_row()
         path = self._window.imagehandler.get_path_to_page(selected + 1)
-        uri = 'file://localhost' + urllib.pathname2url(path)
+        uri = 'file://localhost' + urllib.request.pathname2url(path)
         selection.set_uris([uri])
 
     def _drag_begin(self, treeview, context):

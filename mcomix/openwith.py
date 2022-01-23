@@ -35,7 +35,7 @@ class OpenWithManager(object):
                     in prefs['openwith commands']]
         except ValueError:
             # Backwards compatibility for early versions with only two parameters
-            return [OpenWithCommand(label, command, u'', False)
+            return [OpenWithCommand(label, command, '', False)
                     for label, command in prefs['openwith commands']]
 
 
@@ -91,9 +91,9 @@ class OpenWithCommand(object):
                 proc = process.popen(args, stdout=process.NULL)
             del proc
 
-        except Exception, e:
+        except Exception as e:
             text = _("Could not run command %(cmdlabel)s: %(exception)s") % \
-                {'cmdlabel': self.get_label(), 'exception': unicode(e)}
+                {'cmdlabel': self.get_label(), 'exception': str(e)}
             window.osd.show(text)
         finally:
             os.chdir(current_dir)
@@ -154,28 +154,28 @@ class OpenWithCommand(object):
         the parts to pass to Popen. The following two functions have
         been contributed by Ark <aaku@users.sf.net>. """
         result = []
-        buf = u""
+        buf = ""
         quote = False
         escape = False
         inarg = False
         for c in line:
             if escape:
-                if c == u'%' or c == u'"':
+                if c == '%' or c == '"':
                     buf += c
                 else:
                     buf += self._expand_variable(c, window, context_type)
                 escape = False
-            elif c == u' ' or c == u'\t':
+            elif c == ' ' or c == '\t':
                 if quote:
                     buf += c
                 elif inarg:
                     result.append(buf)
-                    buf = u""
+                    buf = ""
                     inarg = False
             else:
-                if c == u'"':
+                if c == '"':
                     quote = not quote
-                elif c == u'%':
+                elif c == '%':
                     escape = True
                 else:
                     buf += c
@@ -201,48 +201,48 @@ class OpenWithCommand(object):
         if context_type == DEBUGGING_CONTEXT:
             return '%' + identifier
 
-        if not (context_type & IMAGE_FILE_CONTEXT) and identifier in (u'f', u'd', u'b', u's', u'F', u'D', u'B', u'S'):
+        if not (context_type & IMAGE_FILE_CONTEXT) and identifier in ('f', 'd', 'b', 's', 'F', 'D', 'B', 'S'):
             raise OpenWithException(
                 _("File-related variables can only be used for files."))
 
-        if not (context_type & ARCHIVE_CONTEXT) and identifier in (u'a', u'c', u'A', u'C'):
+        if not (context_type & ARCHIVE_CONTEXT) and identifier in ('a', 'c', 'A', 'C'):
             raise OpenWithException(
                 _("Archive-related variables can only be used for archives."))
 
-        if identifier == u'/':
+        if identifier == '/':
             return os.path.sep
-        elif identifier == u'a':
+        elif identifier == 'a':
             return window.filehandler.get_base_filename()
-        elif identifier == u'd':
+        elif identifier == 'd':
             return os.path.basename(os.path.dirname(window.imagehandler.get_path_to_page()))
-        elif identifier == u'f':
+        elif identifier == 'f':
             return window.imagehandler.get_page_filename()
-        elif identifier == u'c':
+        elif identifier == 'c':
             return os.path.basename(os.path.dirname(window.filehandler.get_path_to_base()))
-        elif identifier == u'b':
+        elif identifier == 'b':
             if (context_type & ARCHIVE_CONTEXT):
                 return window.filehandler.get_base_filename() # same as %a
             else:
                 return os.path.basename(os.path.dirname(window.imagehandler.get_path_to_page())) # same as %d
-        elif identifier == u's':
+        elif identifier == 's':
             if (context_type & ARCHIVE_CONTEXT):
                 return os.path.basename(os.path.dirname(window.filehandler.get_path_to_base())) # same as %c
             else:
                 return os.path.basename(os.path.dirname(os.path.dirname(window.imagehandler.get_path_to_page())))
-        elif identifier == u'A':
+        elif identifier == 'A':
             return window.filehandler.get_path_to_base()
-        elif identifier == u'D':
+        elif identifier == 'D':
             return os.path.normpath(os.path.dirname(window.imagehandler.get_path_to_page()))
-        elif identifier == u'F':
+        elif identifier == 'F':
             return os.path.normpath(window.imagehandler.get_path_to_page())
-        elif identifier == u'C':
+        elif identifier == 'C':
             return os.path.dirname(window.filehandler.get_path_to_base())
-        elif identifier == u'B':
+        elif identifier == 'B':
             if (context_type & ARCHIVE_CONTEXT):
                 return window.filehandler.get_path_to_base() # same as %A
             else:
                 return os.path.normpath(os.path.dirname(window.imagehandler.get_path_to_page())) # same as %D
-        elif identifier == u'S':
+        elif identifier == 'S':
             if (context_type & ARCHIVE_CONTEXT):
                 return os.path.dirname(window.filehandler.get_path_to_base()) # same as %C
             else:
@@ -361,7 +361,7 @@ class OpenWithEditor(Gtk.Dialog):
             return
 
         try:
-            args = map(self._quote_if_necessary, command.parse(self._window))
+            args = list(map(self._quote_if_necessary, command.parse(self._window)))
             self._test_field.set_text(" ".join(args))
             self._run_button.set_sensitive(True)
 
@@ -373,8 +373,8 @@ class OpenWithEditor(Gtk.Dialog):
                     _('"%s" does not appear to have a valid executable.') % command.get_label())
             else:
                 self._set_exec_text('')
-        except OpenWithException, e:
-            self._test_field.set_text(unicode(e))
+        except OpenWithException as e:
+            self._test_field.set_text(str(e))
             self._set_exec_text('')
 
     def _add_command(self, button):
@@ -568,39 +568,39 @@ class OpenWithEditor(Gtk.Dialog):
 
     def _quote_if_necessary(self, arg):
         """ Quotes a command line argument if necessary. """
-        if arg == u"":
-            return u'""'
+        if arg == "":
+            return '""'
         if sys.platform == 'win32':
             # based on http://msdn.microsoft.com/en-us/library/17w5ykft%28v=vs.85%29.aspx
             backslash_counter = 0
             needs_quoting = False
-            result = u""
+            result = ""
             for c in arg:
-                if c == u'\\':
+                if c == '\\':
                     backslash_counter += 1
                 else:
-                    if c == u'\"':
-                        result += u'\\' * (2 * backslash_counter + 1)
+                    if c == '\"':
+                        result += '\\' * (2 * backslash_counter + 1)
                     else:
-                        result += u'\\' * backslash_counter
+                        result += '\\' * backslash_counter
                     backslash_counter = 0
                     result += c
-                if c == u' ':
+                if c == ' ':
                     needs_quoting = True
 
             if needs_quoting:
-                result += u'\\' * (2 * backslash_counter)
-                result = u'"' + result + u'"'
+                result += '\\' * (2 * backslash_counter)
+                result = '"' + result + '"'
             else:
-                result += u'\\' * backslash_counter
+                result += '\\' * backslash_counter
             return result
         else:
             # simplified version of
             # http://www.gnu.org/software/bash/manual/bashref.html#Double-Quotes
-            arg = arg.replace(u'\\', u'\\\\')
-            arg = arg.replace(u'"', u'\\"')
-            if u" " in arg:
-                return u'"' + arg + u'"'
+            arg = arg.replace('\\', '\\\\')
+            arg = arg.replace('"', '\\"')
+            if " " in arg:
+                return '"' + arg + '"'
             return arg
 
 

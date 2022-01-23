@@ -123,7 +123,7 @@ class _Collection(_BackendObject):
     def __eq__(self, other):
         if isinstance(other, _Collection):
             return self.id == other.id
-        elif isinstance(other, (int, long)):
+        elif isinstance(other, int):
             return self.id == other
         else:
             return False
@@ -379,7 +379,7 @@ class _WatchListEntry(_BackendObject):
         cursor = self.get_backend().execute(sql, (self.directory,))
         cursor.close()
 
-        self.directory = u""
+        self.directory = ""
         self.collection = None
 
     def set_collection(self, new_collection):

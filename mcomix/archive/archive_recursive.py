@@ -124,8 +124,8 @@ class RecursiveArchive(archive_base.BaseArchive):
                 archive_destination_dir = os.path.join(destination_dir, root)
             log.debug('extracting from %s to %s: %s',
                       archive.archive, archive_destination_dir,
-                      ' '.join(archive_wanted.keys()))
-            for f in archive.iter_extract(archive_wanted.keys(), archive_destination_dir):
+                      ' '.join(list(archive_wanted.keys())))
+            for f in archive.iter_extract(list(archive_wanted.keys()), archive_destination_dir):
                 yield archive_wanted[f]
             wanted -= set(archive_wanted.values())
             if 0 == len(wanted):

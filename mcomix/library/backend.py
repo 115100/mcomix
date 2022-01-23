@@ -560,7 +560,7 @@ class _LibraryBackend(object):
             return
 
         if from_version != to_version:
-            upgrades = range(from_version, to_version)
+            upgrades = list(range(from_version, to_version))
             log.info(_("Upgrading library database version from %(from)d to %(to)d."),
                 { "from" : from_version, "to" : to_version })
 

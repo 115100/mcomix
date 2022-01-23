@@ -1,5 +1,5 @@
 """archive_extractor.py - Archive extraction class."""
-from __future__ import with_statement
+
 
 import os
 import threading
@@ -174,13 +174,13 @@ class Extractor(object):
             files.sort()
 
         try:
-            log.debug(u'Extracting from "%s" to "%s": "%s"', self._src, self._dst, '", "'.join(files))
+            log.debug('Extracting from "%s" to "%s": "%s"', self._src, self._dst, '", "'.join(files))
             for f in self._archive.iter_extract(files, self._dst):
                 if self._extract_thread.must_stop():
                     return
                 self._extraction_finished(f)
 
-        except Exception, ex:
+        except Exception as ex:
             # Better to ignore any failed extractions (e.g. from a corrupt
             # archive) than to crash here and leave the main thread in a
             # possible infinite block. Damaged or missing files *should* be
@@ -195,10 +195,10 @@ class Extractor(object):
         """
 
         try:
-            log.debug(u'Extracting from "%s" to "%s": "%s"', self._src, self._dst, name)
+            log.debug('Extracting from "%s" to "%s": "%s"', self._src, self._dst, name)
             self._archive.extract(name, self._dst)
 
-        except Exception, ex:
+        except Exception as ex:
             # Better to ignore any failed extractions (e.g. from a corrupt
             # archive) than to crash here and leave the main thread in a
             # possible infinite block. Damaged or missing files *should* be

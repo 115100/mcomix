@@ -32,27 +32,27 @@ class SevenZipArchive(archive_base.ExternalExecutableArchive):
     def _get_password_argument(self):
         if self._is_encrypted:
             self._get_password()
-            return u'-p' + self._password
+            return '-p' + self._password
         else:
             # Add an empty password anyway, to prevent deadlock on reading for
             # input if we did not correctly detect the archive is encrypted.
-            return u'-p'
+            return '-p'
 
     def _get_list_arguments(self):
-        args = [self._get_executable(), u'l', u'-slt']
+        args = [self._get_executable(), 'l', '-slt']
         if sys.platform == 'win32':
             # This switch is only supported on Win32.
-            args.append(u'-sccUTF-8')
+            args.append('-sccUTF-8')
         args.append(self._get_password_argument())
-        args.extend((u'--', self.archive))
+        args.extend(('--', self.archive))
         return args
 
     def _get_extract_arguments(self, list_file=None):
-        args = [self._get_executable(), u'x', u'-so']
+        args = [self._get_executable(), 'x', '-so']
         if list_file is not None:
-            args.append(u'-i@' + list_file)
+            args.append('-i@' + list_file)
         args.append(self._get_password_argument())
-        args.extend((u'--', self.archive))
+        args.extend(('--', self.archive))
         return args
 
     def _parse_list_output_line(self, line):
@@ -131,8 +131,8 @@ class SevenZipArchive(archive_base.ExternalExecutableArchive):
 
     def extract(self, filename, destination_dir):
         """ Extract <filename> from the archive to <destination_dir>. """
-        assert isinstance(filename, unicode) and \
-                isinstance(destination_dir, unicode)
+        assert isinstance(filename, str) and \
+                isinstance(destination_dir, str)
 
         if not self._get_executable():
             return
@@ -143,7 +143,7 @@ class SevenZipArchive(archive_base.ExternalExecutableArchive):
         tmplistfile = tempfile.NamedTemporaryFile(prefix='mcomix.7z.', delete=False)
         try:
             desired_filename = self._original_filename(filename)
-            if isinstance(desired_filename, unicode):
+            if isinstance(desired_filename, str):
                 desired_filename = desired_filename.encode('utf-8')
 
             tmplistfile.write(desired_filename + os.linesep)
@@ -196,7 +196,7 @@ class SevenZipArchive(archive_base.ExternalExecutableArchive):
         it was started successfully or None otherwise. """
         global _7z_executable
         if _7z_executable == -1:
-            _7z_executable = process.find_executable((u'7z',))
+            _7z_executable = process.find_executable(('7z',))
         return _7z_executable
 
     @staticmethod

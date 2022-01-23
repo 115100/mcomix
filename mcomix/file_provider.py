@@ -51,7 +51,7 @@ class FileProvider(object):
         pass
 
     def get_directory(self):
-        return os.path.abspath(os.getcwdu())
+        return os.path.abspath(os.getcwd())
 
     def list_files(self, mode=IMAGES):
         return []
@@ -131,7 +131,7 @@ class OrderedFileProvider(FileProvider):
 
             return files
         except OSError:
-            log.warning(u'! ' + _('Could not open %s: Permission denied.'), self.base_dir)
+            log.warning('! ' + _('Could not open %s: Permission denied.'), self.base_dir)
             return []
 
     def next_directory(self):

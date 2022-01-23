@@ -178,7 +178,7 @@ def get_archive_info(path):
     """
     cleanup = []
     try:
-        tmpdir = tempfile.mkdtemp(prefix=u'mcomix_archive_info.')
+        tmpdir = tempfile.mkdtemp(prefix='mcomix_archive_info.')
         cleanup.append(lambda: shutil.rmtree(tmpdir, True))
 
         mime = archive_mime_type(path)
@@ -188,7 +188,7 @@ def get_archive_info(path):
         cleanup.append(archive.close)
 
         files = archive.list_contents()
-        num_pages = len(filter(image_tools.is_image_file, files))
+        num_pages = len(list(filter(image_tools.is_image_file, files)))
         size = os.stat(path).st_size
 
         return (mime, num_pages, size)

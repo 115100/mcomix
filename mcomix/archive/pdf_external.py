@@ -83,7 +83,7 @@ class PdfArchive(archive_base.BaseArchive):
         if _pdf_possible is not None:
             return _pdf_possible
         global _mutool_exec, _mudraw_exec, _mudraw_trace_args
-        mutool = process.find_executable((u'mutool',))
+        mutool = process.find_executable(('mutool',))
         _pdf_possible = False
         version = None
         if mutool is None:
@@ -111,7 +111,7 @@ class PdfArchive(archive_base.BaseArchive):
                 _pdf_possible = True
             else:
                 # Separate mudraw executable.
-                mudraw = process.find_executable((u'mudraw',))
+                mudraw = process.find_executable(('mudraw',))
                 if mudraw is None:
                     log.debug('mudraw executable not found')
                 else:

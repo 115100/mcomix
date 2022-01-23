@@ -1,12 +1,12 @@
 """file_handler.py - File handler that takes care of opening archives and images."""
-from __future__ import with_statement
+
 
 import os
 import shutil
 import tempfile
 import threading
 import re
-import cPickle
+import pickle
 from gi.repository import Gtk
 
 from mcomix.preferences import prefs
@@ -95,9 +95,9 @@ class FileHandler(object):
 
         try:
             path = self._initialize_fileprovider(path, keep_fileprovider)
-        except ValueError, ex:
-            self._window.statusbar.set_message(unicode(ex))
-            self._window.osd.show(unicode(ex))
+        except ValueError as ex:
+            self._window.statusbar.set_message(str(ex))
+            self._window.osd.show(str(ex))
             return False
 
         error_message = self._check_access(path)
@@ -120,9 +120,9 @@ class FileHandler(object):
         if self.archive_type is not None:
             try:
                 self._open_archive(self._current_file)
-            except Exception, ex:
-                self._window.statusbar.set_message(unicode(ex))
-                self._window.osd.show(unicode(ex))
+            except Exception as ex:
+                self._window.statusbar.set_message(str(ex))
+                self._window.osd.show(str(ex))
                 self.file_opened()
                 return False
             self.file_loading = True
@@ -276,7 +276,7 @@ class FileHandler(object):
 
         @return: A tuple containing C{(image_files, image_index)}. """
 
-        self._tmp_dir = tempfile.mkdtemp(prefix=u'mcomix.', suffix=os.sep)
+        self._tmp_dir = tempfile.mkdtemp(prefix='mcomix.', suffix=os.sep)
         self._base_path = path
         try:
             self._condition = self._extractor.setup(self._base_path,
@@ -296,19 +296,19 @@ class FileHandler(object):
         archive_images = [image for image in files
             if image_tools.is_image_file(image)
             # Remove MacOS meta files from image list
-            and not u'__MACOSX' in os.path.normpath(image).split(os.sep)]
+            and not '__MACOSX' in os.path.normpath(image).split(os.sep)]
 
         self._sort_archive_images(archive_images)
         image_files = [ os.path.join(self._tmp_dir, f)
                         for f in archive_images ]
 
-        comment_files = filter(self._comment_re.search, files)
+        comment_files = list(filter(self._comment_re.search, files))
         tools.alphanumeric_sort(comment_files)
         self._comment_files = [ os.path.join(self._tmp_dir, f)
                                 for f in comment_files ]
 
-        self._name_table = dict(zip(image_files, archive_images))
-        self._name_table.update(zip(self._comment_files, comment_files))
+        self._name_table = dict(list(zip(image_files, archive_images)))
+        self._name_table.update(list(zip(self._comment_files, comment_files)))
 
         self._extractor.set_files(archive_images + comment_files)
 
@@ -599,8 +599,8 @@ class FileHandler(object):
             with self._condition:
                 while not self._extractor.is_ready(name) and not self._stop_waiting:
                     self._condition.wait()
-        except Exception, ex:
-            log.error(u'Waiting on extraction of "%s" failed: %s', path, ex)
+        except Exception as ex:
+            log.error('Waiting on extraction of "%s" failed: %s', path, ex)
             return
 
     def _ask_for_files(self, files):
@@ -637,7 +637,7 @@ class FileHandler(object):
             page_index = self._window.imagehandler.get_current_page() - 1
             current_file_info = [ path, page_index ]
 
-            cPickle.dump(current_file_info, config, cPickle.HIGHEST_PROTOCOL)
+            pickle.dump(current_file_info, config, pickle.HIGHEST_PROTOCOL)
             config.close()
 
     def read_fileinfo_file(self):
@@ -650,14 +650,14 @@ class FileHandler(object):
             try:
                 config = open(constants.FILEINFO_PICKLE_PATH, 'rb')
 
-                fileinfo = cPickle.load(config)
+                fileinfo = pickle.load(config)
 
                 config.close()
 
-            except Exception, ex:
+            except Exception as ex:
                 log.error(_('! Corrupt preferences file "%s", deleting...'),
                         constants.FILEINFO_PICKLE_PATH )
-                log.info(u'Error was: %s', ex)
+                log.info('Error was: %s', ex)
                 if config is not None:
                     config.close()
                 os.remove(constants.FILEINFO_PICKLE_PATH)
