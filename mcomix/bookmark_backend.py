@@ -205,7 +205,7 @@ class __BookmarksStore(object):
 
         pages = list(map(str, sorted(map(operator.attrgetter('_page'), old_bookmarks))))
         dialog.set_text(
-            i18n.get_translation().ungettext(
+            i18n.get_translation().ngettext(
                 'Replace existing bookmark on page %s?',
                 'Replace existing bookmarks on pages %s?',
                 len(pages)
