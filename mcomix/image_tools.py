@@ -6,6 +6,7 @@ import re
 import sys
 import operator
 from gi.repository import GLib, GdkPixbuf, Gdk, Gtk
+from gi.repository.GdkPixbuf import Pixbuf, InterpType
 from PIL import Image
 from PIL import ImageEnhance
 from PIL import ImageOps
@@ -23,11 +24,9 @@ from mcomix import constants
 from mcomix import log
 from mcomix import tools
 
-
 # Unfortunately gdk_pixbuf_version is not exported, so show the GTK+ version instead.
-log.info('GDK version: %s', GdkPixbuf.PIXBUF_VERSION)
+log.info('GDK version: %s, GTK+: %s.%s', GdkPixbuf.PIXBUF_VERSION, Gtk.get_major_version(), Gtk.get_minor_version())
 log.info('PIL version: %s [%s]', PIL_VERSION[0], PIL_VERSION[1])
-
 
 # Fallback pixbuf for missing images.
 MISSING_IMAGE_ICON = None
@@ -323,24 +322,24 @@ def static_image(pixbuf):
 
 def unwrap_image(image):
     """ Returns an object that contains the image data based on
-    gtk.Image.get_storage_type or None if image is None or image.get_storage_type
-    returns gtk.IMAGE_EMPTY. """
+    Gtk.Image.get_storage_type or None if image is None or image.get_storage_type
+    returns Gtk.IMAGE_EMPTY. """
     if image is None:
         return None
     t = image.get_storage_type()
-    if t == gtk.IMAGE_EMPTY:
+    if t == Gtk.IMAGE_EMPTY:
         return None
-    if t == gtk.IMAGE_PIXBUF:
+    if t == Gtk.IMAGE_PIXBUF:
         return image.get_pixbuf()
-    if t == gtk.IMAGE_ANIMATION:
+    if t == Gtk.IMAGE_ANIMATION:
         return image.get_animation()
-    if t == gtk.IMAGE_PIXMAP:
+    if t == Gtk.IMAGE_PIXMAP:
         return image.get_pixmap()
-    if t == gtk.IMAGE_IMAGE:
+    if t == Gtk.IMAGE_IMAGE:
         return image.get_image()
-    if t == gtk.IMAGE_STOCK:
+    if t == Gtk.IMAGE_STOCK:
         return image.get_stock()
-    if t == gtk.IMAGE_ICON_SET:
+    if t == Gtk.IMAGE_ICON_SET:
         return image.get_icon_set()
     raise ValueError()
 
@@ -367,7 +366,7 @@ def load_pixbuf(path):
                     except glib.GError:
                         # NOTE: Broken JPEGs sometimes result in this exception.
                         # However, one may be able to load them using
-                        # gtk.gdk.pixbuf_new_from_file, so we need to continue.
+                        # Gdk.pixbuf_new_from_file, so we need to continue.
                         pass
                 if pixbuf is None:
                     pixbuf = GdkPixbuf.Pixbuf.new_from_file(path)
@@ -405,7 +404,7 @@ def load_pixbuf_size(path, width, height):
                 # If we could not get the image info, still try to load
                 # the image to let GdkPixbuf raise the appropriate exception.
                 if (0, 0) == image_dimensions:
-                    pixbuf = gtk.gdk.pixbuf_new_from_file(path)
+                    pixbuf = GdkPixbuf.Pixbuf.new_from_file(path)
                 # Work around GdkPixbuf bug: https://bugzilla.gnome.org/show_bug.cgi?id=735422
                 # (currently https://gitlab.gnome.org/GNOME/gdk-pixbuf/issues/45)
                 elif 'GIF' == image_format:
@@ -617,7 +616,7 @@ def get_image_info(path):
     if gdk_image_info is not None:
         image_format = gdk_image_info[0].get_name().upper()
         image_dimensions = gdk_image_info[1], gdk_image_info[2]
-        # Prefer loading via GDK/Pixbuf if gtk.gdk.pixbuf_get_file_info appears
+        # Prefer loading via GDK/Pixbuf if Gdk.pixbuf_get_file_info appears
         # to be able to handle this path.
         providers = (constants.IMAGEIO_GDKPIXBUF, constants.IMAGEIO_PIL)
     else:
