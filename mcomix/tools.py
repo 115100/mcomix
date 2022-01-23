@@ -7,9 +7,11 @@ import gc
 import bisect
 import operator
 import math
+import itertools
 
 
 NUMERIC_REGEXP = re.compile(r"\d+|\D+")  # Split into numerics and characters
+PREFIXED_BYTE_UNITS = ("B", "KiB", "MiB", "GiB", "TiB", "PiB", "EiB", "ZiB", "YiB")
 
 
 def alphanumeric_sort(filenames):
@@ -107,6 +109,20 @@ def number_of_digits(n):
         return 1
     return int(math.log10(abs(n))) + 1
 
+def decompose_byte_size_exponent(n):
+    e = 0
+    while n > 1024.0:
+        n /= 1024.0
+        e += 1
+    return (n, e)
+
+def byte_size_exponent_to_prefix(e):
+    return PREFIXED_BYTE_UNITS[min(e, len(PREFIXED_BYTE_UNITS)-1)]
+
+def format_byte_size(n):
+    nn, e = decompose_byte_size_exponent(n)
+    return ('%d %s' if nn == int(nn) else '%.1f %s') % \
+        (nn, byte_size_exponent_to_prefix(e))
 
 def garbage_collect():
     """ Runs the garbage collector. """
@@ -123,12 +139,17 @@ def volume(t):
     return reduce(operator.mul, t, 1)
 
 def relerr(approx, ideal):
-    return abs((approx - ideal) / ideal)
+    return abs(div(approx - ideal, ideal))
 
 def smaller(a, b):
-    """ Returns a list with the i-th element set to True if and only the i-th
+    """ Returns a list with the i-th element set to True if and only if the i-th
     element in a is less than the i-th element in b. """
     return map(operator.lt, a, b)
+
+def smaller_or_equal(a, b):
+    """ Returns a list with the i-th element set to True if and only if the i-th
+    element in a is less than or equal to the i-th element in b. """
+    return map(operator.le, a, b)
 
 def scale(t, factor):
     return [x * factor for x in t]
@@ -144,5 +165,17 @@ def vector_add(a, b):
 def vector_opposite(a):
     """ Returns the opposite vector -a. """
     return map(operator.neg, a)
+
+def fixed_strings_regex(strings):
+    # introduces a matching group
+    strings = set(strings)
+    return r'(%s)' % '|'.join(sorted([re.escape(s) for s in strings]))
+
+def formats_to_regex(formats):
+    """ Returns a compiled regular expression that can be used to search for
+    file extensions specified in C{formats}. """
+    return re.compile(r'\.' + fixed_strings_regex( \
+        itertools.chain.from_iterable([e[1] for e in formats.itervalues()])) \
+        + r'$', re.I)
 
 # vim: expandtab:sw=4:ts=4

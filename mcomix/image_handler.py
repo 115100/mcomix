@@ -307,6 +307,44 @@ class ImageHandler(object):
 
         return os.path.basename(first_path)
 
+    def get_page_filesize(self, page=None, double=False):
+        """Return the filesize of the <page>, or the filesize of the
+        currently viewed page if <page> is None. If <double> is True, return
+        a tuple (s, s') where s is the filesize of <page> (or the current
+        page) and s' is the filesize of the page after.
+        """
+        if not self.page_is_available():
+            return
+
+        if page is None:
+            page = self.get_current_page()
+
+        first_path = self.get_path_to_page(page)
+        if first_path == None:
+            return
+
+        if double:
+            second_path = self.get_path_to_page(page + 1)
+            if second_path != None:
+                try:
+                    first = tools.format_byte_size(os.stat(first_path).st_size)
+                except OSError:
+                    first = u''
+                try:
+                    second = tools.format_byte_size(os.stat(second_path).st_size)
+                except OSError:
+                    second = u''
+            else:
+                return
+            return first, second
+
+        try:
+            size = tools.format_byte_size(os.stat(first_path).st_size)
+        except OSError:
+            size = u''
+
+        return size
+
     def get_pretty_current_filename(self):
         """Return a string with the name of the currently viewed file that is
         suitable for printing.
@@ -334,8 +372,8 @@ class ImageHandler(object):
         if page_path is None:
             return (0, 0)
 
-        format, width, height = image_tools.get_image_info(page_path)
-        return (width, height)
+        format, dimensions, providers = image_tools.get_image_info(page_path)
+        return dimensions
 
     def get_mime_name(self, page=None):
         """Return a string with the name of the mime type of <page>. If
@@ -347,7 +385,7 @@ class ImageHandler(object):
         if page_path is None:
             return None
 
-        format, width, height = image_tools.get_image_info(page_path)
+        format, dimensions, providers = image_tools.get_image_info(page_path)
         return format
 
     def get_thumbnail(self, page=None, width=128, height=128, create=False,

@@ -90,7 +90,7 @@ prefs = {
     'lib sort order': constants.SORT_ASCENDING,
     'language': 'auto',
     'statusbar fields': constants.STATUS_PAGE | constants.STATUS_RESOLUTION | \
-                        constants.STATUS_PATH | constants.STATUS_FILENAME,
+                        constants.STATUS_PATH | constants.STATUS_FILENAME | constants.STATUS_FILESIZE,
     'max threads': 3,
     'max extract threads': 1,
     'wrap mouse scroll': False,
@@ -99,7 +99,9 @@ prefs = {
     'fit to size mode': constants.ZOOM_MODE_HEIGHT,
     'fit to size px': 1800,
     'scan for new books on library startup': True,
-    'openwith commands': []  # (label, command) pairs
+    'openwith commands': [],  # (label, command) pairs
+    'animation mode': constants.ANIMATION_NORMAL,
+    'double page autoresize': constants.DOUBLE_PAGE_AUTORESIZE_SIZE,
 }
 
 def read_preferences_file():

@@ -214,7 +214,6 @@ install_python_source()
   rm -rf "$tmpdir/$dir"
 
   aunpack --quiet --extract-to "$tmpdir" "$distdir/$file"
-
   (
     cd "$tmpdir/$dir"
     if [ -z "$build" ]
@@ -224,7 +223,6 @@ install_python_source()
       "$build"
     fi
   )
-
   rm -rf "$tmpdir/$dir"
 
   return 0
@@ -281,32 +279,32 @@ helper_setup()
   touch "$installed"
   # Bare minimum for running MComix.
   install 'Python' 'https://www.python.org/ftp/python/2.7.10/python-2.7.10.msi' 9e62f37407e6964ee0374b32869b7b4ab050d12a install_msi /q
-  install 'PyGObject for Windows' 'http://downloads.sourceforge.net/project/pygobjectwin32/pygi-aio-3.18.2_rev3-setup.exe' f54d00b245da423465081c01df1347282c289049 install_pygobject GTK
-  install 'PyGObject for Windows: legacy PyGTK' 'http://downloads.sourceforge.net/project/pygobjectwin32/legacy_pygtk-2.24.0_gtk-2.24.28+themes_py27_win32_win64.7z' 295fe473cea9eeeb20a75b8b0c6b2a7215347566 install_pygtk
-  install 'Pillow' 'https://pypi.python.org/packages/2.7/P/Pillow/Pillow-3.1.0.win32-py2.7.exe' fe2bb05cab0f4e406f305965bb876b48427163f8 install_exe
+  install 'PyGObject for Windows' 'https://downloads.sourceforge.net/project/pygobjectwin32/pygi-aio-3.24.1_rev1-setup_049a323fe25432b10f7e9f543b74598d4be74a39.exe' 049a323fe25432b10f7e9f543b74598d4be74a39 install_pygobject GTK
+  install 'PyGObject for Windows: legacy PyGTK' 'https://downloads.sourceforge.net/project/pygobjectwin32/legacy_pygtk-2.24.0_gtk-2.24.31%2Bthemes_py27_win32_win64.7z' 324f1fc7802266c8fe21647df1baea86ca43cc55 install_pygtk
+  install 'Pillow' 'https://files.pythonhosted.org/packages/96/cf/774c98b2669ff61d3a53257bda074508bf8e75434e5ed481eac2112c2a06/Pillow-5.2.0.win32-py2.7.exe' bf2fff24db8d42f7652b9b71b0331d512c066c83 install_exe
   # Better support for password protected zip files.
-  install 'Python: czipfile' 'https://pypi.python.org/packages/2.7/c/czipfile/czipfile-1.0.0.win32-py2.7.exe' 8478c1d659821259c1140cd8600d61a2fa13128f install_exe
+  install 'Python: czipfile' 'https://files.pythonhosted.org/packages/58/11/feffabbfb7db8f69dd4ae42fa69671479cfe30e5a9d550d14b56529bc2b6/czipfile-1.0.0.win32-py2.7.exe' 8478c1d659821259c1140cd8600d61a2fa13128f install_exe
   # Support for RAR files.
-  install 'UnRAR DLL' 'http://www.rarlab.com/rar/UnRARDLL.exe' 0cd358d9ed694bd4016f9ceb42517fee17d173f8 install_archive UnrarDLL rar
+  install 'UnRAR DLL' 'https://www.rarlab.com/rar/UnRARDLL.exe' 5cb712f1939262cb67915c06ceb4690d9091dbc9 install_archive UnrarDLL rar
   # Support for PDF files.
-  install 'MuPDF' 'http://mupdf.com/downloads/archive/mupdf-1.8-windows.zip' 27683c9186eab0bd53674e959c102bc88c384017 install_archive MuPDF
+  install 'MuPDF' 'https://mupdf.com/downloads/mupdf-1.13.0-windows.zip' fd33fac244ab3b73a40e58d74dbabe36a8e0c346 install_archive MuPDF
   # Support for 7z files.
-  install '7zip' 'http://7-zip.org/a/7z1512.msi' 43a87ae650b3e0651d55da055c82d58336e6c257 install_7zip
+  install '7zip' 'https://7-zip.org/a/7z1805.msi' de02cd8fc2912ffda23be0c902c2c482eae93f27 install_7zip
   # Additional extractors for testing.
-  install 'UnrarDLL executable' 'http://www.rarlab.com/rar/unrarw32.exe' 8f6440133d8b3f06c0478df19abc33a4eced6bdb install_archive Unrar rar
+  install 'UnrarDLL executable' 'https://www.rarlab.com/rar/unrarw32.exe' 89ae08125722269d88e63641ab03e6787f4bed43 install_archive Unrar rar
   install 'UnZIP executable' 'ftp://ftp.info-zip.org/pub/infozip/win32/unz600xn.exe' 5ae7a23e7abf2c5ca44cefb0d6bf6248e6563db1 install_archive unzip zip
   # Install PyInstaller and dependencies.
-  install 'PyInstaller dependency: Python for Windows Extensions' 'http://downloads.sourceforge.net/project/pywin32/pywin32/Build 219/pywin32-219.win32-py2.7.exe' 8bc39008383c646bed01942584117113ddaefe6b install_exe
-  install 'PyInstaller dependency: setuptools' 'https://pypi.python.org/packages/source/s/setuptools/setuptools-14.3.1.zip' fb16eea8e9ddb5a973e98362aabb9675c8ec63ee install_python_source
-  install 'PyInstaller dependency: distribute' 'https://pypi.python.org/packages/source/d/distribute/distribute-0.7.3.zip' 297bd0725027ca39dcb35fa00327bc35b2f2c5e3 install_python_source build_distribute
-  install 'PyInstaller' 'https://pypi.python.org/packages/source/P/PyInstaller/PyInstaller-2.1.tar.gz' 530e0496087ea955ebed6f11b0172c50c73952af install_python_source
+  install 'PyInstaller dependency: Python for Windows Extensions' 'https://github.com/mhammond/pywin32/releases/download/b223/pywin32-223.win32-py2.7.exe' a8de4775c90ebea32a48ec2c1733a07f1d73727e install_exe
+  install 'PyInstaller dependency: setuptools' 'https://files.pythonhosted.org/packages/source/s/setuptools/setuptools-40.0.0.zip' dac21f957c047b1b222a54fd2b2a3053c59cbfce install_python_source
+  install 'PyInstaller dependency: distribute' 'https://files.pythonhosted.org/packages/source/d/distribute/distribute-0.7.3.zip' 297bd0725027ca39dcb35fa00327bc35b2f2c5e3 install_python_source build_distribute
+  install 'PyInstaller' 'https://github.com/pyinstaller/pyinstaller/releases/download/v2.1/PyInstaller-2.1.tar.gz' 530e0496087ea955ebed6f11b0172c50c73952af install_python_source # last Python 2-only release of PyInstaller
   # Install pytest and dependencies.
-  install 'PyTest dependency: colorama' 'https://pypi.python.org/packages/source/c/colorama/colorama-0.3.3.tar.gz' a8ee91adf4644bbdccfc73ead88f4cd0df7e3552 install_python_source
-  install 'PyTest dependency: py' 'https://pypi.python.org/packages/source/p/py/py-1.4.26.tar.gz' 5d9aaa67c1da2ded5f978aa13e03dfe780771fea install_python_source
-  install 'PyTest' 'https://pypi.python.org/packages/source/p/pytest/pytest-2.7.0.tar.gz' 297b27dc5a77ec3a22bb2bee1dfa178ec162d9e4 install_python_source
+  install 'PyTest dependency: colorama' 'https://files.pythonhosted.org/packages/source/c/colorama/colorama-0.3.9.tar.gz' 3ab1a3cf1d35332f995acc444c120b6543776b73 install_python_source
+  install 'PyTest dependency: py' 'https://files.pythonhosted.org/packages/source/p/py/py-1.4.26.tar.gz' 5d9aaa67c1da2ded5f978aa13e03dfe780771fea install_python_source
+  install 'PyTest' 'https://files.pythonhosted.org/packages/source/p/pytest/pytest-2.7.0.tar.gz' 297b27dc5a77ec3a22bb2bee1dfa178ec162d9e4 install_python_source
   # Install last 2 releases of MComix for easier regression testing.
-  install 'MComix 1.00' http://downloads.sourceforge.net/project/mcomix/MComix-1.00/mcomix-1.00.win32.all-in-one.zip 4002cf441abd4fb616bb409407d86861b1224fca install_mcomix 1.00
-  install 'MComix 1.01' http://downloads.sourceforge.net/project/mcomix/MComix-1.01/mcomix-1.01-2.win32.all-in-one.zip 44b24db3cec4fd66c2df05d25d70f47125da2100 install_mcomix 1.01
+  install 'MComix 1.01' https://downloads.sourceforge.net/project/mcomix/MComix-1.01/mcomix-1.01-2.win32.all-in-one.zip 44b24db3cec4fd66c2df05d25d70f47125da2100 install_mcomix 1.01
+  install 'MComix 1.2.1' https://downloads.sourceforge.net/project/mcomix/MComix-1.2.1/mcomix-1.2.1.win32.all-in-one.zip 833f7268e44e1621b9b7a059fb006b4df6d54db8 install_mcomix 1.2.1
   winetricks -q corefonts vcrun2008
   true
 }
@@ -384,8 +382,9 @@ helper_dist_setup()
 helper_dist_mcomix()
 {(
   winedir="$win32dir/.wine-dist"
+  programfiles="$winedir/drive_c/Program Files"
   export WINEARCH='win32' WINEPREFIX="$winedir"
-  winecmd wine MComix.exe "$@"
+  winecmd wine "$programfiles/MComix/MComix.exe" "$@"
 )}
 
 helper_dist_shell()
