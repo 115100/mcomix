@@ -180,7 +180,7 @@ class _PreferencesDialog(Gtk.Dialog):
         page.add_row(Gtk.Label(label=_('Show only one page where appropriate:')),
             self._create_doublepage_as_one_control())
 
-        page.add_row(gtk.Label(_('Page auto-resizing:')),
+        page.add_row(Gtk.Label(_('Page auto-resizing:')),
             self._create_double_page_autoresize_control())
 
         page.new_section(_('Files'))
