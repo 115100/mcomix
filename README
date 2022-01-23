@@ -21,14 +21,14 @@
 
   Example:
 
-      # python2 setup.py --prefix /usr install
+      # python3 setup.py --prefix /usr install
 
   As an example of how to install MComix from the downloaded tar.gz file, run
   as the root user (via su or sudo):
 
       # tar -xzf mcomix-x.y.tar.gz
       # cd mcomix-x.y
-      # python2 setup.py install
+      # python3 setup.py install
 
   If you don't want to install MComix in some system directory, you can just
   execute the file mcomixstarter.py in the unpacked MComix directory to
@@ -41,7 +41,7 @@
   man page, or other optional files normally placed into /usr/share. To do so,
   setup.py must be called with a additonal options:
 
-      # python2 setup.py install --single-version-externally-managed \
+      # python3 setup.py install --single-version-externally-managed \
 	                            --prefix /usr --root / --record mcomix-files.txt
 
   This sort of installation is only recommended for advanced users, as no
@@ -51,11 +51,9 @@
 
 === Dependencies ==============================================================
 
-  MComix needs Python 2.5, Setuptools 0.6, PyGTK 2.12 and Pillow (Python
-  Imaging Library Fork) 2.2.1 or newer to function.
-
-  To use the library you need pysqlite (which is usually included in the
-  standard library for Python 2.5 and later).
+  MComix needs Python 3.7 or newer to work. Setuptools, PyGObject and PyCairo
+  in a recent version, as well as Pillow (Python Imaging Library Fork) 3.4.0
+  or newer are required as well.
 
   You also need either the "unrar" or the "rar" program installed if you wish
   to read RAR (.cbr) archives.
