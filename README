@@ -51,7 +51,7 @@
 
 === Dependencies ==============================================================
 
-  MComix needs Python 3.7 or newer to work. Setuptools, PyGObject and PyCairo
+  MComix needs Python 3.7 or newer to work. PyGObject and PyCairo
   in a recent version, as well as Pillow (Python Imaging Library Fork) 3.4.0
   or newer are required as well.
 

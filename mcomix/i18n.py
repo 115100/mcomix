@@ -1,10 +1,11 @@
 """ i18n.py - Encoding and translation handler."""
 
-import sys
-import os
-import locale
 import gettext
-import pkg_resources
+import io
+import locale
+import os
+import pkgutil
+import sys
 
 try:
     import chardet
@@ -83,16 +84,18 @@ def install_gettext():
 
     domain = constants.APPNAME.lower()
 
-    # Search for .mo files manually, since gettext doesn't support setuptools/pkg_resources.
+    # Search for .mo files manually, since gettext doesn't support packaged resources
     for lang in lang_identifiers:
         resource = os.path.join('messages', lang, 'LC_MESSAGES', '%s.mo' % domain)
         try:
-            fp = pkg_resources.resource_stream('mcomix', resource)
-        except IOError:
+            translation_content = pkgutil.get_data('mcomix', resource)
+        except FileNotFoundError:
             pass
         else:
+            fp = io.BytesIO(translation_content)
             translation = gettext.GNUTranslations(fp)
             break
+
     else:
         translation = gettext.NullTranslations()
 

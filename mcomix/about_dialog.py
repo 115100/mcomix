@@ -2,7 +2,7 @@
 """about_dialog.py - About dialog."""
 
 from gi.repository import Gtk
-import pkg_resources
+import pkgutil
 import webbrowser
 
 from mcomix import constants
@@ -20,7 +20,7 @@ class _AboutDialog(Gtk.AboutDialog):
         self.set_website('https://sourceforge.net/p/mcomix/wiki/')
         self.set_copyright('Copyright © 2005-2022')
 
-        icon_data = pkg_resources.resource_string('mcomix', 'images/mcomix.png')
+        icon_data = pkgutil.get_data('mcomix', 'images/mcomix.png')
         pixbuf = image_tools.load_pixbuf_data(icon_data)
         self.set_logo(pixbuf)
 
