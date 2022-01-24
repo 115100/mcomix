@@ -112,6 +112,10 @@ def run():
     # First things first: set the log level.
     log.setLevel(opts.loglevel)
 
+    # Reconfigure stdout to replace characters that cannot be printed
+    if hasattr(sys.stdout, 'reconfigure'):
+        sys.stdout.reconfigure(errors='replace')
+
     # Check for PyGTK and PIL dependencies.
     try:
         from gi import require_version
