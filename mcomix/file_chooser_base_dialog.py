@@ -1,4 +1,4 @@
-"""filechooser_chooser_base_dialog.py - Custom FileChooserDialog implementations."""
+"""filechooser_chooser_base_dialbg.py - Custom FileChooserDialog implementations."""
 
 import os
 import mimetypes
@@ -206,8 +206,6 @@ class _BaseFileChooserDialog(Gtk.Dialog):
             filter = self.filechooser.get_filter()
             paths = [ ]
             for path in self.filechooser.get_filenames():
-                path = path.decode('utf-8')
-
                 if os.path.isdir(path):
                     subdir_files = list(self.collect_files_from_subdir(path, filter,
                         self.should_open_recursive()))
@@ -218,7 +216,7 @@ class _BaseFileChooserDialog(Gtk.Dialog):
 
             # FileChooser.set_do_overwrite_confirmation() doesn't seem to
             # work on our custom dialog, so we use a simple alternative.
-            first_path = self.filechooser.get_filenames()[0].decode('utf-8')
+            first_path = self.filechooser.get_filenames()[0]
             if (self._action == Gtk.FileChooserAction.SAVE and
                 not os.path.isdir(first_path) and
                 os.path.exists(first_path)):
@@ -253,7 +251,7 @@ class _BaseFileChooserDialog(Gtk.Dialog):
 
     def _update_preview(self, *args):
         if self.filechooser.get_preview_filename():
-            path = self.filechooser.get_preview_filename().decode('utf-8')
+            path = self.filechooser.get_preview_filename()
         else:
             path = None
 
@@ -275,7 +273,7 @@ class _BaseFileChooserDialog(Gtk.Dialog):
             return
 
         current_path = self.filechooser.get_preview_filename()
-        if current_path and current_path.decode('utf-8') == filepath:
+        if current_path and current_path == filepath:
 
             if pixbuf is None:
                 self._preview_image.clear()

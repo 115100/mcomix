@@ -188,7 +188,7 @@ class Thumbnailer(object):
     def _get_text_data(self, filepath):
         """ Creates a tEXt dictionary for <filepath>. """
         mime = mimetypes.guess_type(filepath)[0] or "unknown/mime"
-        uri = portability.uri_prefix() + pathname2url(i18n.to_utf8(os.path.normpath(filepath)))
+        uri = portability.uri_prefix() + pathname2url(os.path.normpath(filepath))
         stat = os.stat(filepath)
         # MTime could be floating point number, so convert to long first to have a fixed point number
         mtime = str(int(stat.st_mtime))
@@ -257,7 +257,7 @@ class Thumbnailer(object):
 
     def _path_to_thumbpath(self, filepath):
         """ Converts <path> to an URI for the thumbnail in <dst_dir>. """
-        uri = portability.uri_prefix() + pathname2url(i18n.to_utf8(os.path.normpath(filepath)))
+        uri = portability.uri_prefix() + pathname2url(os.path.normpath(filepath))
         return self._uri_to_thumbpath(uri)
 
     def _uri_to_thumbpath(self, uri):

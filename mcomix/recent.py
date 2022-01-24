@@ -55,13 +55,13 @@ class RecentFilesMenu(Gtk.RecentChooserMenu):
     def add(self, path):
         if not preferences.prefs['store recent file info']:
             return
-        uri = portability.uri_prefix() + urllib.request.pathname2url(i18n.to_utf8(path))
+        uri = portability.uri_prefix() + urllib.request.pathname2url(path)
         self._manager.add_item(uri)
 
     def remove(self, path):
         if not preferences.prefs['store recent file info']:
             return
-        uri = portability.uri_prefix() + urllib.request.pathname2url(i18n.to_utf8(path))
+        uri = portability.uri_prefix() + urllib.request.pathname2url(path)
         try:
             self._manager.remove_item(uri)
         except GLib.GError:
