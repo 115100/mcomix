@@ -276,7 +276,7 @@ class ImageHandler(object):
         else:
             index = page - 1
 
-        if 0 <= index < len(self._image_files):
+        if self._image_files and 0 <= index < len(self._image_files):
             return self._image_files[index]
         else:
             return None
