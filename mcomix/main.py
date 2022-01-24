@@ -1,5 +1,6 @@
 """main.py - Main window."""
 
+import sys
 import math
 import operator
 import os
@@ -108,7 +109,6 @@ class MainWindow(Gtk.Window):
         # ----------------------------------------------------------------
         self.set_title(constants.APPNAME)
         self.set_size_request(300, 300)  # Avoid making the window *too* small
-        self.restore_window_geometry()
 
         # Hook up keyboard shortcuts
         self._event_handler.register_key_events()
@@ -260,6 +260,7 @@ class MainWindow(Gtk.Window):
 
         self.uimanager.set_sensitivities()
         self.show()
+        self.restore_window_geometry()
 
         if prefs['default fullscreen'] or fullscreen:
             toggleaction = self.actiongroup.get_action('fullscreen')
@@ -1121,7 +1122,9 @@ class MainWindow(Gtk.Window):
                                           prefs['window height']):
             return False
         self.resize(prefs['window width'], prefs['window height'])
-        self.move(prefs['window x'], prefs['window y'])
+        # FIXME: Moving the Window on Windows causes it to go completely offscreen
+        if sys.platform != 'win32':
+            self.move(prefs['window x'], prefs['window y'])
         return True
 
     def close_program(self, *args):

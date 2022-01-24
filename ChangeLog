@@ -7,6 +7,12 @@ In development
       PyCairo. Minimum Pillow version has been increased to 5.2.0.
       On the flip side, MComix no longer has a dependency on the setuptools module.
 
+    KNOWN ISSUES
+
+    - The MComix window will not remember its last position on Windows. Code
+      that works on Linux causes the window to fly off the screen for some
+      reason.
+
 MComix 1.2.1
 Release date: 2016-02-12
 
