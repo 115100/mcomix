@@ -6,12 +6,12 @@
   designed to handle comic books (both Western comics and manga) and supports a
   variety of container formats (including CBR, CBZ, CB7, CBT, LHA and PDF).
   MComix is a fork of Comix. It is written in Python and uses GTK+ through the
-  PyGTK bindings.
+  PyGObject bindings.
 
 === Installation ==============================================================
 
 
-  Run "python2 setup.py install" as root. This will install MComix in the
+  Run "python3 setup.py install" as root. This will install MComix in the
   site-packages folder of Python. An executable "mcomix" will be placed in
   /usr/bin.
 
