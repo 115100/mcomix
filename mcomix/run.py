@@ -139,24 +139,15 @@ def run():
 
     try:
         import PIL.Image
-        pil_version = 'unknown'
-        try:
-            pil_version = PIL.Image.VERSION
-            assert pil_version >= '1.1.5'
-        except AttributeError:
-            # Field VERSION deprecated in Pillow 5.2.0 and dropped in 6.0.0
-            pil_version = PIL.__version__
-            assert pil_version >= '5.2.0'
 
-    except AssertionError:
-        log.error( _("You don't have the required version of the Python Imaging"), end=' ')
-        log.error( _('Library (PIL) installed.') )
-        log.error( _('Installed PIL version is: %s') % pil_version )
-        log.error( _('Required PIL version is: 1.1.5 or higher') )
-        wait_and_exit()
+        if PIL.__version__ < '5.2.0':
+            log.error( _("You don't have the required version of the Python Imaging Library Fork (Pillow) installed."))
+            log.error( _('Installed Pillow version is: %s') % PIL.__version__ )
+            log.error( _('Required Pillow version is: 5.2.0 or higher') )
+            wait_and_exit()
 
     except ImportError:
-        log.error( _('Python Imaging Library (PIL) 1.1.5 or higher is required.') )
+        log.error( _('Python Imaging Library Fork (Pillow) 5.2.0 or higher is required.') )
         log.error( _('No version of the Python Imaging Library was found on your system.') )
         wait_and_exit()
 

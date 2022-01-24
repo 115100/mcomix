@@ -2,27 +2,21 @@
 
 from collections import namedtuple
 import binascii
-import re
-import sys
 import operator
 from gi.repository import GLib, GdkPixbuf, Gdk, Gtk
-from gi.repository.GdkPixbuf import Pixbuf, InterpType
+import PIL
 from PIL import Image
 from PIL import ImageEnhance
 from PIL import ImageOps
 from PIL.JpegImagePlugin import _getexif
-try:
-    import PIL
-    PIL_VERSION = ('Pillow', PIL.__version__)
-except AttributeError:
-    from PIL import VERSION as PIL_VERSION
-    PIL_VERSION = ('PIL', PIL_VERSION)
 from io import StringIO
 
 from mcomix.preferences import prefs
 from mcomix import constants
 from mcomix import log
 from mcomix import tools
+
+PIL_VERSION = ('Pillow', PIL.__version__)
 
 # Unfortunately gdk_pixbuf_version is not exported, so show the GTK+ version instead.
 log.info('GDK version: %s, GTK+: %s.%s', GdkPixbuf.PIXBUF_VERSION, Gtk.get_major_version(), Gtk.get_minor_version())
