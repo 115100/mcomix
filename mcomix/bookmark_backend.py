@@ -212,7 +212,7 @@ class __BookmarksStore(object):
             ) % ", ".join(pages),
 
             _('The current book already contains marked pages. '
-              'Do you want to replace them with a new bookmark on page %d? ') % new_page +
+              'Do you want to replace them with a new bookmark on page %d?') % new_page +
               '\n\n' +
             _('Selecting "No" will create a new bookmark without affecting the other bookmarks.'))
 
