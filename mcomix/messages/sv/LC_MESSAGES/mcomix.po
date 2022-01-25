@@ -3,8 +3,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: MComix 0.90.4\n"
-"Report-Msgid-Bugs-To: https://sourceforge.net/projects/mcomix/\n"
-"POT-Creation-Date: 2018-12-24 20:46+0100\n"
+"Report-Msgid-Bugs-To: https://sourceforge.net/projects/mcomix\n"
+"POT-Creation-Date: 2022-01-25 20:37+0100\n"
 "PO-Revision-Date: 2018-02-24 08:43+0100\n"
 "Last-Translator: Jonatan Nyberg <jonatan@autistici.org>\n"
 "Language-Team: Swedish <LL@li.org>\n"
@@ -84,10 +84,10 @@ msgstr[0] "Ersätt befintligt bokmärke på sidan %s?"
 msgstr[1] "Ersätt befintliga bokmärken på sidorna %s?"
 
 #: mcomix/bookmark_backend.py:214
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "The current book already contains marked pages. Do you want to replace them "
-"with a new bookmark on page %d? "
+"with a new bookmark on page %d?"
 msgstr ""
 "Den aktuella boken innehåller redan märkta sidor. Vill du ersätta dem med "
 "ett nytt bokmärke på sidan %d? "
@@ -111,15 +111,15 @@ msgstr "Typ"
 #
 # File: src/bookmark.py, line: 255
 # File: src/edit.py, line: 267
-#: mcomix/bookmark_dialog.py:51 mcomix/edit_comment_area.py:33
+#: mcomix/bookmark_dialog.py:51 mcomix/edit_comment_area.py:32
 #: mcomix/keybindings_editor.py:35
 msgid "Name"
 msgstr "Namn"
 
 #
 # File: src/bookmark.py, line: 256
-#: mcomix/bookmark_dialog.py:52 mcomix/main.py:1070
-#: mcomix/library/control_area.py:136
+#: mcomix/bookmark_dialog.py:52 mcomix/main.py:1083
+#: mcomix/library/control_area.py:140
 msgid "Page"
 msgstr "Sida"
 
@@ -151,7 +151,7 @@ msgstr "! Återanrop %(function)r misslyckades: %(error)s"
 #
 # File: src/comment.py, line: 16
 # File: src/preferences.py, line: 288
-#: mcomix/comment_dialog.py:11 mcomix/preferences_dialog.py:298
+#: mcomix/comment_dialog.py:11 mcomix/preferences_dialog.py:297
 msgid "Comments"
 msgstr "Kommentarer"
 
@@ -164,7 +164,7 @@ msgstr "Kunde inte läsa %s"
 
 #
 # File: src/edit.py, line: 255
-#: mcomix/edit_comment_area.py:20
+#: mcomix/edit_comment_area.py:19
 msgid ""
 "Please note that the only files that are automatically added to this list "
 "are those files in archives that MComix recognizes as comments."
@@ -174,55 +174,55 @@ msgstr ""
 
 #
 # File: src/edit.py, line: 270
-#: mcomix/edit_comment_area.py:37 mcomix/properties_dialog.py:125
+#: mcomix/edit_comment_area.py:36 mcomix/properties_dialog.py:125
 msgid "Size"
 msgstr "Storlek"
 
 #
 # File: src/edit.py, line: 168
 # File: src/edit.py, line: 285
-#: mcomix/edit_comment_area.py:54 mcomix/edit_image_area.py:68
+#: mcomix/edit_comment_area.py:53 mcomix/edit_image_area.py:68
 msgid "Remove from archive"
 msgstr "Ta bort från arkiv"
 
 #
 # File: src/edit.py, line: 28
-#: mcomix/edit_dialog.py:28 mcomix/keybindings.py:136
+#: mcomix/edit_dialog.py:27 mcomix/keybindings.py:136
 msgid "Edit archive"
 msgstr "Redigera arkiv"
 
-#: mcomix/edit_dialog.py:40
+#: mcomix/edit_dialog.py:39
 msgid "_Import"
 msgstr "_Importera"
 
 #
 # File: src/edit.py, line: 50
-#: mcomix/edit_dialog.py:55
+#: mcomix/edit_dialog.py:54
 msgid "Images"
 msgstr "Bilder"
 
 #
 # File: src/comment.py, line: 16
 # File: src/preferences.py, line: 288
-#: mcomix/edit_dialog.py:56
+#: mcomix/edit_dialog.py:55
 msgid "Comment files"
 msgstr "Kommentarer"
 
 #
 # File: src/edit.py, line: 99
-#: mcomix/edit_dialog.py:134
+#: mcomix/edit_dialog.py:133
 msgid "The new archive could not be saved!"
 msgstr "Det nya arkivet kunde inte sparas!"
 
 #
 # File: src/edit.py, line: 101
-#: mcomix/edit_dialog.py:135
+#: mcomix/edit_dialog.py:134
 msgid "The original files have not been removed."
 msgstr "Originalfilerna har inte tagits bort."
 
 #
 # File: src/edit.py, line: 115
-#: mcomix/edit_dialog.py:153
+#: mcomix/edit_dialog.py:152
 msgid "Archives are stored as ZIP files."
 msgstr "Arkiven sparas i ZIP-format."
 
@@ -242,37 +242,37 @@ msgstr "Spara de valda värdena som standard för framtida filer."
 
 #
 # File: src/enhance.py, line: 79
-#: mcomix/enhance_dialog.py:69
+#: mcomix/enhance_dialog.py:70
 msgid "_Brightness:"
 msgstr "_Ljusstyrka:"
 
 #
 # File: src/enhance.py, line: 90
-#: mcomix/enhance_dialog.py:70
+#: mcomix/enhance_dialog.py:71
 msgid "_Contrast:"
 msgstr "_Kontrast:"
 
 #
 # File: src/enhance.py, line: 101
-#: mcomix/enhance_dialog.py:71
+#: mcomix/enhance_dialog.py:72
 msgid "S_aturation:"
 msgstr "F_ärgmättnad:"
 
 #
 # File: src/enhance.py, line: 112
-#: mcomix/enhance_dialog.py:72
+#: mcomix/enhance_dialog.py:73
 msgid "S_harpness:"
 msgstr "S_kärpa:"
 
 #
 # File: src/enhance.py, line: 126
-#: mcomix/enhance_dialog.py:77
+#: mcomix/enhance_dialog.py:78
 msgid "_Automatically adjust contrast"
 msgstr "Justera kontrast _automatiskt"
 
 #
 # File: src/enhance.py, line: 128
-#: mcomix/enhance_dialog.py:79
+#: mcomix/enhance_dialog.py:80
 msgid ""
 "Automatically adjust contrast (both lightness and darkness), separately for "
 "each colour band."
@@ -283,31 +283,31 @@ msgstr ""
 #
 # File: src/filechooser.py, line: 35
 # File: src/library.py, line: 489
-#: mcomix/file_chooser_base_dialog.py:44 mcomix/keybindings.py:137
+#: mcomix/file_chooser_base_dialog.py:43 mcomix/keybindings.py:137
 msgid "Open"
 msgstr "Öppna"
 
 #
 # File: src/filechooser.py, line: 39
-#: mcomix/file_chooser_base_dialog.py:49
+#: mcomix/file_chooser_base_dialog.py:48
 msgid "Save"
 msgstr "Spara"
 
 #
 # File: src/filechooser.py, line: 75
-#: mcomix/file_chooser_base_dialog.py:86
+#: mcomix/file_chooser_base_dialog.py:85
 msgid "All files"
 msgstr "Alla filer"
 
 #
 # File: src/filechooser.py, line: 78
-#: mcomix/file_chooser_base_dialog.py:129
+#: mcomix/file_chooser_base_dialog.py:128
 msgid "All archives"
 msgstr "Alla arkiv"
 
 #
 # File: src/filechooser.py, line: 82
-#: mcomix/file_chooser_base_dialog.py:135
+#: mcomix/file_chooser_base_dialog.py:134
 #, python-format
 msgid "%s archives"
 msgstr "%s arkiv"
@@ -315,28 +315,28 @@ msgstr "%s arkiv"
 #
 # File: src/filechooser.py, line: 171
 # File: src/filechooser.py, line: 249
-#: mcomix/file_chooser_base_dialog.py:145
+#: mcomix/file_chooser_base_dialog.py:144
 msgid "All images"
 msgstr "Alla bildfiler"
 
 #
 # File: src/filechooser.py, line: 171
 # File: src/filechooser.py, line: 249
-#: mcomix/file_chooser_base_dialog.py:151
+#: mcomix/file_chooser_base_dialog.py:150
 #, python-format
 msgid "%s images"
 msgstr "%s bilder"
 
 #
 # File: src/filechooser.py, line: 125
-#: mcomix/file_chooser_base_dialog.py:234
+#: mcomix/file_chooser_base_dialog.py:227
 #, python-format
 msgid "A file named '%s' already exists. Do you want to replace it?"
 msgstr "En fil med namnet '%s' finns redan. Vill du ersätta den?"
 
 #
 # File: src/filechooser.py, line: 128
-#: mcomix/file_chooser_base_dialog.py:236
+#: mcomix/file_chooser_base_dialog.py:229
 msgid "Replacing it will overwrite its contents."
 msgstr "Ersätts filen så kommer dess innehåll att skrivas över."
 
@@ -402,14 +402,9 @@ msgstr "! Kunde inte ladda ikon \"%s\""
 
 #
 # File: src/filehandler.py, line: 411
-#: mcomix/image_tools.py:630
+#: mcomix/image_tools.py:627
 msgid "Unknown filetype"
 msgstr "Okänd filtyp"
-
-#: mcomix/keybindings_editor.py:42
-#, python-format
-msgid "Key %d"
-msgstr "Tangent %d"
 
 #
 # File: src/ui.py, line: 284
@@ -513,7 +508,7 @@ msgstr "Rulla till nedre vänstra"
 #: mcomix/keybindings.py:67 mcomix/keybindings.py:68 mcomix/keybindings.py:69
 #: mcomix/keybindings.py:71 mcomix/keybindings.py:72 mcomix/keybindings.py:73
 #: mcomix/keybindings.py:74 mcomix/keybindings.py:76 mcomix/keybindings.py:77
-#: mcomix/preferences_dialog.py:128
+#: mcomix/preferences_dialog.py:127
 msgid "Scroll"
 msgstr "Scrollning"
 
@@ -650,7 +645,7 @@ msgstr "Rotera automatiskt efter höjd"
 #
 # File: src/preferences.py, line: 177
 # File: src/ui.py, line: 296
-#: mcomix/keybindings.py:97 mcomix/preferences_dialog.py:174 mcomix/ui.py:114
+#: mcomix/keybindings.py:97 mcomix/preferences_dialog.py:173 mcomix/ui.py:114
 msgid "Double page mode"
 msgstr "Dubbelsidesläge"
 
@@ -728,7 +723,7 @@ msgstr "Avsluta fullskärm"
 #: mcomix/keybindings.py:116 mcomix/keybindings.py:117
 #: mcomix/keybindings.py:118 mcomix/keybindings.py:119
 #: mcomix/keybindings.py:120 mcomix/keybindings.py:121
-#: mcomix/keybindings.py:122 mcomix/preferences_dialog.py:66
+#: mcomix/keybindings.py:122 mcomix/preferences_dialog.py:65
 msgid "User interface"
 msgstr "Användargränssnitt"
 
@@ -742,7 +737,7 @@ msgstr "Minimera"
 
 #
 # File: src/preferences.py, line: 271
-#: mcomix/keybindings.py:115 mcomix/preferences_dialog.py:205
+#: mcomix/keybindings.py:115 mcomix/preferences_dialog.py:204
 msgid "Fullscreen"
 msgstr "Helskärm"
 
@@ -768,7 +763,7 @@ msgstr "Visa/dölj rullningslister"
 
 #
 # File: src/preferences.py, line: 109
-#: mcomix/keybindings.py:120 mcomix/preferences_dialog.py:88
+#: mcomix/keybindings.py:120 mcomix/preferences_dialog.py:87
 msgid "Thumbnails"
 msgstr "Miniatyrbilder"
 
@@ -840,7 +835,7 @@ msgstr "Egenskaper"
 
 #
 # File: src/preferences.py, line: 78
-#: mcomix/keybindings.py:134 mcomix/preferences_dialog.py:26
+#: mcomix/keybindings.py:134 mcomix/preferences_dialog.py:25
 msgid "Preferences"
 msgstr "Inställningar"
 
@@ -872,49 +867,48 @@ msgstr ""
 msgid "Couldn't load keybindings: %s"
 msgstr "Det gick inte att läsa tangentbindningar: %s"
 
+#: mcomix/keybindings_editor.py:42
+#, python-format
+msgid "Key %d"
+msgstr "Tangent %d"
+
 #: mcomix/last_read_page.py:16 mcomix/library/backend.py:21
 msgid "! Could neither find pysqlite2 nor sqlite3."
 msgstr "! Kunde inte hitta varken pysqlite2 eller sqlite3."
 
 #
 # File: src/comment.py, line: 53
-#: mcomix/last_read_page.py:209 mcomix/thumbnail_tools.py:117
-#: mcomix/library/book_area.py:578
+#: mcomix/last_read_page.py:209 mcomix/thumbnail_tools.py:118
+#: mcomix/library/book_area.py:581
 #, python-format
 msgid "! Could not remove file \"%s\""
 msgstr "Kunde inte ta bort filen \"%s\""
 
 #
 # File: src/main.py, line: 666
-#: mcomix/main.py:964
+#: mcomix/main.py:982
 msgid "SLIDESHOW"
 msgstr "BILDSPEL"
 
 #
 # File: src/library.py, line: 832
 # File: src/properties.py, line: 113
-#: mcomix/main.py:995
+#: mcomix/main.py:1009
 msgid "Save page as"
 msgstr "Spara sidan som"
 
-#: mcomix/main.py:1016
+#: mcomix/main.py:1029
 #, python-format
 msgid "Delete \"%s\"?"
 msgstr "Ta bort \"%s\"?"
 
-#: mcomix/main.py:1017
+#: mcomix/main.py:1030
 msgid "The file will be deleted from your harddisk."
 msgstr "Filen kommer att tas bort från hårddisken."
 
 #: mcomix/message_dialog.py:32
 msgid "Do not ask again."
 msgstr "Fråga inte igen."
-
-#
-# File: src/bookmark.py, line: 229
-#: mcomix/openwith_menu.py:22
-msgid "_Edit commands"
-msgstr "_Redigera kommandon"
 
 #: mcomix/openwith.py:76
 #, python-format
@@ -1041,6 +1035,12 @@ msgstr ""
 "kassera dem."
 
 #
+# File: src/bookmark.py, line: 229
+#: mcomix/openwith_menu.py:22
+msgid "_Edit commands"
+msgstr "_Redigera kommandon"
+
+#
 # File: src/ui.py, line: 69
 #: mcomix/pageselect.py:19 mcomix/ui.py:100 mcomix/ui.py:101
 msgid "_Go"
@@ -1052,46 +1052,46 @@ msgstr "_Gå"
 msgid "_Cancel"
 msgstr "Avbryt"
 
-#: mcomix/pageselect.py:41
+#: mcomix/pageselect.py:39
 #, python-format
 msgid " of %s"
 msgstr " av %s"
 
 #
 # File: src/preferences.py, line: 161
-#: mcomix/preferences_dialog.py:44
+#: mcomix/preferences_dialog.py:43
 msgid "Appearance"
 msgstr "Utseende"
 
 #
 # File: src/preferences.py, line: 237
-#: mcomix/preferences_dialog.py:46
+#: mcomix/preferences_dialog.py:45
 msgid "Behaviour"
 msgstr "Beteende"
 
 #
 # File: src/preferences.py, line: 297
-#: mcomix/preferences_dialog.py:48
+#: mcomix/preferences_dialog.py:47
 msgid "Display"
 msgstr "Visning"
 
-#: mcomix/preferences_dialog.py:50
+#: mcomix/preferences_dialog.py:49
 msgid "Advanced"
 msgstr "Avancerat"
 
-#: mcomix/preferences_dialog.py:52
+#: mcomix/preferences_dialog.py:51
 msgid "Shortcuts"
 msgstr "Kortkommandon"
 
-#: mcomix/preferences_dialog.py:68
+#: mcomix/preferences_dialog.py:67
 msgid "Language (needs restart):"
 msgstr "Språk (kräver omstart):"
 
-#: mcomix/preferences_dialog.py:72
+#: mcomix/preferences_dialog.py:71
 msgid "Escape key closes program"
 msgstr "Tangenten Escape stänger programmet"
 
-#: mcomix/preferences_dialog.py:73
+#: mcomix/preferences_dialog.py:72
 msgid ""
 "When active, the ESC key closes the program, instead of only disabling "
 "fullscreen mode."
@@ -1101,43 +1101,50 @@ msgstr ""
 
 #
 # File: src/preferences.py, line: 93
-#: mcomix/preferences_dialog.py:76
+#: mcomix/preferences_dialog.py:75
 msgid "Background"
 msgstr "Bakgrundsfärg"
 
 #
 # File: src/preferences.py, line: 95
-#: mcomix/preferences_dialog.py:79
+#: mcomix/preferences_dialog.py:78
 msgid "Use this colour as background:"
 msgstr "Använd denna färg som bakgrund:"
 
 #
 # File: src/preferences.py, line: 97
-#: mcomix/preferences_dialog.py:81
+#: mcomix/preferences_dialog.py:80
 msgid "Always use this selected colour as the background colour."
 msgstr "Använd alltid denna valda färg som bakgrundsfärg."
 
 #
 # File: src/preferences.py, line: 102
-#: mcomix/preferences_dialog.py:82
+#: mcomix/preferences_dialog.py:81 mcomix/preferences_dialog.py:93
 msgid "Use dynamic background colour"
 msgstr "Använd dynamisk bakgrundsfärg"
 
 #
 # File: src/preferences.py, line: 106
-#: mcomix/preferences_dialog.py:84
+#: mcomix/preferences_dialog.py:83
 msgid "Automatically pick a background colour that fits the viewed image."
 msgstr "Välj automatiskt en bakgrundsfärg som passar den visade bilden."
 
 #
+# File: src/preferences.py, line: 95
+#: mcomix/preferences_dialog.py:90
+#, fuzzy
+msgid "Use this colour as the thumbnail background:"
+msgstr "Använd denna färg som bakgrund för miniatyrbilder"
+
+#
 # File: src/preferences.py, line: 97
-#: mcomix/preferences_dialog.py:93
+#: mcomix/preferences_dialog.py:92
 msgid "Always use this selected colour as the thumbnail background colour."
 msgstr "Använd alltid denna valda färg som bakgrundsfärg till miniatyrbilder."
 
 #
 # File: src/preferences.py, line: 106
-#: mcomix/preferences_dialog.py:96
+#: mcomix/preferences_dialog.py:95
 msgid ""
 "Automatically use the colour that fits the viewed image for the thumbnail "
 "background."
@@ -1146,15 +1153,15 @@ msgstr ""
 
 #
 # File: src/preferences.py, line: 117
-#: mcomix/preferences_dialog.py:101
+#: mcomix/preferences_dialog.py:100
 msgid "Show page numbers on thumbnails"
 msgstr "Visa sidnummer på miniatyrbilder"
 
-#: mcomix/preferences_dialog.py:105
+#: mcomix/preferences_dialog.py:104
 msgid "Use archive thumbnail as application icon"
 msgstr "Använd arkivminiatyrbild som applikationsikon"
 
-#: mcomix/preferences_dialog.py:107
+#: mcomix/preferences_dialog.py:106
 msgid ""
 "By enabling this setting, the first page of a book will be used as "
 "application icon instead of the standard icon."
@@ -1164,25 +1171,25 @@ msgstr ""
 
 #
 # File: src/preferences.py, line: 110
-#: mcomix/preferences_dialog.py:109
+#: mcomix/preferences_dialog.py:108
 msgid "Thumbnail size (in pixels):"
 msgstr "Miniatyrbildsstorlek (i pixlar):"
 
 #
 # File: src/preferences.py, line: 151
-#: mcomix/preferences_dialog.py:113
+#: mcomix/preferences_dialog.py:112
 msgid "Transparency"
 msgstr "Transparens"
 
 #
 # File: src/preferences.py, line: 153
-#: mcomix/preferences_dialog.py:116
+#: mcomix/preferences_dialog.py:115
 msgid "Use checkered background for transparent images"
 msgstr "Använd rutig bakgrund för transparenta bilder"
 
 #
 # File: src/preferences.py, line: 159
-#: mcomix/preferences_dialog.py:118
+#: mcomix/preferences_dialog.py:117
 msgid ""
 "Use a grey checkered background for transparent images. If this preference "
 "is unset, the background is plain white instead."
@@ -1192,13 +1199,13 @@ msgstr ""
 
 #
 # File: src/preferences.py, line: 169
-#: mcomix/preferences_dialog.py:131
+#: mcomix/preferences_dialog.py:130
 msgid "Use smart scrolling"
 msgstr "Använd smart rullning"
 
 #
 # File: src/preferences.py, line: 174
-#: mcomix/preferences_dialog.py:133
+#: mcomix/preferences_dialog.py:132
 msgid ""
 "With this preference set, the space key and mouse wheel do not only scroll "
 "down or up, but also sideways and so try to follow the natural reading order "
@@ -1208,11 +1215,11 @@ msgstr ""
 "eller uppåt, utan även sidledes och så försöker du följa serietidningens "
 "naturliga läsorder."
 
-#: mcomix/preferences_dialog.py:138
+#: mcomix/preferences_dialog.py:137
 msgid "Flip pages when scrolling off the edges of the page"
 msgstr "Vänd blad vid rullning förbi sidans kanter"
 
-#: mcomix/preferences_dialog.py:140
+#: mcomix/preferences_dialog.py:139
 msgid ""
 "Flip pages when scrolling \"off the page\" with the scroll wheel or with the "
 "arrow keys. It takes n consecutive \"steps\" with the scroll wheel or the "
@@ -1224,13 +1231,13 @@ msgstr ""
 
 #
 # File: src/preferences.py, line: 198
-#: mcomix/preferences_dialog.py:143
+#: mcomix/preferences_dialog.py:142
 msgid "Automatically open the next archive"
 msgstr "Öppna automatiskt nästa arkivet"
 
 #
 # File: src/preferences.py, line: 203
-#: mcomix/preferences_dialog.py:145
+#: mcomix/preferences_dialog.py:144
 msgid ""
 "Automatically open the next archive in the directory when flipping past the "
 "last page, or the previous archive when flipping past the first page."
@@ -1240,11 +1247,11 @@ msgstr ""
 
 #
 # File: src/preferences.py, line: 198
-#: mcomix/preferences_dialog.py:148
+#: mcomix/preferences_dialog.py:147
 msgid "Automatically open next directory"
 msgstr "Öppna automatiskt nästa katalog"
 
-#: mcomix/preferences_dialog.py:150
+#: mcomix/preferences_dialog.py:149
 msgid ""
 "Automatically open the first file in the next sibling directory when "
 "flipping past the last page of the last file in a directory, or the previous "
@@ -1254,27 +1261,27 @@ msgstr ""
 "över den sista sidan i den sista filen i en katalog eller i den tidigare "
 "katalogen när du bläddrar över första sidan av den första filen."
 
-#: mcomix/preferences_dialog.py:152
+#: mcomix/preferences_dialog.py:151
 msgid "Number of pixels to scroll per arrow key press:"
 msgstr "Antal pixlar att rulla med piltangenterna:"
 
-#: mcomix/preferences_dialog.py:155
+#: mcomix/preferences_dialog.py:154
 msgid "Set the number of pixels to scroll on a page when using the arrow keys."
 msgstr "Ange antal pixlar att scrolla på en sida med piltangenterna."
 
-#: mcomix/preferences_dialog.py:157
+#: mcomix/preferences_dialog.py:156
 msgid "Number of pixels to scroll per mouse wheel turn:"
 msgstr "Antal pixlar att rulla med mushjulet:"
 
-#: mcomix/preferences_dialog.py:160
+#: mcomix/preferences_dialog.py:159
 msgid "Set the number of pixels to scroll on a page when using a mouse wheel."
 msgstr "Ange antal pixlar att scrolla på en sida med mushjulet."
 
-#: mcomix/preferences_dialog.py:162
+#: mcomix/preferences_dialog.py:161
 msgid "Fraction of page to scroll per space key press (in percent):"
 msgstr "Antal pixlar att rulla med piltangenterna:"
 
-#: mcomix/preferences_dialog.py:166
+#: mcomix/preferences_dialog.py:165
 msgid ""
 "Sets the percentage by which the page will be scrolled down or up when the "
 "space key is pressed."
@@ -1282,11 +1289,11 @@ msgstr ""
 "Ställer in den procentandel som sidan ska rullas ner eller uppåt när "
 "mellanslagstangenten trycks ned."
 
-#: mcomix/preferences_dialog.py:169
+#: mcomix/preferences_dialog.py:168
 msgid "Number of \"steps\" to take before flipping the page:"
 msgstr "Antal nödvändiga \"steg\" innan bladet vänds:"
 
-#: mcomix/preferences_dialog.py:172
+#: mcomix/preferences_dialog.py:171
 msgid ""
 "Set the number of \"steps\" needed to flip to the next or previous page.  "
 "Less steps will allow for very fast page turning but you might find yourself "
@@ -1298,42 +1305,42 @@ msgstr ""
 
 #
 # File: src/preferences.py, line: 179
-#: mcomix/preferences_dialog.py:177
+#: mcomix/preferences_dialog.py:176
 msgid "Flip two pages in double page mode"
 msgstr "Bläddra två sidor i dubbelsidesläge"
 
 #
 # File: src/preferences.py, line: 184
-#: mcomix/preferences_dialog.py:179
+#: mcomix/preferences_dialog.py:178
 msgid ""
 "Flip two pages, instead of one, each time we flip pages in double page mode."
 msgstr ""
 "Bläddra två sidor, istället för en, varje gång vi byter sida i "
 "dubbelsidesläge."
 
-#: mcomix/preferences_dialog.py:181
+#: mcomix/preferences_dialog.py:180
 msgid "Show only one page where appropriate:"
 msgstr "Visa endast en sida där det är lämpligt:"
 
-#: mcomix/preferences_dialog.py:184
+#: mcomix/preferences_dialog.py:183
 msgid "Page auto-resizing:"
 msgstr ""
 
 #
 # File: src/preferences.py, line: 196
-#: mcomix/preferences_dialog.py:187
+#: mcomix/preferences_dialog.py:186
 msgid "Files"
 msgstr "Filer"
 
 #
 # File: src/preferences.py, line: 206
-#: mcomix/preferences_dialog.py:190
+#: mcomix/preferences_dialog.py:189
 msgid "Automatically open the last viewed file on startup"
 msgstr "Öppna automatiskt den senast lästa filen vid uppstart"
 
 #
 # File: src/preferences.py, line: 211
-#: mcomix/preferences_dialog.py:192
+#: mcomix/preferences_dialog.py:191
 msgid ""
 "Automatically open, on startup, the file that was open when MComix was last "
 "closed."
@@ -1343,61 +1350,61 @@ msgstr ""
 
 #
 # File: src/preferences.py, line: 214
-#: mcomix/preferences_dialog.py:194
+#: mcomix/preferences_dialog.py:193
 msgid "Store information about recently opened files:"
 msgstr "Lagra information om de senast öppnade filerna:"
 
 #
 # File: src/preferences.py, line: 250
-#: mcomix/preferences_dialog.py:208
+#: mcomix/preferences_dialog.py:207
 msgid "Use fullscreen by default"
 msgstr "Använd helskärm som standard"
 
 #
 # File: src/preferences.py, line: 273
-#: mcomix/preferences_dialog.py:212
+#: mcomix/preferences_dialog.py:211
 msgid "Automatically hide all toolbars in fullscreen"
 msgstr "Göm automatiskt alla verktygsrader i helskärmsläge"
 
 #
 # File: src/preferences.py, line: 263
 # File: src/ui.py, line: 290
-#: mcomix/preferences_dialog.py:215 mcomix/ui.py:152
+#: mcomix/preferences_dialog.py:214 mcomix/ui.py:152
 msgid "Fit to size mode"
 msgstr "Anpassa till storleksläge"
 
 #
 # File: src/preferences.py, line: 263
 # File: src/ui.py, line: 290
-#: mcomix/preferences_dialog.py:217
+#: mcomix/preferences_dialog.py:216
 msgid "Fit to width or height:"
 msgstr "Anpassa till bredd eller höjd:"
 
 #
 # File: src/ui.py, line: 103
-#: mcomix/preferences_dialog.py:220
+#: mcomix/preferences_dialog.py:219
 msgid "Fixed size for this mode:"
 msgstr "Fast storlek för det här läget:"
 
 #
 # File: src/preferences.py, line: 279
-#: mcomix/preferences_dialog.py:224
+#: mcomix/preferences_dialog.py:223
 msgid "Slideshow"
 msgstr "Bildspel"
 
 #
 # File: src/preferences.py, line: 280
-#: mcomix/preferences_dialog.py:226
+#: mcomix/preferences_dialog.py:225
 msgid "Slideshow delay (in seconds):"
 msgstr "Bildspelsfördröjning (i sekunder):"
 
 #
 # File: src/preferences.py, line: 280
-#: mcomix/preferences_dialog.py:230
+#: mcomix/preferences_dialog.py:229
 msgid "Slideshow step (in pixels):"
 msgstr "Bildspelssteg (i pixlar):"
 
-#: mcomix/preferences_dialog.py:233
+#: mcomix/preferences_dialog.py:232
 msgid ""
 "Specify the number of pixels to scroll while in slideshow mode. A positive "
 "value will scroll forward, a negative value will scroll backwards, and a "
@@ -1409,24 +1416,24 @@ msgstr ""
 
 #
 # File: src/preferences.py, line: 198
-#: mcomix/preferences_dialog.py:236
+#: mcomix/preferences_dialog.py:235
 msgid "During a slideshow automatically open the next archive"
 msgstr "Under ett bildspel öppnas automatiskt nästa arkiv"
 
-#: mcomix/preferences_dialog.py:238
+#: mcomix/preferences_dialog.py:237
 msgid ""
 "While in slideshow mode allow the next archive to automatically be opened."
 msgstr "Vid bildspelsläge kommer nästa arkiv automatiskt öppnas."
 
-#: mcomix/preferences_dialog.py:240
+#: mcomix/preferences_dialog.py:239
 msgid "Rotation"
 msgstr "Rotation"
 
-#: mcomix/preferences_dialog.py:243
+#: mcomix/preferences_dialog.py:242
 msgid "Automatically rotate images according to their metadata"
 msgstr "Rotera bilder automatiskt enligt deras metadata"
 
-#: mcomix/preferences_dialog.py:245
+#: mcomix/preferences_dialog.py:244
 msgid ""
 "Automatically rotate images when an orientation is specified in the image "
 "metadata, such as in an Exif tag."
@@ -1436,52 +1443,52 @@ msgstr ""
 
 #
 # File: src/preferences.py, line: 143
-#: mcomix/preferences_dialog.py:247
+#: mcomix/preferences_dialog.py:246
 msgid "Image quality"
 msgstr "Bildkvalitet"
 
 #
 # File: src/ui.py, line: 297
-#: mcomix/preferences_dialog.py:249
+#: mcomix/preferences_dialog.py:248
 msgid "Scaling mode"
 msgstr "Skaleringsläge"
 
-#: mcomix/preferences_dialog.py:261
+#: mcomix/preferences_dialog.py:260
 msgid "File order"
 msgstr "Filordning"
 
-#: mcomix/preferences_dialog.py:263
+#: mcomix/preferences_dialog.py:262
 msgid "Sort files and directories by:"
 msgstr "Sortera filer och kataloger efter:"
 
 #
 # File: src/filechooser.py, line: 86
-#: mcomix/preferences_dialog.py:266
+#: mcomix/preferences_dialog.py:265
 msgid "Sort archives by:"
 msgstr "Sortera arkiv efter:"
 
-#: mcomix/preferences_dialog.py:269
+#: mcomix/preferences_dialog.py:268
 msgid "Extraction and cache"
 msgstr "Extraction och cacheminne"
 
-#: mcomix/preferences_dialog.py:271
+#: mcomix/preferences_dialog.py:270
 msgid "Maximum number of concurrent extraction threads:"
 msgstr "Maximalt antal samtidiga extraktionsgängor:"
 
-#: mcomix/preferences_dialog.py:274
+#: mcomix/preferences_dialog.py:273
 msgid ""
 "Set the maximum number of concurrent threads for formats that support it."
 msgstr "Ange det maximala antalet samtidiga trådar för format som stöder det."
 
 #
 # File: src/preferences.py, line: 222
-#: mcomix/preferences_dialog.py:277
+#: mcomix/preferences_dialog.py:276
 msgid "Store thumbnails for opened files"
 msgstr "Lagra miniatyrbilder för öppnade filer"
 
 #
 # File: src/preferences.py, line: 227
-#: mcomix/preferences_dialog.py:279
+#: mcomix/preferences_dialog.py:278
 msgid ""
 "Store thumbnails for opened files according to the freedesktop.org "
 "specification. These thumbnails are shared by many other applications, such "
@@ -1491,11 +1498,11 @@ msgstr ""
 "specifikationen. Dessa miniatyrbilder delas av många andra program, "
 "exempelvis de flesta filhanterare."
 
-#: mcomix/preferences_dialog.py:281
+#: mcomix/preferences_dialog.py:280
 msgid "Maximum number of pages to store in the cache:"
 msgstr "Maximalt antal sidor att lagra i cacheminnet:"
 
-#: mcomix/preferences_dialog.py:284
+#: mcomix/preferences_dialog.py:283
 msgid ""
 "Set the max number of pages to cache. A value of -1 will cache the entire "
 "archive."
@@ -1505,19 +1512,19 @@ msgstr ""
 
 #
 # File: src/preferences.py, line: 124
-#: mcomix/preferences_dialog.py:286
+#: mcomix/preferences_dialog.py:285
 msgid "Magnifying Lens"
 msgstr "Förstoringsglas"
 
 #
 # File: src/preferences.py, line: 125
-#: mcomix/preferences_dialog.py:288
+#: mcomix/preferences_dialog.py:287
 msgid "Magnifying lens size (in pixels):"
 msgstr "Förstoringslenstorlek (i pixlar):"
 
 #
 # File: src/preferences.py, line: 131
-#: mcomix/preferences_dialog.py:291
+#: mcomix/preferences_dialog.py:290
 msgid ""
 "Set the size of the magnifying lens. It is a square with a side of this many "
 "pixels."
@@ -1527,72 +1534,72 @@ msgstr ""
 
 #
 # File: src/preferences.py, line: 133
-#: mcomix/preferences_dialog.py:293
+#: mcomix/preferences_dialog.py:292
 msgid "Magnification factor:"
 msgstr "Förstoringsfaktor:"
 
 #
 # File: src/preferences.py, line: 140
-#: mcomix/preferences_dialog.py:296
+#: mcomix/preferences_dialog.py:295
 msgid "Set the magnification factor of the magnifying lens."
 msgstr "Ange förstoringsfaktorn för förstoringsglaset."
 
 #
 # File: src/preferences.py, line: 289
-#: mcomix/preferences_dialog.py:300
+#: mcomix/preferences_dialog.py:299
 msgid "Comment extensions:"
 msgstr "Kommentarsfiländelser:"
 
 #
 # File: src/enhance.py, line: 51
-#: mcomix/preferences_dialog.py:303
+#: mcomix/preferences_dialog.py:302
 msgid "Animated images"
 msgstr "Animerade bilder"
 
-#: mcomix/preferences_dialog.py:305
+#: mcomix/preferences_dialog.py:304
 msgid "Animation mode:"
 msgstr "Animeringsläge:"
 
-#: mcomix/preferences_dialog.py:323
+#: mcomix/preferences_dialog.py:322
 msgid "_Reset keys"
 msgstr "_Återställ tangenter"
 
-#: mcomix/preferences_dialog.py:325
+#: mcomix/preferences_dialog.py:324
 msgid "Resets all keyboard shortcuts to their default values."
 msgstr "Återställer alla tangentbordskortkommandon till standardvärdena."
 
-#: mcomix/preferences_dialog.py:328
+#: mcomix/preferences_dialog.py:327
 msgid "Clear _dialog choices"
 msgstr "Rensa _dialogval"
 
-#: mcomix/preferences_dialog.py:330
+#: mcomix/preferences_dialog.py:329
 msgid ""
 "Clears all dialog choices that you have previously chosen not to be asked "
 "again."
 msgstr "Rensar alla dialogval som du tidigare valt att inte bli ombedd igen."
 
-#: mcomix/preferences_dialog.py:358
+#: mcomix/preferences_dialog.py:357
 msgid "Auto-detect (Default)"
 msgstr "Automatisk detektering (standard)"
 
-#: mcomix/preferences_dialog.py:401 mcomix/preferences_dialog.py:569
-#: mcomix/preferences_dialog.py:643 mcomix/ui.py:159
+#: mcomix/preferences_dialog.py:400 mcomix/preferences_dialog.py:568
+#: mcomix/preferences_dialog.py:642 mcomix/ui.py:159
 msgid "Never"
 msgstr "Aldrig"
 
-#: mcomix/preferences_dialog.py:402
+#: mcomix/preferences_dialog.py:401
 msgid "Only for title pages"
 msgstr "Endast för titelsidor"
 
-#: mcomix/preferences_dialog.py:403
+#: mcomix/preferences_dialog.py:402
 msgid "Only for wide images"
 msgstr "Endast för breda bilder"
 
-#: mcomix/preferences_dialog.py:404 mcomix/preferences_dialog.py:570
+#: mcomix/preferences_dialog.py:403 mcomix/preferences_dialog.py:569
 msgid "Always"
 msgstr "Alltid"
 
-#: mcomix/preferences_dialog.py:411
+#: mcomix/preferences_dialog.py:410
 msgid ""
 "When showing the first page of an archive, or an image's width exceeds its "
 "height, only a single page will be displayed."
@@ -1602,7 +1609,7 @@ msgstr ""
 
 #
 # File: src/preferences.py, line: 78
-#: mcomix/preferences_dialog.py:427
+#: mcomix/preferences_dialog.py:426
 #, fuzzy
 msgid "Prefer same scale"
 msgstr "Inställningar"
@@ -1610,56 +1617,56 @@ msgstr "Inställningar"
 #
 # File: src/preferences.py, line: 263
 # File: src/ui.py, line: 290
-#: mcomix/preferences_dialog.py:428
+#: mcomix/preferences_dialog.py:427
 #, fuzzy
 msgid "Fit to same size"
 msgstr "Anpassa till storleksläge"
 
-#: mcomix/preferences_dialog.py:435
+#: mcomix/preferences_dialog.py:434
 msgid "Maintain relative size or fit to same size."
 msgstr ""
 
 #
 # File: src/preferences.py, line: 263
 # File: src/ui.py, line: 290
-#: mcomix/preferences_dialog.py:450
+#: mcomix/preferences_dialog.py:449
 msgid "Fit to width"
 msgstr "Passa till bredd"
 
 #
 # File: src/preferences.py, line: 264
 # File: src/ui.py, line: 292
-#: mcomix/preferences_dialog.py:451
+#: mcomix/preferences_dialog.py:450
 msgid "Fit to height"
 msgstr "Passa till höjd"
 
-#: mcomix/preferences_dialog.py:472 mcomix/preferences_dialog.py:520
+#: mcomix/preferences_dialog.py:471 mcomix/preferences_dialog.py:519
 msgid "No sorting"
 msgstr "Ingen sortering"
 
-#: mcomix/preferences_dialog.py:473
+#: mcomix/preferences_dialog.py:472
 msgid "File name"
 msgstr "Filnamn"
 
-#: mcomix/preferences_dialog.py:474 mcomix/library/book_area.py:173
+#: mcomix/preferences_dialog.py:473 mcomix/library/book_area.py:176
 msgid "File size"
 msgstr "Filstorlek"
 
-#: mcomix/preferences_dialog.py:475
+#: mcomix/preferences_dialog.py:474
 msgid "Last modified"
 msgstr "Senast ändrad"
 
-#: mcomix/preferences_dialog.py:481 mcomix/preferences_dialog.py:528
-#: mcomix/library/book_area.py:177
+#: mcomix/preferences_dialog.py:480 mcomix/preferences_dialog.py:527
+#: mcomix/library/book_area.py:180
 msgid "Ascending"
 msgstr "Stigande"
 
-#: mcomix/preferences_dialog.py:482 mcomix/preferences_dialog.py:529
-#: mcomix/library/book_area.py:179
+#: mcomix/preferences_dialog.py:481 mcomix/preferences_dialog.py:528
+#: mcomix/library/book_area.py:182
 msgid "Descending"
 msgstr "Fallande"
 
-#: mcomix/preferences_dialog.py:492
+#: mcomix/preferences_dialog.py:491
 msgid ""
 "Files will be opened and displayed according to the sort order specified "
 "here. This option does not affect ordering within archives."
@@ -1667,15 +1674,15 @@ msgstr ""
 "Filerna öppnas och visas enligt den sorteringsordning som anges här. Det här "
 "alternativet påverkar inte ordningen inom arkiv."
 
-#: mcomix/preferences_dialog.py:521
+#: mcomix/preferences_dialog.py:520
 msgid "Natural order"
 msgstr "Naturlig ordning"
 
-#: mcomix/preferences_dialog.py:522
+#: mcomix/preferences_dialog.py:521
 msgid "Literal order"
 msgstr "Bokstavsordning"
 
-#: mcomix/preferences_dialog.py:539
+#: mcomix/preferences_dialog.py:538
 msgid ""
 "Files within archives will be sorted according to the order specified here. "
 "Natural order will sort numbered files based on their natural order, i.e. 1, "
@@ -1688,7 +1695,7 @@ msgstr ""
 
 #
 # File: src/preferences.py, line: 219
-#: mcomix/preferences_dialog.py:582
+#: mcomix/preferences_dialog.py:581
 msgid ""
 "Add information about all files opened from within MComix to the shared "
 "recent files list."
@@ -1698,11 +1705,11 @@ msgstr ""
 
 #
 # File: src/preferences.py, line: 214
-#: mcomix/preferences_dialog.py:605
+#: mcomix/preferences_dialog.py:604
 msgid "Delete information about recently opened files?"
 msgstr "Ta bort information om nyligen öppnade filer?"
 
-#: mcomix/preferences_dialog.py:606
+#: mcomix/preferences_dialog.py:605
 msgid ""
 "This will remove all entries from the \"Recent\" menu, and clear information "
 "about last read pages."
@@ -1710,19 +1717,19 @@ msgstr ""
 "Detta tar bort alla poster från menyn \"Senaste\" och raderar information om "
 "senaste lästa sidor."
 
-#: mcomix/preferences_dialog.py:617
+#: mcomix/preferences_dialog.py:616
 msgid "Normal (fast)"
 msgstr "Normal (snabb)"
 
-#: mcomix/preferences_dialog.py:618
+#: mcomix/preferences_dialog.py:617
 msgid "Bilinear"
 msgstr "Bilinjär"
 
-#: mcomix/preferences_dialog.py:619
+#: mcomix/preferences_dialog.py:618
 msgid "Hyperbolic (slow)"
 msgstr "Hyperbolisk (långsam)"
 
-#: mcomix/preferences_dialog.py:625
+#: mcomix/preferences_dialog.py:624
 msgid ""
 "Changes how images are scaled. Slower algorithms result in higher quality "
 "resizing, but longer page loading times."
@@ -1730,17 +1737,17 @@ msgstr ""
 "Ändrar hur bilderna skalas. Långsammare algoritmer resulterar i högre "
 "kvalitet storleksändring, men längre sidladdningstider."
 
-#: mcomix/preferences_dialog.py:644 mcomix/library/book_area.py:189
+#: mcomix/preferences_dialog.py:643 mcomix/library/book_area.py:192
 msgid "Normal"
 msgstr "Normal"
 
-#: mcomix/preferences_dialog.py:650
+#: mcomix/preferences_dialog.py:649
 msgid "Controls how animated images should be displayed."
 msgstr "Kontrollerar hur animerade bilder ska visas."
 
 #
 # File: src/preferences.py, line: 295
-#: mcomix/preferences_dialog.py:711
+#: mcomix/preferences_dialog.py:710
 msgid ""
 "Treat all files found within archives, that have one of these file endings, "
 "as comments."
@@ -1763,7 +1770,7 @@ msgstr "Bild"
 #
 # File: src/library.py, line: 832
 # File: src/properties.py, line: 113
-#: mcomix/properties_dialog.py:77 mcomix/library/control_area.py:138
+#: mcomix/properties_dialog.py:77 mcomix/library/control_area.py:142
 #, python-format
 msgid "%d pages"
 msgstr "%d sidor"
@@ -1827,106 +1834,84 @@ msgstr "Visa biblioteket vid uppstart."
 msgid "Show the version number and exit."
 msgstr "Visa versionsnummer och avsluta."
 
-#: mcomix/run.py:56
-msgid "Don't update fontconfig cache at startup."
-msgstr "Uppdatera inte fontconfig-cachen vid uppstart."
-
-#: mcomix/run.py:61
-msgid "Update fontconfig cache at startup."
-msgstr "Uppdatera fontconfig-cachen vid uppstart."
-
-#: mcomix/run.py:63
+#: mcomix/run.py:53
 msgid "View modes"
 msgstr "Visa lägen"
 
-#: mcomix/run.py:65
+#: mcomix/run.py:55
 msgid "Start the application in fullscreen mode."
 msgstr "Starta programmet i helskärmsläge."
 
-#: mcomix/run.py:67
+#: mcomix/run.py:57
 msgid "Start the application in manga mode."
 msgstr "Starta programmet i mangaläge."
 
-#: mcomix/run.py:69
+#: mcomix/run.py:59
 msgid "Start the application in double page mode."
 msgstr "Starta programmet i dubbelsidigt läge."
 
-#: mcomix/run.py:72
+#: mcomix/run.py:62
 msgid "Zoom modes"
 msgstr "Zoomlägen"
 
-#: mcomix/run.py:75
+#: mcomix/run.py:65
 msgid "Start the application with zoom set to best fit mode."
 msgstr "Starta programmet med zoominställningen till bästa passform."
 
-#: mcomix/run.py:78
+#: mcomix/run.py:68
 msgid "Start the application with zoom set to fit width."
 msgstr "Starta programmet med zoominställningen för att passa bredden."
 
-#: mcomix/run.py:81
+#: mcomix/run.py:71
 msgid "Start the application with zoom set to fit height."
 msgstr "Starta programmet med zoominställningen för att passa höjden."
 
-#: mcomix/run.py:84
+#: mcomix/run.py:74
 msgid "Debug options"
 msgstr "Felsökningsalternativ"
 
-#: mcomix/run.py:88
+#: mcomix/run.py:78
 msgid "Sets the desired output log level."
 msgstr "Ställer in önskad utgångsloggnivå."
 
-#: mcomix/run.py:189
-msgid "You do not have the required versions of GTK+ and PyGTK installed."
+#: mcomix/run.py:132
+#, fuzzy
+msgid ""
+"You do not have the required versions of GTK+ 3.0 and PyGObject installed."
 msgstr "Du har inte de nödvändiga versionerna av GTK+ och PyGTK installerade."
 
-#: mcomix/run.py:190
-#, python-format
-msgid "Installed GTK+ version is: %s"
-msgstr "Installerad GTK+ version är: %s"
-
-#: mcomix/run.py:192
-msgid "Required GTK+ version is: 2.12.0 or higher"
-msgstr "Krävd GTK+ version är: 2.12.0 eller högre"
-
-#: mcomix/run.py:193
-#, python-format
-msgid "Installed PyGTK version is: %s"
-msgstr "Installerad PyGTK version är: %s"
-
-#: mcomix/run.py:195 mcomix/run.py:199
-msgid "Required PyGTK version is: 2.12.0 or higher"
-msgstr "Nödvändig PyGTK version är: 2.12.0 eller högre"
-
-#: mcomix/run.py:200
-msgid "No version of PyGTK was found on your system."
+#: mcomix/run.py:136
+#, fuzzy
+msgid "No version of GObject was found on your system."
 msgstr "Ingen version av PyGTK funnen på ditt system."
 
-#: mcomix/run.py:201
+#: mcomix/run.py:137
 msgid "This error might be caused by missing GTK+ libraries."
 msgstr "Det här felet kan orsakas av saknade GTK+-bibliotek."
 
-#: mcomix/run.py:209
-msgid "You don't have the required version of the Python Imaging"
+#: mcomix/run.py:144
+#, fuzzy
+msgid ""
+"You don't have the required version of the Python Imaging Library Fork "
+"(Pillow) installed."
 msgstr "Du saknar den nödvändiga versionen av Python Imaging"
 
-#: mcomix/run.py:210
-msgid "Library (PIL) installed."
-msgstr "Biblioteket (PIL) installerat."
-
-#: mcomix/run.py:211
-#, python-format
-msgid "Installed PIL version is: %s"
+#: mcomix/run.py:145
+#, fuzzy, python-format
+msgid "Installed Pillow version is: %s"
 msgstr "Installerad PIL-version är: %s"
 
-#: mcomix/run.py:212
-msgid "Required PIL version is: 1.1.5 or higher"
-msgstr "Nödvändig PIL-version är: 1.1.5 eller högre"
+#: mcomix/run.py:146
+#, fuzzy
+msgid "Required Pillow version is: 5.2.0 or higher"
+msgstr "Nödvändig PyGTK version är: 2.12.0 eller högre"
 
-#: mcomix/run.py:216
-msgid "Python Imaging Library (PIL) 1.1.5 or higher is required."
+#: mcomix/run.py:150
+#, fuzzy
+msgid "Python Imaging Library Fork (Pillow) 5.2.0 or higher is required."
 msgstr "Python Imaging Library (PIL) 1.1.5 eller högre krävs."
 
-#: mcomix/run.py:217
+#: mcomix/run.py:151
 msgid "No version of the Python Imaging Library was found on your system."
 msgstr "Ingen version av Python Imaging Library funnet på ditt system."
 
@@ -2179,7 +2164,7 @@ msgstr "Litauisk översättning"
 msgid "Icon design"
 msgstr "Ikondesign"
 
-#: mcomix/thumbnail_tools.py:221
+#: mcomix/thumbnail_tools.py:227
 #, python-format
 msgid "! Could not save thumbnail \"%(thumbpath)s\": %(error)s"
 msgstr "! Kunde inte spara miniatyrbild \"%(thumbpath)s\": %(error)s"
@@ -2187,7 +2172,7 @@ msgstr "! Kunde inte spara miniatyrbild \"%(thumbpath)s\": %(error)s"
 #
 # File: src/librarybackend.py, line: 272
 # File: src/librarybackend.py, line: 274
-#: mcomix/ui.py:35 mcomix/library/book_area.py:161
+#: mcomix/ui.py:35 mcomix/library/book_area.py:164
 msgid "_Copy"
 msgstr "Kopiera"
 
@@ -2582,7 +2567,7 @@ msgstr "! Arbetstråd bearbetning %(function)r misslyckades: %(error)s"
 msgid "The archive is password-protected:"
 msgstr "Arkivet är lösenordsskyddat:"
 
-#: mcomix/archive/zip.py:54
+#: mcomix/archive/zip.py:47
 #, python-format
 msgid ""
 "%(filename)s's extracted size is %(actual_size)d bytes, but should be "
@@ -2607,7 +2592,7 @@ msgstr "Tillagda böcker:"
 
 #
 # File: src/library.py, line: 952
-#: mcomix/library/add_progress_dialog.py:69
+#: mcomix/library/add_progress_dialog.py:71
 #, python-format
 msgid "Adding '%s'..."
 msgstr "Lägger till '%s'..."
@@ -2676,139 +2661,139 @@ msgstr "Senaste"
 
 #
 # File: src/library.py, line: 202
-#: mcomix/library/backend_types.py:200 mcomix/library/collection_area.py:142
+#: mcomix/library/backend_types.py:200 mcomix/library/collection_area.py:141
 msgid "All books"
 msgstr "Alla böcker"
 
-#: mcomix/library/book_area.py:136
+#: mcomix/library/book_area.py:139
 msgid "Library books"
 msgstr "Biblioteksböcker"
 
 #
 # File: src/filechooser.py, line: 35
 # File: src/library.py, line: 489
-#: mcomix/library/book_area.py:138
+#: mcomix/library/book_area.py:141
 msgid "_Open"
 msgstr "Öppna"
 
-#: mcomix/library/book_area.py:139
+#: mcomix/library/book_area.py:142
 msgid "Opens the selected books for viewing."
 msgstr "Öppnar de valda böckerna för visning."
 
-#: mcomix/library/book_area.py:142
+#: mcomix/library/book_area.py:145
 msgid "Open _without closing library"
 msgstr "_Öppna utan att stänga bibliotek"
 
-#: mcomix/library/book_area.py:143
+#: mcomix/library/book_area.py:146
 msgid "Opens the selected books, but keeps the library window open."
 msgstr "Öppnar de valda böckerna, men håller biblioteksfönstret öppet."
 
-#: mcomix/library/book_area.py:145 mcomix/library/collection_area.py:77
+#: mcomix/library/book_area.py:148 mcomix/library/collection_area.py:76
 msgid "_Add..."
 msgstr "_Lägg till..."
 
 #
 # File: src/library.py, line: 793
-#: mcomix/library/book_area.py:146 mcomix/library/collection_area.py:78
+#: mcomix/library/book_area.py:149 mcomix/library/collection_area.py:77
 msgid "Add more books to the library."
 msgstr "Lägg till fler böcker till biblioteket."
 
 #
 # File: src/library.py, line: 492
-#: mcomix/library/book_area.py:149
+#: mcomix/library/book_area.py:152
 msgid "Remove from this _collection"
 msgstr "Ta bort från den här _samlingen"
 
-#: mcomix/library/book_area.py:150
+#: mcomix/library/book_area.py:153
 msgid "Removes the selected books from the current collection."
 msgstr "Tar bort de valda böckerna från den aktuella samlingen."
 
 #
 # File: src/library.py, line: 495
-#: mcomix/library/book_area.py:153
+#: mcomix/library/book_area.py:156
 msgid "Remove from the _library"
 msgstr "Ta bort från biblioteket"
 
-#: mcomix/library/book_area.py:154
+#: mcomix/library/book_area.py:157
 msgid "Completely removes the selected books from the library."
 msgstr "Tar helt bort de valda böckerna från biblioteket."
 
-#: mcomix/library/book_area.py:157
+#: mcomix/library/book_area.py:160
 msgid "_Remove and delete from disk"
 msgstr "_Radera och ta bort från disk"
 
-#: mcomix/library/book_area.py:158
+#: mcomix/library/book_area.py:161
 msgid "Deletes the selected books from disk."
 msgstr "Tar bort de valda böckerna från disken."
 
 #
 # File: src/library.py, line: 806
-#: mcomix/library/book_area.py:162
+#: mcomix/library/book_area.py:165
 msgid "Copies the selected book's path to clipboard."
 msgstr "Kopierar den valda bokens väg till urklipp."
 
-#: mcomix/library/book_area.py:164
+#: mcomix/library/book_area.py:167
 msgid "_Sort"
 msgstr "_Sortera"
 
-#: mcomix/library/book_area.py:165
+#: mcomix/library/book_area.py:168
 msgid "Changes the sort order of the library."
 msgstr "Ändrar sorteringsordning för biblioteket."
 
-#: mcomix/library/book_area.py:166
+#: mcomix/library/book_area.py:169
 msgid "Cover si_ze"
 msgstr "Omslagssto_rlek"
 
-#: mcomix/library/book_area.py:167
+#: mcomix/library/book_area.py:170
 msgid "Changes the book cover size."
 msgstr "Ändrar bokomslagets storlek."
 
-#: mcomix/library/book_area.py:171
+#: mcomix/library/book_area.py:174
 msgid "Book name"
 msgstr "Boknamn"
 
-#: mcomix/library/book_area.py:172
+#: mcomix/library/book_area.py:175
 msgid "Full path"
 msgstr "Fullständig sökväg"
 
-#: mcomix/library/book_area.py:174
+#: mcomix/library/book_area.py:177
 msgid "Date added"
 msgstr "Datum tillagd"
 
-#: mcomix/library/book_area.py:185
+#: mcomix/library/book_area.py:188
 msgid "Huge"
 msgstr "Jättestor"
 
-#: mcomix/library/book_area.py:187
+#: mcomix/library/book_area.py:190
 msgid "Large"
 msgstr "Stor"
 
-#: mcomix/library/book_area.py:191
+#: mcomix/library/book_area.py:194
 msgid "Small"
 msgstr "Liten"
 
-#: mcomix/library/book_area.py:193
+#: mcomix/library/book_area.py:196
 msgid "Tiny"
 msgstr "Mycket liten"
 
-#: mcomix/library/book_area.py:195
+#: mcomix/library/book_area.py:198
 msgid "Custom..."
 msgstr "Anpassa..."
 
-#: mcomix/library/book_area.py:395
+#: mcomix/library/book_area.py:398
 msgid "Set library cover size"
 msgstr "Ställ in bibliotekets omslagsstorlek"
 
 #
 # File: src/library.py, line: 588
-#: mcomix/library/book_area.py:513
+#: mcomix/library/book_area.py:516
 #, python-format
 msgid "Removed %(num)d book from '%(collection)s'."
 msgid_plural "Removed %(num)d books from '%(collection)s'."
 msgstr[0] "Tog bort %(num)d bokr från '%(collection)s'."
 msgstr[1] "Tog bort %(num)d böcker från '%(collection)s'."
 
-#: mcomix/library/book_area.py:535 mcomix/library/collection_area.py:190
+#: mcomix/library/book_area.py:538 mcomix/library/collection_area.py:189
 #, python-format
 msgid "Removed %d book from the library."
 msgid_plural "Removed %d books from the library."
@@ -2817,13 +2802,13 @@ msgstr[1] "Tog bort %d böcker från biblioteket."
 
 #
 # File: src/library.py, line: 597
-#: mcomix/library/book_area.py:553
+#: mcomix/library/book_area.py:556
 msgid "Remove books from the library?"
 msgstr "Ta bort böcker från biblioteket?"
 
 #
 # File: src/library.py, line: 599
-#: mcomix/library/book_area.py:554
+#: mcomix/library/book_area.py:557
 msgid ""
 "The selected books will be removed from the library and permanently deleted. "
 "Are you sure that you want to continue?"
@@ -2831,67 +2816,67 @@ msgstr ""
 "De valda böckerna tas bort från biblioteket och tas bort permanent. Är du "
 "säker på att du vill fortsätta?"
 
-#: mcomix/library/collection_area.py:75
+#: mcomix/library/collection_area.py:74
 msgid "Library collections"
 msgstr "Bibliotekssamlingar"
 
-#: mcomix/library/collection_area.py:80
+#: mcomix/library/collection_area.py:79
 msgid "New"
 msgstr "Ny"
 
 #
 # File: src/library.py, line: 800
-#: mcomix/library/collection_area.py:81
+#: mcomix/library/collection_area.py:80
 msgid "Add a new empty collection."
 msgstr "Lägg till en ny tom samling."
 
-#: mcomix/library/collection_area.py:83
+#: mcomix/library/collection_area.py:82
 msgid "Re_name"
 msgstr "Dö_pa om"
 
-#: mcomix/library/collection_area.py:84
+#: mcomix/library/collection_area.py:83
 msgid "Renames the selected collection."
 msgstr "Döper om den valda samlingen."
 
-#: mcomix/library/collection_area.py:86
+#: mcomix/library/collection_area.py:85
 msgid "_Duplicate"
 msgstr "_Duplicera"
 
-#: mcomix/library/collection_area.py:87
+#: mcomix/library/collection_area.py:86
 msgid "Creates a duplicate of the selected collection."
 msgstr "Skapar en kopia av den valda samlingen."
 
-#: mcomix/library/collection_area.py:89
+#: mcomix/library/collection_area.py:88
 msgid "_Clean up"
 msgstr "_Städa upp"
 
-#: mcomix/library/collection_area.py:90
+#: mcomix/library/collection_area.py:89
 msgid "Removes no longer existant books from the collection."
 msgstr "Tar bort inte längre befintliga böcker från samlingen."
 
-#: mcomix/library/collection_area.py:92 mcomix/library/watchlist.py:70
+#: mcomix/library/collection_area.py:91 mcomix/library/watchlist.py:70
 msgid "_Remove"
 msgstr "_Ta bort"
 
-#: mcomix/library/collection_area.py:93
+#: mcomix/library/collection_area.py:92
 msgid "Deletes the selected collection."
 msgstr "Tar bort den valda samlingen."
 
 #
 # File: src/library.py, line: 854
-#: mcomix/library/collection_area.py:154
+#: mcomix/library/collection_area.py:153
 msgid "Add new collection?"
 msgstr "Lägg till ny samling?"
 
 #
 # File: src/library.py, line: 856
-#: mcomix/library/collection_area.py:155
+#: mcomix/library/collection_area.py:154
 msgid "Please enter a name for the new collection."
 msgstr "Ange ett namn åt den nya samlingen."
 
 #
 # File: src/library.py, line: 876
-#: mcomix/library/collection_area.py:174
+#: mcomix/library/collection_area.py:173
 #, python-format
 msgid "Could not add a new collection called '%s'."
 msgstr "Kunde inte lägga till en ny samling med namnet '%s'."
@@ -2899,44 +2884,44 @@ msgstr "Kunde inte lägga till en ny samling med namnet '%s'."
 #
 # File: src/library.py, line: 275
 # File: src/library.py, line: 881
-#: mcomix/library/collection_area.py:179 mcomix/library/collection_area.py:272
+#: mcomix/library/collection_area.py:178 mcomix/library/collection_area.py:271
 msgid "A collection by that name already exists."
 msgstr "En samling med det namnet finns redan."
 
 #
 # File: src/library.py, line: 251
-#: mcomix/library/collection_area.py:248
+#: mcomix/library/collection_area.py:247
 msgid "Rename collection?"
 msgstr "Döp om samling?"
 
 #
 # File: src/library.py, line: 253
-#: mcomix/library/collection_area.py:249
+#: mcomix/library/collection_area.py:248
 msgid "Please enter a new name for the selected collection."
 msgstr "Ange ett nytt namn för den markerade samlingen."
 
 #
 # File: src/library.py, line: 271
-#: mcomix/library/collection_area.py:268
+#: mcomix/library/collection_area.py:267
 #, python-format
 msgid "Could not change the name to '%s'."
 msgstr "Kunde inte ändra namnet till '%s'."
 
 #
 # File: src/library.py, line: 285
-#: mcomix/library/collection_area.py:282
+#: mcomix/library/collection_area.py:281
 msgid "Could not duplicate collection."
 msgstr "Kunde inte duplicera samling."
 
 #
 # File: src/library.py, line: 382
-#: mcomix/library/collection_area.py:409
+#: mcomix/library/collection_area.py:408
 msgid "Root"
 msgstr "Rot"
 
 #
 # File: src/library.py, line: 386
-#: mcomix/library/collection_area.py:413
+#: mcomix/library/collection_area.py:412
 #, python-format
 msgid ""
 "Put the collection '%(subcollection)s' in the collection "
@@ -2945,14 +2930,14 @@ msgstr "Lägg samlingen '%(subcollection)s' i samlingen '%(supercollection)s'."
 
 #
 # File: src/library.py, line: 407
-#: mcomix/library/collection_area.py:434
+#: mcomix/library/collection_area.py:433
 #, python-format
 msgid "Add books to '%s'."
 msgstr "Lägg till böcker i '%s'."
 
 #
 # File: src/library.py, line: 411
-#: mcomix/library/collection_area.py:438
+#: mcomix/library/collection_area.py:437
 #, python-format
 msgid ""
 "Move books from '%(source collection)s' to '%(destination collection)s'."
@@ -2979,43 +2964,51 @@ msgstr ""
 msgid "_Watch list"
 msgstr "_Bevakningslista"
 
-#: mcomix/library/control_area.py:90
+#: mcomix/library/control_area.py:91
 msgid "Open the watchlist management dialog."
 msgstr "Öppna hanteringsdialogruta för bevakningslistans."
 
 #
+# File: src/filechooser.py, line: 35
+# File: src/library.py, line: 489
+#: mcomix/library/control_area.py:94
+#, fuzzy
+msgid "_Open list"
+msgstr "Öppna _med"
+
+#
 # File: src/library.py, line: 806
-#: mcomix/library/control_area.py:96
+#: mcomix/library/control_area.py:100
 msgid "Open the selected book."
 msgstr "Öppna den markerade boken."
 
-#: mcomix/library/control_area.py:145
+#: mcomix/library/control_area.py:149
 #, python-format
 msgid "Finished reading on %(date)s, %(time)s"
 msgstr "Avslutade läsning den %(date)s, %(time)s"
 
-#: mcomix/library/main_dialog.py:84
+#: mcomix/library/main_dialog.py:83
 msgid "Scanning for new books..."
 msgstr "Letar efter nya böcker..."
 
-#: mcomix/library/main_dialog.py:99
+#: mcomix/library/main_dialog.py:98
 #, python-format
 msgid "Added new book '%(bookname)s' from directory '%(directory)s'."
 msgstr "Lade till ny bok '%(bookname)s' från katalogen '%(directory)s'."
 
 #
 # File: src/library.py, line: 588
-#: mcomix/library/main_dialog.py:102
+#: mcomix/library/main_dialog.py:101
 #, python-format
 msgid "Added %(count)d new books from directory '%(directory)s'."
 msgstr "Lade till %(count)d nya böcker från katalogen '%(directory)s'."
 
-#: mcomix/library/main_dialog.py:109
+#: mcomix/library/main_dialog.py:108
 #, python-format
 msgid "No new books found in directory '%s'."
 msgstr "Inga nya böcker hittades i katalogen '%s'."
 
-#: mcomix/library/main_dialog.py:169
+#: mcomix/library/main_dialog.py:168
 msgid "! You need an sqlite wrapper to use the library."
 msgstr "! Du behöver en sqlite wrapper för att använda biblioteket."
 
@@ -3050,6 +3043,27 @@ msgstr "_Lägg till"
 #: mcomix/library/watchlist.py:87
 msgid "Automatically scan for new books when library is _opened"
 msgstr "Skanna automatiskt efter nya böcker när biblioteket _öppnas"
+
+#~ msgid "Don't update fontconfig cache at startup."
+#~ msgstr "Uppdatera inte fontconfig-cachen vid uppstart."
+
+#~ msgid "Update fontconfig cache at startup."
+#~ msgstr "Uppdatera fontconfig-cachen vid uppstart."
+
+#~ msgid "Installed GTK+ version is: %s"
+#~ msgstr "Installerad GTK+ version är: %s"
+
+#~ msgid "Required GTK+ version is: 2.12.0 or higher"
+#~ msgstr "Krävd GTK+ version är: 2.12.0 eller högre"
+
+#~ msgid "Installed PyGTK version is: %s"
+#~ msgstr "Installerad PyGTK version är: %s"
+
+#~ msgid "Library (PIL) installed."
+#~ msgstr "Biblioteket (PIL) installerat."
+
+#~ msgid "Required PIL version is: 1.1.5 or higher"
+#~ msgstr "Nödvändig PIL-version är: 1.1.5 eller högre"
 
 #
 # File: src/filechooser.py, line: 82
@@ -3099,12 +3113,6 @@ msgstr "Skanna automatiskt efter nya böcker när biblioteket _öppnas"
 # File: src/filehandler.py, line: 222
 #~ msgid "Could not open %s: Unknown file type."
 #~ msgstr "Kunde inte öppna %s: Okänd filtyp."
-
-#
-# File: src/preferences.py, line: 95
-#, fuzzy
-#~ msgid "Use this colour as the thumbnail background:"
-#~ msgstr "Använd denna färg som bakgrund för miniatyrbilder"
 
 #
 # File: src/preferences.py, line: 230
