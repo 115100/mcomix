@@ -68,9 +68,11 @@ def clear_distdir(distdir):
 def run_pyinstaller():
     """ Runs setup.py py2exe. """
     print('Executing pyinstaller...')
-    proc_result = subprocess.run(
-        ['pyinstaller', '--icon', 'mcomix/images/mcomix.ico', '--name', 'MComix', '--noconsole', 'mcomixstarter.py'],
-        shell=True)
+    args = ['pyinstaller', '--icon', 'mcomix/images/mcomix.ico', '--name', 'MComix',
+            'mcomixstarter.py']
+    if False: # Disabled for now for easier debugging with console messages
+        args.append('--noconsole')
+    proc_result = subprocess.run(args, shell=True)
 
     return proc_result.returncode
 
