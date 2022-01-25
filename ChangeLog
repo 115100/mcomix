@@ -13,6 +13,20 @@ In development
       that works on Linux causes the window to fly off the screen for some
       reason.
 
+    FEATURES
+
+    - Animated image formats are now supported. Previously, MComix would only
+      display the first frame.
+
+    - Supported image formats are now a combination of formats supported by
+     GDK/Pixbuf and Pillow formats.
+
+    TRANSLATION
+
+    - Added Lithuanian translation
+
+    - Updated Swedish and Korean translation
+
 MComix 1.2.1
 Release date: 2016-02-12
 
