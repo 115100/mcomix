@@ -1,20 +1,11 @@
 """process.py - Process spawning module."""
 
-import gc
 import sys
 import os
-from distutils import spawn
+import subprocess
 
 from mcomix import log
 from mcomix import i18n
-
-try:
-    import subprocess32 as subprocess
-    _using_subprocess32 = True
-except ImportError:
-    log.warning('subprocess32 not available! using subprocess')
-    import subprocess
-    _using_subprocess32 = False
 
 
 NULL = open(os.devnull, 'r+b')
@@ -47,16 +38,11 @@ def call(args, stdin=NULL, stdout=NULL, stderr=NULL):
                                 stdout=stdout, stderr=stderr,
                                 creationflags=_get_creationflags())
 
+
 def popen(args, stdin=NULL, stdout=PIPE, stderr=NULL):
-    if not _using_subprocess32:
-        gc.disable() # Avoid Python issue #1336!
-    try:
-        return subprocess.Popen(_fix_args(args), stdin=stdin,
-                                stdout=stdout, stderr=stderr,
-                                creationflags=_get_creationflags())
-    finally:
-        if not _using_subprocess32:
-            gc.enable()
+    return subprocess.Popen(_fix_args(args), stdin=stdin,
+                            stdout=stdout, stderr=stderr,
+                            creationflags=_get_creationflags())
 
 
 if 'win32' == sys.platform:
