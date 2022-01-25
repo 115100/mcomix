@@ -87,10 +87,10 @@ class _PreferencesDialog(Gtk.Dialog):
         page.new_section(_('Thumbnails'))
 
         thumb_fixed_bg_button, thumb_dynamic_bg_button = self._create_binary_pref_radio_buttons(
-            'Use this colour as the thumbnail background:',
+            _('Use this colour as the thumbnail background:'),
             'color box thumb bg',
             _('Always use this selected colour as the thumbnail background colour.'),
-            'Use dynamic background colour',
+            _('Use dynamic background colour'),
             'smart thumb bg',
             _('Automatically use the colour that fits the viewed image for the thumbnail background.'))
         page.add_row(thumb_fixed_bg_button, self._create_color_button('thumb bg colour'))
