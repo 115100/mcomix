@@ -3,7 +3,7 @@
 """ 7z archive extractor. """
 
 import os
-import sys
+import subprocess
 import tempfile
 
 from mcomix import process
@@ -39,10 +39,7 @@ class SevenZipArchive(archive_base.ExternalExecutableArchive):
             return '-p'
 
     def _get_list_arguments(self):
-        args = [self._get_executable(), 'l', '-slt']
-        if sys.platform == 'win32':
-            # This switch is only supported on Win32.
-            args.append('-sccUTF-8')
+        args = [self._get_executable(), 'l', '-slt', '-sccUTF-8']
         args.append(self._get_password_argument())
         args.extend(('--', self.archive))
         return args
@@ -59,10 +56,6 @@ class SevenZipArchive(archive_base.ExternalExecutableArchive):
         """ Start parsing after the first delimiter (bunch of - characters),
         and end when delimiters appear again. Format:
         Date <space> Time <space> Attr <space> Size <space> Compressed <space> Name"""
-
-        # Encoding is only guaranteed on win32 due to the -scc switch.
-        if sys.platform == 'win32':
-            line = line.decode('utf-8')
 
         if line.startswith('----------'):
             if self._state == self.STATE_HEADER:
@@ -110,20 +103,18 @@ class SevenZipArchive(archive_base.ExternalExecutableArchive):
             self._state = self.STATE_HEADER
             #: Current path while listing contents.
             self._path = None
-            proc = process.popen(self._get_list_arguments(), stderr=process.STDOUT)
+            proc = subprocess.run(self._get_list_arguments(),
+                stdout=subprocess.PIPE, stderr=process.STDOUT, encoding='utf-8')
             try:
-                for line in proc.stdout:
+                for line in proc.stdout.splitlines():
                     filename = self._parse_list_output_line(line.rstrip(os.linesep))
                     if filename is not None:
-                        yield self._unicode_filename(filename)
+                        yield filename
             except self.EncryptedHeader:
                 # The header is encrypted, try again
                 # if it was our first attempt.
                 if 0 == retry_count:
                     continue
-            finally:
-                proc.stdout.close()
-                proc.wait()
             # Last and/or successful attempt.
             break
 
@@ -146,7 +137,7 @@ class SevenZipArchive(archive_base.ExternalExecutableArchive):
             if isinstance(desired_filename, str):
                 desired_filename = desired_filename.encode('utf-8')
 
-            tmplistfile.write(desired_filename + os.linesep)
+            tmplistfile.write(desired_filename + os.linesep.encode('utf-8'))
             tmplistfile.close()
 
             output = self._create_file(os.path.join(destination_dir, filename))
