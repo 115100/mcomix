@@ -11,11 +11,11 @@ from mcomix.archive import archive_base
 from mcomix import log
 
 if sys.platform == 'win32':
-    UNRARCALLBACK = ctypes.WINFUNCTYPE(ctypes.c_int, ctypes.c_uint,
-        ctypes.c_long, ctypes.c_long, ctypes.c_long)
+    UNRARCALLBACK = ctypes.WINFUNCTYPE(ctypes.c_longlong, ctypes.c_uint,
+        ctypes.c_longlong, ctypes.c_longlong, ctypes.c_longlong)
 else:
-    UNRARCALLBACK = ctypes.CFUNCTYPE(ctypes.c_int, ctypes.c_uint,
-        ctypes.c_long, ctypes.c_long, ctypes.c_long)
+    UNRARCALLBACK = ctypes.CFUNCTYPE(ctypes.c_longlong, ctypes.c_uint,
+        ctypes.c_longlong, ctypes.c_longlong, ctypes.c_longlong)
 
 class RarArchive(archive_base.BaseArchive):
     """ Wrapper class for libunrar. All string values passed to this class must be unicode objects.
@@ -243,16 +243,25 @@ class RarArchive(archive_base.BaseArchive):
         """ Called by the unrar library in case of missing password. """
         if msg == 2: # UCM_NEEDPASSWORD
             self._get_password()
-            if len(self._password) == 0:
+            if not self._password or len(self._password) == 0:
                 # Abort extraction
                 return -1
-            password = ctypes.create_string_buffer(self._password)
+            password = ctypes.create_string_buffer(self._password.encode('utf-8'))
             copy_size = min(buffer_size, len(password))
             ctypes.memmove(buffer_address, password, copy_size)
-            return 0
+            return 1
+        elif msg == 4: # UCM_NEEDPASSWORDW
+            self._get_password()
+            if not self._password or len(self._password) == 0:
+                # Abort extraction
+                return -1
+            password = ctypes.create_string_buffer(self._password.encode('utf-16le'))
+            copy_size = min(buffer_size, len(password))
+            ctypes.memmove(buffer_address, password, copy_size)
+            return 1
         else:
             # Continue operation
-            return 1
+            return 0
 
 class UnrarException(Exception):
     """ Exception class for RarArchive. """
