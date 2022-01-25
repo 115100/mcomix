@@ -290,11 +290,11 @@ def _get_unrar_dll():
     if _unrar_dll != -1:
         return _unrar_dll
 
-    # Load unrar.dll on win32
+    # Load unrar64.dll on win32
     if sys.platform == 'win32':
 
         # First, search for unrar.dll in PATH
-        unrar_path = ctypes.util.find_library("unrar.dll")
+        unrar_path = ctypes.util.find_library("UnRar64.dll")
         if unrar_path:
             try:
                 return ctypes.windll.LoadLibrary(unrar_path)
@@ -303,13 +303,13 @@ def _get_unrar_dll():
 
         # The file wasn't found in PATH, try MComix' root directory
         try:
-            return ctypes.windll.LoadLibrary(os.path.join(constants.BASE_PATH, "unrar.dll"))
+            return ctypes.windll.LoadLibrary(os.path.join(constants.BASE_PATH, "UnRar64.dll"))
         except WindowsError:
             pass
 
         # Last attempt, just use the current directory
         try:
-            _unrar_dll = ctypes.windll.LoadLibrary("unrar.dll")
+            _unrar_dll = ctypes.windll.LoadLibrary("UnRar64.dll")
         except WindowsError:
             _unrar_dll = None
 
@@ -321,7 +321,7 @@ def _get_unrar_dll():
         # of a library, so one could assume the library is not installed
         # when find_library fails
         unrar_path = ctypes.util.find_library("unrar") or \
-            '/usr/lib/libunrar.so'
+            '/usr/lib64/libunrar.so'
 
         if unrar_path:
             try:
