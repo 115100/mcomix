@@ -24,13 +24,30 @@ def alphanumeric_sort(filenames):
     such that for an example "1.jpg", "2.jpg", "10.jpg" is a sorted
     ordering.
     """
-    def _format_substring(s):
-        if s.isdigit():
-            return int(s)
 
-        return s.lower()
+    class NaturalFilenameSortHelper:
+        def __init__(self, filename):
+            self.parts = (int(part) if part.isdigit() else part.lower()
+                          for part in NUMERIC_REGEXP.findall(filename))
 
-    filenames.sort(key=lambda s: list(map(_format_substring, NUMERIC_REGEXP.findall(s))))
+        def __lt__(self, other):
+            for left, right in zip(self.parts, other.parts):
+                if isinstance(left, int) and isinstance(right, int):
+                    if left < right:
+                        return True
+                    elif left > right:
+                        return False
+                else:
+                    left_str = str(left)
+                    right_str = str(right)
+                    if left_str < right_str:
+                        return True
+                    elif left_str > right_str:
+                        return False
+
+            return False
+
+    filenames.sort(key=NaturalFilenameSortHelper)
 
 def alphanumeric_compare(s1, s2):
     """ Compares two strings by their natural order (i.e. 1 before 10)
