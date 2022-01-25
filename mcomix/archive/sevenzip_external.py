@@ -159,21 +159,16 @@ class SevenZipArchive(archive_base.ExternalExecutableArchive):
 
         proc = process.popen(self._get_extract_arguments())
         try:
-            wanted = dict([(self._original_filename(unicode_name), unicode_name)
-                           for unicode_name in entries])
-
+            wanted = set(entries)
             for filename, filesize in self._contents:
                 data = proc.stdout.read(filesize)
                 if filename not in wanted:
                     continue
-                unicode_name = wanted.get(filename, None)
-                if unicode_name is None:
-                    continue
-                new = self._create_file(os.path.join(destination_dir, unicode_name))
+                new = self._create_file(os.path.join(destination_dir, filename))
                 new.write(data)
                 new.close()
-                yield unicode_name
-                del wanted[filename]
+                yield filename
+                wanted.remove(filename)
                 if 0 == len(wanted):
                     break
 
