@@ -3,6 +3,7 @@
 """ Unicode-aware wrapper for zipfile.ZipFile. """
 
 import os
+import zipfile
 from contextlib import closing
 
 from mcomix import log
