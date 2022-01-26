@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 """ MComix installation routines.
@@ -25,7 +25,7 @@ def get_data_patterns(directory, *patterns):
     olddir = os.getcwd()
     os.chdir(os.path.join(constants.BASE_PATH, directory))
     allfiles = []
-    for dirpath, subdirs, files in os.walk("."):
+    for dirpath, _, _ in os.walk("."):
         for pattern in patterns:
             current_pattern = os.path.normpath(os.path.join(dirpath, pattern))
             if glob.glob(current_pattern):
@@ -45,7 +45,7 @@ images.extend([ os.path.basename(img)
 setuptools.setup(
     name = constants.APPNAME.lower(),
     version = constants.VERSION,
-    packages = ['mcomix', 'mcomix.archive', 'mcomix.library', 'mcomix.win32'],
+    packages = ['mcomix', 'mcomix.archive', 'mcomix.library'],
     package_data = {
         'mcomix' : get_data_patterns('mcomix/messages', '*.mo') + images,
     },
@@ -54,8 +54,7 @@ setuptools.setup(
         'setuptools.installation': [ 'eggsecutable=mcomix.run:run' ],
     },
     test_suite = "test",
-    requires = ['pygtk (>=2.12.0)', 'PIL (>=1.15)'],
-    install_requires = ['setuptools'],
+    install_requires = ['PyGObject (>=3.38.0)', 'PyCairo (>= 1.20.0)', 'Pillow (>=5.4.0)'],
     zip_safe = False,
 
     # Various MIME files that need to be copied to certain system locations on Linux.
@@ -95,8 +94,8 @@ setuptools.setup(
              'mime/icons/48x48/application-x-cbt.png'])],
 
     # Package metadata
-    maintainer = 'Ark',
-    maintainer_email = 'https://sourceforge.net/u/aaku/profile/',
+    maintainer = 'The MComix Team',
+    maintainer_email = 'https://sourceforge.net/projects/mcomix/',
     url = 'http://mcomix.sourceforge.net',
     description = 'GTK comic book viewer',
     long_description = 'MComix is a user-friendly, customizable image viewer. '
