@@ -7,7 +7,7 @@ import os
 import shutil
 import threading
 
-from gi.repository import GObject, Gdk, Gtk
+from gi.repository import GObject, Gdk, Gtk, GLib
 
 from mcomix import constants
 from mcomix import cursor_handler
@@ -295,7 +295,17 @@ class MainWindow(Gtk.Window):
         Gdk.event_handler_set(_on_event)
 
     def gained_focus(self, *args):
-        self.was_out_of_focus = False
+        def _delayed_unset_out_of_focus(_):
+            self.was_out_of_focus = False
+            return False
+
+        if self.was_out_of_focus:
+            # Since clicking into an unfocused window triggers the
+            # focus event first, then the mouse event, the mouse event
+            # can no longer detect that it should be skipped. Thus, delay
+            # unsetting was_out_of_focus.
+            GLib.idle_add(_delayed_unset_out_of_focus, None,
+                          priority=GLib.PRIORITY_DEFAULT_IDLE)
 
     def lost_focus(self, *args):
         self.was_out_of_focus = True
