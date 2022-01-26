@@ -8,7 +8,7 @@ import bisect
 import operator
 import math
 import itertools
-from functools import reduce
+from functools import reduce, cmp_to_key
 
 
 NUMERIC_REGEXP = re.compile(r"\d+|\D+")  # Split into numerics and characters
@@ -25,29 +25,7 @@ def alphanumeric_sort(filenames):
     ordering.
     """
 
-    class NaturalFilenameSortHelper:
-        def __init__(self, filename):
-            self.parts = (int(part) if part.isdigit() else part.lower()
-                          for part in NUMERIC_REGEXP.findall(filename))
-
-        def __lt__(self, other):
-            for left, right in zip(self.parts, other.parts):
-                if isinstance(left, int) and isinstance(right, int):
-                    if left < right:
-                        return True
-                    elif left > right:
-                        return False
-                else:
-                    left_str = str(left)
-                    right_str = str(right)
-                    if left_str < right_str:
-                        return True
-                    elif left_str > right_str:
-                        return False
-
-            return False
-
-    filenames.sort(key=NaturalFilenameSortHelper)
+    filenames.sort(key=cmp_to_key(alphanumeric_compare))
 
 def alphanumeric_compare(s1, s2):
     """ Compares two strings by their natural order (i.e. 1 before 10)
