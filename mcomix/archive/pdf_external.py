@@ -6,10 +6,12 @@ from mcomix import log
 from mcomix import process
 from mcomix.archive import archive_base
 
+# FIXME: LooseVersion is deprecated
 from distutils.version import LooseVersion
 import math
 import os
 import re
+import subprocess
 
 # Default DPI for rendering.
 PDF_RENDER_DPI_DEF = 72 * 4
@@ -32,14 +34,10 @@ class PdfArchive(archive_base.BaseArchive):
         super(PdfArchive, self).__init__(archive)
 
     def iter_contents(self):
-        proc = process.popen(_mutool_exec + ['show', '--', self.archive, 'pages'])
-        try:
-            for line in proc.stdout:
-                if line.startswith('page '):
-                    yield line.split()[1] + '.png'
-        finally:
-            proc.stdout.close()
-            proc.wait()
+        proc = subprocess.run(_mutool_exec + ['show', '--', self.archive, 'pages'], stdout=subprocess.PIPE, encoding='utf-8')
+        for line in proc.stdout.splitlines():
+            if line.startswith('page '):
+                yield line.split()[1] + '.png'
 
     def extract(self, filename, destination_dir):
         self._create_directory(destination_dir)
@@ -48,30 +46,26 @@ class PdfArchive(archive_base.BaseArchive):
         # Try to find optimal DPI.
         cmd = _mudraw_exec + _mudraw_trace_args + ['--', self.archive, str(page_num)]
         log.debug('finding optimal DPI for %s: %s', filename, ' '.join(cmd))
-        proc = process.popen(cmd)
-        try:
-            max_size = 0
-            max_dpi = PDF_RENDER_DPI_DEF
-            for line in proc.stdout:
-                match = self._fill_image_regex.match(line)
-                if not match:
+        proc = subprocess.run(cmd, stdout=subprocess.PIPE, encoding='utf-8')
+        max_size = 0
+        max_dpi = PDF_RENDER_DPI_DEF
+        for line in proc.stdout.splitlines():
+            match = self._fill_image_regex.match(line)
+            if not match:
+                continue
+            matrix = [float(f) for f in match.group('matrix').split()]
+            for size, coeff1, coeff2 in (
+                (int(match.group('width')), matrix[0], matrix[1]),
+                (int(match.group('height')), matrix[2], matrix[3]),
+            ):
+                if size < max_size:
                     continue
-                matrix = [float(f) for f in match.group('matrix').split()]
-                for size, coeff1, coeff2 in (
-                    (int(match.group('width')), matrix[0], matrix[1]),
-                    (int(match.group('height')), matrix[2], matrix[3]),
-                ):
-                    if size < max_size:
-                        continue
-                    render_size = math.sqrt(coeff1 * coeff1 + coeff2 * coeff2)
-                    dpi = int(size * 72 / render_size)
-                    if dpi > PDF_RENDER_DPI_MAX:
-                        dpi = PDF_RENDER_DPI_MAX
-                    max_size = size
-                    max_dpi = dpi
-        finally:
-            proc.stdout.close()
-            proc.wait()
+                render_size = math.sqrt(coeff1 * coeff1 + coeff2 * coeff2)
+                dpi = int(size * 72 / render_size)
+                if dpi > PDF_RENDER_DPI_MAX:
+                    dpi = PDF_RENDER_DPI_MAX
+                max_size = size
+                max_dpi = dpi
         # Render...
         cmd = _mudraw_exec + ['-r', str(max_dpi), '-o', destination_path, '--', self.archive, str(page_num)]
         log.debug('rendering %s: %s', filename, ' '.join(cmd))
@@ -98,8 +92,8 @@ class PdfArchive(archive_base.BaseArchive):
                                  stderr=process.PIPE)
             try:
                 output = proc.stderr.read()
-                if output.startswith('mutool version '):
-                    version = output[15:].rstrip()
+                if output.startswith(b'mutool version '):
+                    version = output[15:].rstrip().decode()
             finally:
                 proc.stderr.close()
                 proc.wait()
