@@ -73,16 +73,25 @@ def copy_other_files():
 
     if os.path.isdir('../mcomix-other/unrar'):
         shutil.copy('../mcomix-other/unrar/UnRar64.dll', 'dist/MComix/UnRar64.dll')
-        win32_newline('../mcomix-other/unrar/license.txt', 'dist/MComix/doc/unrar/license.txt')
+        win32_newline('../mcomix-other/unrar/license.txt', 'dist/MComix/doc/licenses/unrar/license.txt')
 
     if os.path.isdir('../mcomix-other/7z'):
         shutil.copy('../mcomix-other/7z/7z.dll', 'dist/MComix/7z.dll')
         shutil.copy('../mcomix-other/7z/7z.exe', 'dist/MComix/7z.exe')
-        win32_newline('../mcomix-other/7z/License.txt', 'dist/MComix/doc/unrar/License.txt')
+        win32_newline('../mcomix-other/7z/License.txt', 'dist/MComix/doc/licenses/unrar/License.txt')
 
     if os.path.isdir('../mcomix-other/mutool'):
         shutil.copy('../mcomix-other/mutool/mutool.exe', 'dist/MComix/mutool.exe')
-        win32_newline('../mcomix-other/mutool/COPYING.txt', 'dist/MComix/doc/mupdf/COPYING.txt')
+        win32_newline('../mcomix-other/mutool/COPYING.txt', 'dist/MComix/doc/licenses/mupdf/COPYING.txt')
+
+    licenses_basedir = '/mingw64/share/licenses'
+    components = ('atk', 'cairo', 'fontconfig', 'freetype', 'gdk-pixbuf2', 'glib2', 'gtk3', 'pango',
+                  'python-cairo', 'python-Pillow')
+    if os.path.isdir(licenses_basedir):
+        for entry in components:
+            path = os.path.join(licenses_basedir, entry)
+            if os.path.isdir(path):
+                shutil.copytree(path, os.path.join('dist/MComix/doc/licenses', entry))
 
 if __name__ == '__main__':
     clear_distdir('dist')
