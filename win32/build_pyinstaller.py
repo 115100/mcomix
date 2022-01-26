@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 import os
 import sys
-import glob
-import zipfile
 import shutil
 import subprocess
 
@@ -27,29 +25,6 @@ having to play around with relative path names.
        into the created distribution folder.
 """
 
-def list_files(basedir, *patterns):
-    """ Locates all files in <basedir> that match one of <patterns>. """
-
-    all_files = []
-    for dirpath, _, _ in os.walk(basedir):
-
-        for pattern in patterns:
-            cur_pattern = os.path.join(dirpath, pattern)
-            all_files.extend([ os.path.normpath(path) for path in glob.glob(cur_pattern) ])
-
-    return all_files
-
-def add_files_to_directory(directory, files):
-    """ Add the files passed as <files> to <directory>, using the same
-    relative path. """
-
-    for file in files:
-        destdir = os.path.split(os.path.join(directory, file))[0]
-        if not os.path.isdir(destdir):
-            os.makedirs(destdir)
-
-        shutil.copy(file, os.path.join(directory, file))
-
 def clear_distdir(distdir):
     """ Removes files from <distdir>. """
     if not os.path.isdir(distdir):
@@ -68,39 +43,18 @@ def clear_distdir(distdir):
 def run_pyinstaller():
     """ Runs setup.py py2exe. """
     print('Executing pyinstaller...')
-    args = ['pyinstaller', '--icon', 'mcomix/images/mcomix.ico', '--name', 'MComix',
-            'mcomixstarter.py']
-    if False: # Disabled for now for easier debugging with console messages
-        args.append('--noconsole')
+    args = ['pyinstaller', 'win32/MComix.spec']
     proc_result = subprocess.run(args, shell=True)
 
     return proc_result.returncode
 
-def add_nonpython_data():
-    """ Adds required data files the distribution. """
-
-    library = zipfile.ZipFile('dist/MComix/base_library.zip', 'a')
-
-    messages = list_files('mcomix/messages', '*.mo')
-    print('Adding messages to distribution...')
-    add_files_to_directory('dist/MComix', messages)
-
-    images = list_files('mcomix/images', '*.png')
-    to_remove = ('mcomix/images/mcomix-large.png', )
-
-    for img in to_remove:
-        fixed_path = os.path.normpath(img)
-        if fixed_path in images:
-            images.remove(fixed_path)
-
-    print('Adding images to distribution...')
-    add_files_to_directory('dist/MComix', images)
-
-    library.close()
-
 def win32_newline(source, dest):
     """ Converts Unix newlines to Windows newlines. """
     from_fp = open(source, "r", encoding='utf-8')
+
+    dest_dir = os.path.split(dest)[0]
+    if not os.path.isdir(dest_dir):
+        os.makedirs(dest_dir)
     to_fp = open(dest, "w", encoding='utf-8')
 
     for line in from_fp:
@@ -113,12 +67,22 @@ def win32_newline(source, dest):
 def copy_other_files():
     """ Copy other relevant files into dist directory. """
     print("Copying misc files into dist directory...")
-    win32_newline('ChangeLog', 'dist/MComix/ChangeLog.txt')
-    win32_newline('README', 'dist/MComix/README.txt')
-    win32_newline('COPYING', 'dist/MComix/COPYING.txt')
+    win32_newline('ChangeLog', 'dist/MComix/doc/MComix/ChangeLog.txt')
+    win32_newline('README', 'dist/MComix/doc/MComix/README.txt')
+    win32_newline('COPYING', 'dist/MComix/doc/MComix/COPYING.txt')
 
-    if os.path.isfile('unrar.dll'):
-        shutil.copy('unrar.dll', 'dist/MComix/unrar.dll')
+    if os.path.isdir('../mcomix-other/unrar'):
+        shutil.copy('../mcomix-other/unrar/UnRar64.dll', 'dist/MComix/UnRar64.dll')
+        win32_newline('../mcomix-other/unrar/license.txt', 'dist/MComix/doc/unrar/license.txt')
+
+    if os.path.isdir('../mcomix-other/7z'):
+        shutil.copy('../mcomix-other/7z/7z.dll', 'dist/MComix/7z.dll')
+        shutil.copy('../mcomix-other/7z/7z.exe', 'dist/MComix/7z.exe')
+        win32_newline('../mcomix-other/7z/License.txt', 'dist/MComix/doc/unrar/License.txt')
+
+    if os.path.isdir('../mcomix-other/mutool'):
+        shutil.copy('../mcomix-other/mutool/mutool.exe', 'dist/MComix/mutool.exe')
+        win32_newline('../mcomix-other/mutool/COPYING.txt', 'dist/MComix/doc/mupdf/COPYING.txt')
 
 if __name__ == '__main__':
     clear_distdir('dist')
@@ -126,8 +90,6 @@ if __name__ == '__main__':
     success = run_pyinstaller() == 0
 
     if not success: sys.exit(1)
-
-    add_nonpython_data()
 
     copy_other_files()
 
