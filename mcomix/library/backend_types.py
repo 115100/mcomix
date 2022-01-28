@@ -256,7 +256,7 @@ class _WatchList(object):
     def add_directory(self, path, collection=DefaultCollection, recursive=False):
         """ Adds a new watched directory. """
 
-        directory = os.path.abspath(path)
+        directory = os.path.normpath(os.path.abspath(path))
         sql = """INSERT OR IGNORE INTO watchlist (path, collection, recursive)
                  VALUES (?, ?, ?)"""
         cursor = self.backend.execute(sql, [directory, collection.id, recursive])
@@ -289,7 +289,7 @@ class _WatchList(object):
                  LEFT JOIN collection ON watchlist.collection = collection.id
                  WHERE watchlist.path = ?"""
 
-        cursor = self.backend.execute(sql, (path, ))
+        cursor = self.backend.execute(sql, (os.path.normpath(path), ))
         result = cursor.fetchone()
         cursor.close()
 
@@ -340,7 +340,7 @@ class _WatchListEntry(_BackendObject):
     """ A watched directory. """
 
     def __init__(self, directory, recursive, collection):
-        self.directory = os.path.abspath(directory)
+        self.directory = os.path.normpath(os.path.abspath(directory))
         self.recursive = bool(recursive)
         self.collection = collection
 
