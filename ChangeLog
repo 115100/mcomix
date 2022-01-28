@@ -4,7 +4,7 @@ In development
     BREAKING CHANGES
 
     - MComix now requires Python 3.7 or newer, as well as GTK+ 3, PyGObject, and
-      PyCairo. Minimum Pillow version has been increased to 5.2.0.
+      PyCairo. Minimum Pillow version has been increased to 6.0.0.
 
     - MComix no longer depends on the setuptools module. Optional dependencies
       on czipfile and subprocess32 have been removed, since they are no longer

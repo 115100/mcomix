@@ -1,14 +1,11 @@
 """image_tools.py - Various image manipulations."""
 
-from collections import namedtuple
-import binascii
 import operator
 from gi.repository import GLib, GdkPixbuf, Gdk, Gtk
 import PIL
 from PIL import Image
 from PIL import ImageEnhance
 from PIL import ImageOps
-from PIL.JpegImagePlugin import _getexif
 from io import StringIO
 
 from mcomix.preferences import prefs
@@ -285,10 +282,8 @@ def pil_to_pixbuf(im, keep_orientation=False):
     if keep_orientation:
         # Keep orientation metadata.
         orientation = None
-        exif = im.info.get('exif')
-        if exif is not None:
-            exif = _getexif(im)
-            orientation = exif.get(274, None)
+        exif = im.getexif()
+        orientation = exif.get(274, None)
         if orientation is None:
             # Maybe it's a PNG? Try alternative method.
             orientation = _get_png_implied_rotation(im)
@@ -485,29 +480,29 @@ def _get_png_implied_rotation(pixbuf_or_image):
     Lookup for Exif data in the tEXt chunk.
     """
     if isinstance(pixbuf_or_image, GdkPixbuf.Pixbuf):
-        exif = pixbuf_or_image.get_option('tEXt::Raw profile type exif')
+        raw_exif = pixbuf_or_image.get_option('tEXt::Raw profile type exif')
     elif isinstance(pixbuf_or_image, Image.Image):
-        exif = pixbuf_or_image.info.get('Raw profile type exif')
+        raw_exif = pixbuf_or_image.info.get('Raw profile type exif')
     else:
         raise ValueError()
-    if exif is None:
+    if raw_exif is None:
         return None
-    exif = exif.split('\n')
-    if len(exif) < 4 or 'exif' != exif[1]:
+    raw_exif = raw_exif.split('\n')
+    if len(raw_exif) < 4 or 'exif' != raw_exif[1]:
         # Not valid Exif data.
         return None
-    size = int(exif[2])
+    size = int(raw_exif[2])
     try:
-        data = binascii.unhexlify(''.join(exif[3:]))
-    except TypeError:
+        data = bytes.fromhex(''.join(raw_exif[3:]))
+    except ValueError:
         # Not valid hexadecimal content.
         return None
     if size != len(data):
         # Sizes should match.
         return None
-    im = namedtuple('FakeImage', 'info')({ 'exif': data })
-    exif = _getexif(im)
-    orientation = exif.get(274, None)
+    exif = Image.Exif()
+    exif.load(data)
+    orientation = exif.get(274, None) # Orientation tag
     if orientation is not None:
         orientation = str(orientation)
     return orientation
