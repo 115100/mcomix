@@ -4,7 +4,6 @@ import sys
 import os
 import subprocess
 
-from mcomix import log
 from mcomix import i18n
 
 

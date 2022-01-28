@@ -1,12 +1,10 @@
 """archive_tools.py - Archive tool functions."""
 
 import os
-import re
 import shutil
 import zipfile
 import tarfile
 import tempfile
-import operator
 
 from mcomix import image_tools
 from mcomix import constants
@@ -196,27 +194,29 @@ def get_archive_info(path):
         for fn in reversed(cleanup):
             fn()
 
-def get_archive_handler(path, type=None):
+def get_archive_handler(path, mimetype=None):
     """ Returns a fitting extractor handler for the archive passed
-    in <path> (with optional mime type <type>. Returns None if no matching
+    in <path> (with optional mime type <mimetype>. Returns None if no matching
     extractor was found.
     """
-    if type is None:
-        type = archive_mime_type(path)
-        if type is None:
+    if mimetype is None:
+        mimetype = archive_mime_type(path)
+        if mimetype is None:
             return None
 
-    handler = _get_handler(type)
+    handler = _get_handler(mimetype)
     if handler is None:
         return None
 
+    log.debug(_('Archive handler %s for archive "%s" was selected.'),
+              handler.__name__, os.path.split(path)[1])
     return handler(path)
 
 def get_recursive_archive_handler(path, destination_dir, type=None):
     """ Same as <get_archive_handler> but the handler will transparently handle
     archives within archives.
     """
-    archive = get_archive_handler(path, type=type)
+    archive = get_archive_handler(path, mimetype=type)
     if archive is None:
         return None
     # XXX: Deferred import to avoid circular dependency

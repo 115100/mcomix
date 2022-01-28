@@ -7,6 +7,7 @@ import subprocess
 import tempfile
 
 from mcomix import process
+from mcomix import log
 from mcomix.archive import archive_base
 
 # Filled on-demand by SevenZipArchive
@@ -45,7 +46,7 @@ class SevenZipArchive(archive_base.ExternalExecutableArchive):
         return args
 
     def _get_extract_arguments(self, list_file=None):
-        args = [self._get_executable(), 'x', '-so']
+        args = [self._get_executable(), 'x', '-so', '-sccUTF-8']
         if list_file is not None:
             args.append('-i@' + list_file)
         args.append(self._get_password_argument())
@@ -142,8 +143,14 @@ class SevenZipArchive(archive_base.ExternalExecutableArchive):
 
             output = self._create_file(os.path.join(destination_dir, filename))
             try:
-                process.call(self._get_extract_arguments(list_file=tmplistfile.name),
-                             stdout=output)
+                proc = subprocess.run(
+                    self._get_extract_arguments(list_file=tmplistfile.name),
+                    stdout=output, stderr=subprocess.PIPE,
+                    creationflags=process._get_creationflags())
+
+                if len(proc.stderr) > 0:
+                    log.error(_("Extraction of %s might have failed: %s"),
+                              filename, proc.stderr.decode('utf-8'))
             finally:
                 output.close()
         finally:

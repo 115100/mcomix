@@ -376,7 +376,7 @@ def load_pixbuf(path):
         log.debug("provider %s failed to load %s", provider, path)
     if pixbuf is None:
         # raising necessary because caller expects pixbuf to be not None
-        raise last_error
+        raise last_error or TypeError()
     return pixbuf
 
 def load_pixbuf_size(path, width, height):
@@ -420,7 +420,7 @@ def load_pixbuf_size(path, width, height):
         log.debug("provider %s failed to load %s at size %s", provider, path, (width, height))
     if pixbuf is None:
         # raising necessary because caller expects pixbuf to be not None
-        raise last_error
+        raise last_error or TypeError()
     return fit_in_rectangle(pixbuf, width, height, GdkPixbuf.InterpType.BILINEAR)
 
 def load_pixbuf_data(imgdata):
@@ -602,7 +602,7 @@ def get_image_info(path):
     except Exception:
         gdk_image_info = None
 
-    if gdk_image_info is not None:
+    if gdk_image_info is not None and gdk_image_info[0] is not None:
         image_format = gdk_image_info[0].get_name().upper()
         image_dimensions = gdk_image_info[1], gdk_image_info[2]
         # Prefer loading via GDK/Pixbuf if Gdk.pixbuf_get_file_info appears
