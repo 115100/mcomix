@@ -94,7 +94,7 @@ def copy_other_files():
                 shutil.copytree(path, os.path.join('dist/MComix/licenses', entry))
 
 if __name__ == '__main__':
-    clear_distdir('dist')
+    clear_distdir('dist/MComix')
 
     success = run_pyinstaller() == 0
 
