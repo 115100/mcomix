@@ -59,7 +59,7 @@ def win32_newline(source, dest):
 
     for line in from_fp:
         to_fp.write(line.rstrip())
-        to_fp.write("\r\n")
+        to_fp.write("\n")
 
     from_fp.close()
     to_fp.close()
