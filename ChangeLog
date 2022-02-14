@@ -1,3 +1,10 @@
+MComix 2.0.1
+In development
+
+    BUG FIXES
+
+    - Fixed conversion of unexpected color values from stored preferences.
+
 MComix 2.0.0
 Release date: 2022-01-29
 
