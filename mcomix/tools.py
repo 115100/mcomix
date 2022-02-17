@@ -45,6 +45,12 @@ def alphanumeric_compare(s1, s2):
         if part.isdigit():
             stringparts2[i] = int(part)
 
+    min_length = min(len(stringparts1), len(stringparts2))
+    for i in range(min_length):
+        if type(stringparts1[i]) is not type(stringparts2[i]):
+            stringparts1[i] = str(stringparts1[i])
+            stringparts2[i] = str(stringparts2[i])
+
     return cmp(stringparts1, stringparts2)
 
 def bin_search(lst, value):

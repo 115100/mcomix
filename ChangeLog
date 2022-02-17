@@ -16,6 +16,8 @@ In development
     - Handle error when thumbnail metadata Thumb::MTime is a floating point
       number.
 
+    - Fixed alphanumeric sort for names with mismatched text/number patterns.
+
 MComix 2.0.0
 Release date: 2022-01-29
 
