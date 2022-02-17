@@ -8,6 +8,14 @@ In development
     - Fixed error trying to display page file size within archives where
       members have not been extracted yet.
 
+    - Fixed bytes/unicode error in the library 'Add Book' dialog.
+
+    - Fixed endless password popup when library fails to genrate thumbnail
+      for password-protected archive.
+
+    - Handle error when thumbnail metadata Thumb::MTime is a floating point
+      number.
+
 MComix 2.0.0
 Release date: 2022-01-29
 
