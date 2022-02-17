@@ -5,6 +5,9 @@ In development
 
     - Fixed conversion of unexpected color values from stored preferences.
 
+    - Fixed error trying to display page file size within archives where
+      members have not been extracted yet.
+
 MComix 2.0.0
 Release date: 2022-01-29
 

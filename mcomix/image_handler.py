@@ -313,15 +313,17 @@ class ImageHandler(object):
         a tuple (s, s') where s is the filesize of <page> (or the current
         page) and s' is the filesize of the page after.
         """
+        returnvalue_on_error = ('', '') if double else ''
+
         if not self.page_is_available():
-            return
+            return returnvalue_on_error
 
         if page is None:
             page = self.get_current_page()
 
         first_path = self.get_path_to_page(page)
         if first_path == None:
-            return
+            return returnvalue_on_error
 
         if double:
             second_path = self.get_path_to_page(page + 1)
@@ -335,7 +337,7 @@ class ImageHandler(object):
                 except OSError:
                     second = ''
             else:
-                return
+                return ('', '')
             return first, second
 
         try:
