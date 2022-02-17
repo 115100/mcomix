@@ -7,6 +7,7 @@ import zipfile
 from contextlib import closing
 
 from mcomix import log
+from mcomix import i18n
 from mcomix.archive import archive_base
 
 
@@ -32,7 +33,7 @@ class ZipArchive(archive_base.NonUnicodeArchive):
     def iter_contents(self):
         if self._encryption_supported and self._has_encryption():
             self._get_password()
-            self.zip.setpassword(self._password)
+            self.zip.setpassword(i18n.to_utf8(self._password))
 
         for filename in self.zip.namelist():
             yield self._unicode_filename(filename)
