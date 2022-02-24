@@ -850,7 +850,7 @@ class MainWindow(Gtk.Window):
         if self.layout is None:
             return False
         return not all(tools.smaller_or_equal(self.layout.get_union_box().get_size(),
-            self.get_visible_area_size())) 
+            self.get_visible_area_size()))
 
     def scroll_with_flipping(self, x, y):
         """Returns true if able to scroll without flipping to
@@ -1028,14 +1028,35 @@ class MainWindow(Gtk.Window):
 
             suggested_name = i18n.to_unicode(suggested_name)
             save_dialog = Gtk.FileChooserDialog(_('Save page as'), self,
-                Gtk.FileChooserAction.SAVE, (Gtk.STOCK_OK, Gtk.ResponseType.ACCEPT,
-                Gtk.STOCK_CANCEL, Gtk.ResponseType.REJECT))
+                Gtk.FileChooserAction.SAVE,
+                (Gtk.STOCK_OK, Gtk.ResponseType.ACCEPT,
+                Gtk.STOCK_CANCEL, Gtk.ResponseType.REJECT)
+            )
+            save_dialog.set_do_overwrite_confirmation(True)
             save_dialog.set_current_name(suggested_name)
+            save_dialog.set_current_folder(
+                prefs['path of last browsed in filechooser']
+            )
             save_dialog.set_create_folders(True)
 
-            if save_dialog.run() == Gtk.ResponseType.ACCEPT and save_dialog.get_filename():
-                shutil.copy(self.imagehandler.get_path_to_page(),
-                    save_dialog.get_filename())
+            if save_dialog.run() == Gtk.ResponseType.ACCEPT:
+                filename = save_dialog.get_filename()
+                if filename:
+                    try:
+                        shutil.copy(
+                            self.imagehandler.get_path_to_page(),
+                            filename
+                        )
+                    except shutil.SameFileError as e:
+                        log.warning(e)
+
+                # Do not store path if the user chose not to keep a file history
+                if prefs['store recent file info']:
+                    prefs['path of last browsed in filechooser'] = \
+                        save_dialog.get_current_folder()
+                else:
+                    prefs['path of last browsed in filechooser'] = \
+                        constants.HOME_DIR
 
             save_dialog.destroy()
 
