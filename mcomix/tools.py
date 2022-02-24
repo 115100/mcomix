@@ -184,4 +184,11 @@ def formats_to_regex(formats):
         itertools.chain.from_iterable([e[1] for e in formats.values()])) \
         + r'$', re.I)
 
+def append_number_to_filename(filename, number):
+    """ Generate a new string from filename with an appended number right
+    before the extension. """
+    file_no_ext = os.path.splitext(filename)[0]
+    ext = os.path.splitext(filename)[1]
+    return file_no_ext + (" (%s)" % (number)) + ext
+
 # vim: expandtab:sw=4:ts=4

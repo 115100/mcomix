@@ -1006,7 +1006,8 @@ class MainWindow(Gtk.Window):
         return self._bg_colour
 
     def extract_page(self, *args):
-        """Save the currently displayed images to disk.
+        """Save the currently displayed images to disk, appending a number if a
+        file with an identical name was already found in the target directory.
         """
         this_screen = 2 if self.displayed_double() else 1 # XXX limited to at most 2 pages
         for i in reversed(range(this_screen)) if self.is_manga_mode \
@@ -1026,28 +1027,37 @@ class MainWindow(Gtk.Window):
                     os.path.split(self.imagehandler.get_path_to_page())[-1]
                 )
 
-            suggested_name = i18n.to_unicode(suggested_name)
+            target_dir = prefs['path of last browsed in filechooser'] + os.sep
+
+            try_name = i18n.to_unicode(suggested_name)
+            attempt = 1
+            while os.path.exists(target_dir + try_name):
+                try_name = tools.append_number_to_filename(
+                    suggested_name, number=attempt
+                )
+                attempt += 1
+
+            suggested_name = try_name
             save_dialog = Gtk.FileChooserDialog(_('Save page as'), self,
                 Gtk.FileChooserAction.SAVE,
                 (Gtk.STOCK_OK, Gtk.ResponseType.ACCEPT,
                 Gtk.STOCK_CANCEL, Gtk.ResponseType.REJECT)
             )
             save_dialog.set_do_overwrite_confirmation(True)
-            save_dialog.set_current_name(suggested_name)
-            save_dialog.set_current_folder(
-                prefs['path of last browsed in filechooser']
-            )
             save_dialog.set_create_folders(True)
+            save_dialog.set_current_name(suggested_name)
+            save_dialog.set_current_folder(target_dir)
 
             if save_dialog.run() == Gtk.ResponseType.ACCEPT:
                 filename = save_dialog.get_filename()
                 if filename:
+                    filename = i18n.to_unicode(filename)
                     try:
                         shutil.copy(
                             self.imagehandler.get_path_to_page(),
                             filename
                         )
-                    except shutil.SameFileError as e:
+                    except Exception as e:
                         log.warning(e)
 
                 # Do not store path if the user chose not to keep a file history
