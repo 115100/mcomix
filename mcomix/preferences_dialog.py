@@ -193,6 +193,9 @@ class _PreferencesDialog(Gtk.Dialog):
         page.add_row(Gtk.Label(label=_('Store information about recently opened files:')),
             self._create_store_recent_combobox())
 
+        page.add_row(self._create_pref_check_button(_('Save As opens at the last directory saved into'),
+            'store last saved in directory', 'Open the Save As dialog at the directory in which the last file was saved.'))
+
         return page
 
     def _init_display_tab(self):

@@ -1024,7 +1024,7 @@ class MainWindow(Gtk.Window):
                 file_name = (
                     os.path.splitext(archive_name)[0] + '_' + file_name)
 
-            target_dir = prefs['path of last browsed in filechooser'] + os.sep
+            target_dir = prefs['path of last saved in filechooser'] + os.sep
             suggest_name = i18n.to_unicode(file_name)
             attempt = 1
             while os.path.exists(target_dir + suggest_name):
@@ -1051,13 +1051,10 @@ class MainWindow(Gtk.Window):
                     except Exception as e:
                         log.warning(e)
 
-                # Do not store path if the user chose not to keep a file history
-                if prefs['store recent file info']:
-                    prefs['path of last browsed in filechooser'] = \
-                        save_dialog.get_current_folder()
-                else:
-                    prefs['path of last browsed in filechooser'] = \
-                        constants.HOME_DIR
+                prefs['path of last saved in filechooser'] = \
+                    save_dialog.get_current_folder() \
+                    if prefs['store last saved in directory'] \
+                    else constants.HOME_DIR
 
             save_dialog.destroy()
 
