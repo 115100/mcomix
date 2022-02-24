@@ -1012,32 +1012,26 @@ class MainWindow(Gtk.Window):
         this_screen = 2 if self.displayed_double() else 1 # XXX limited to at most 2 pages
         for i in reversed(range(this_screen)) if self.is_manga_mode \
         else range(this_screen):
+            file_path = self.imagehandler.get_path_to_page(
+                self.imagehandler.get_current_page() + i)
+            if not file_path:
+                return
+            file_name = os.path.split(file_path)[-1]
+
             if self.filehandler.archive_type is not None:
+                # Prepend the archive base name to the filename being displayed
                 archive_name = self.filehandler.get_pretty_current_filename()
-                file_name = self.imagehandler.get_path_to_page(
-                    self.imagehandler.get_current_page() + i
-                )
-                suggested_name = (
-                    os.path.splitext(archive_name)[0]
-                    + '_'
-                    + os.path.split(file_name)[-1]
-                )
-            else:
-                suggested_name = (
-                    os.path.split(self.imagehandler.get_path_to_page())[-1]
-                )
+                file_name = (
+                    os.path.splitext(archive_name)[0] + '_' + file_name)
 
             target_dir = prefs['path of last browsed in filechooser'] + os.sep
-
-            try_name = i18n.to_unicode(suggested_name)
+            suggest_name = i18n.to_unicode(file_name)
             attempt = 1
-            while os.path.exists(target_dir + try_name):
-                try_name = tools.append_number_to_filename(
-                    suggested_name, number=attempt
-                )
+            while os.path.exists(target_dir + suggest_name):
+                suggest_name = tools.append_number_to_filename(
+                    file_name, number=attempt)
                 attempt += 1
 
-            suggested_name = try_name
             save_dialog = Gtk.FileChooserDialog(_('Save page as'), self,
                 Gtk.FileChooserAction.SAVE,
                 (Gtk.STOCK_OK, Gtk.ResponseType.ACCEPT,
@@ -1045,18 +1039,15 @@ class MainWindow(Gtk.Window):
             )
             save_dialog.set_do_overwrite_confirmation(True)
             save_dialog.set_create_folders(True)
-            save_dialog.set_current_name(suggested_name)
+            save_dialog.set_current_name(suggest_name)
             save_dialog.set_current_folder(target_dir)
 
             if save_dialog.run() == Gtk.ResponseType.ACCEPT:
-                filename = save_dialog.get_filename()
-                if filename:
-                    filename = i18n.to_unicode(filename)
+                target = save_dialog.get_filename()
+                if target:
+                    target = i18n.to_unicode(target)
                     try:
-                        shutil.copy(
-                            self.imagehandler.get_path_to_page(),
-                            filename
-                        )
+                        shutil.copy2(file_path, target)
                     except Exception as e:
                         log.warning(e)
 
