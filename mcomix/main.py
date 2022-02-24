@@ -1006,33 +1006,38 @@ class MainWindow(Gtk.Window):
         return self._bg_colour
 
     def extract_page(self, *args):
-        """Derive some sensible filename and offer
-        the user the choice to save the current page with the selected name.
+        """Save the currently displayed images to disk.
         """
-        if self.filehandler.archive_type is not None:
-            archive_name = self.filehandler.get_pretty_current_filename()
-            file_name = self.imagehandler.get_path_to_page()
-            suggested_name = (
-                os.path.splitext(archive_name)[0]
-                + '_'
-                + os.path.split(file_name)[-1]
-            )
-        else:
-            suggested_name = (
-                os.path.split(self.imagehandler.get_path_to_page())[-1]
-            )
+        this_screen = 2 if self.displayed_double() else 1 # XXX limited to at most 2 pages
+        for i in reversed(range(this_screen)) if self.is_manga_mode \
+        else range(this_screen):
+            if self.filehandler.archive_type is not None:
+                archive_name = self.filehandler.get_pretty_current_filename()
+                file_name = self.imagehandler.get_path_to_page(
+                    self.imagehandler.get_current_page() + i
+                )
+                suggested_name = (
+                    os.path.splitext(archive_name)[0]
+                    + '_'
+                    + os.path.split(file_name)[-1]
+                )
+            else:
+                suggested_name = (
+                    os.path.split(self.imagehandler.get_path_to_page())[-1]
+                )
 
-        save_dialog = Gtk.FileChooserDialog(_('Save page as'), self,
-            Gtk.FileChooserAction.SAVE, (Gtk.STOCK_OK, Gtk.ResponseType.ACCEPT,
-            Gtk.STOCK_CANCEL, Gtk.ResponseType.REJECT))
-        save_dialog.set_current_name(suggested_name)
-        save_dialog.set_create_folders(True)
+            suggested_name = i18n.to_unicode(suggested_name)
+            save_dialog = Gtk.FileChooserDialog(_('Save page as'), self,
+                Gtk.FileChooserAction.SAVE, (Gtk.STOCK_OK, Gtk.ResponseType.ACCEPT,
+                Gtk.STOCK_CANCEL, Gtk.ResponseType.REJECT))
+            save_dialog.set_current_name(suggested_name)
+            save_dialog.set_create_folders(True)
 
-        if save_dialog.run() == Gtk.ResponseType.ACCEPT and save_dialog.get_filename():
-            shutil.copy(self.imagehandler.get_path_to_page(),
-                save_dialog.get_filename())
+            if save_dialog.run() == Gtk.ResponseType.ACCEPT and save_dialog.get_filename():
+                shutil.copy(self.imagehandler.get_path_to_page(),
+                    save_dialog.get_filename())
 
-        save_dialog.destroy()
+            save_dialog.destroy()
 
     def delete(self, *args):
         """ The currently opened file/archive will be deleted after showing
