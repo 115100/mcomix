@@ -1006,24 +1006,31 @@ class MainWindow(Gtk.Window):
         return self._bg_colour
 
     def extract_page(self, *args):
-        """ Derive some sensible filename (archive name + _ + filename should do) and offer
-        the user the choice to save the current page with the selected name. """
+        """Derive some sensible filename and offer
+        the user the choice to save the current page with the selected name.
+        """
         if self.filehandler.archive_type is not None:
             archive_name = self.filehandler.get_pretty_current_filename()
             file_name = self.imagehandler.get_path_to_page()
-            suggested_name = os.path.splitext(archive_name)[0] + \
-                '_' + os.path.split(file_name)[-1]
+            suggested_name = (
+                os.path.splitext(archive_name)[0]
+                + '_'
+                + os.path.split(file_name)[-1]
+            )
         else:
-            suggested_name = os.path.split(self.imagehandler.get_path_to_page())[-1]
+            suggested_name = (
+                os.path.split(self.imagehandler.get_path_to_page())[-1]
+            )
 
         save_dialog = Gtk.FileChooserDialog(_('Save page as'), self,
             Gtk.FileChooserAction.SAVE, (Gtk.STOCK_OK, Gtk.ResponseType.ACCEPT,
             Gtk.STOCK_CANCEL, Gtk.ResponseType.REJECT))
-        save_dialog.set_current_name(suggested_name.encode('utf-8'))
+        save_dialog.set_current_name(suggested_name)
+        save_dialog.set_create_folders(True)
 
         if save_dialog.run() == Gtk.ResponseType.ACCEPT and save_dialog.get_filename():
             shutil.copy(self.imagehandler.get_path_to_page(),
-                save_dialog.get_filename().decode('utf-8'))
+                save_dialog.get_filename())
 
         save_dialog.destroy()
 
