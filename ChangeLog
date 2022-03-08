@@ -18,6 +18,9 @@ In development
 
     - Fixed alphanumeric sort for names with mismatched text/number patterns.
 
+    - Fixed unicode/bytes error in "Save as" dialog, as well as errors
+      when saving double-page images.
+
     - Reduced declared minimum PyGObject version to 3.36.0 as well as
       PyCairo to 1.16.0.
 
