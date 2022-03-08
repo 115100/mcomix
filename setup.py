@@ -54,7 +54,7 @@ setuptools.setup(
         'setuptools.installation': [ 'eggsecutable=mcomix.run:run' ],
     },
     test_suite = "test",
-    install_requires = ['PyGObject (>=3.38.0)', 'PyCairo (>= 1.20.0)', 'Pillow (>=6.0.0)'],
+    install_requires = ['PyGObject (>=3.36.0)', 'PyCairo (>= 1.16.0)', 'Pillow (>=6.0.0)'],
     zip_safe = False,
 
     # Various MIME files that need to be copied to certain system locations on Linux.

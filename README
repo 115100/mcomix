@@ -51,8 +51,8 @@
 
 === Dependencies ==============================================================
 
-  MComix needs Python 3.7 or newer to work. PyGObject 3.38.0, PyCairo 1.20.0,
-  as well as Pillow (Python Imaging Library Fork) 5.2.0 or newer must be
+  MComix needs Python 3.7 or newer to work. PyGObject 3.36.0, PyCairo 1.16.0,
+  as well as Pillow (Python Imaging Library Fork) 6.0.0 or newer must be
   available.
 
   You also need either the "unrar" or the "rar" program installed if you wish

@@ -140,14 +140,14 @@ def run():
     try:
         import PIL.Image
 
-        if PIL.__version__ < '5.2.0':
+        if PIL.__version__ < '6.0.0':
             log.error( _("You don't have the required version of the Python Imaging Library Fork (Pillow) installed."))
             log.error( _('Installed Pillow version is: %s') % PIL.__version__ )
-            log.error( _('Required Pillow version is: 5.2.0 or higher') )
+            log.error( _('Required Pillow version is: 6.0.0 or higher') )
             wait_and_exit()
 
     except ImportError:
-        log.error( _('Python Imaging Library Fork (Pillow) 5.2.0 or higher is required.') )
+        log.error( _('Python Imaging Library Fork (Pillow) 6.0.0 or higher is required.') )
         log.error( _('No version of the Python Imaging Library was found on your system.') )
         wait_and_exit()
 

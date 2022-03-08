@@ -18,6 +18,11 @@ In development
 
     - Fixed alphanumeric sort for names with mismatched text/number patterns.
 
+    - Reduced declared minimum PyGObject version to 3.36.0 as well as
+      PyCairo to 1.16.0.
+
+    - Fixed minimum Pillow requirement in code not matching setup.py.
+
 MComix 2.0.0
 Release date: 2022-01-29
 
