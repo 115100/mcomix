@@ -208,8 +208,8 @@ def get_archive_handler(path, mimetype=None):
     if handler is None:
         return None
 
-    log.debug(_('Archive handler %s for archive "%s" was selected.'),
-              handler.__name__, os.path.split(path)[1])
+    log.debug(_('Archive handler %(handler)s for archive "%(archivename)s" was selected.'),
+              {'handler': handler.__name__, 'archivename': os.path.split(path)[1]})
     return handler(path)
 
 def get_recursive_archive_handler(path, destination_dir, type=None):

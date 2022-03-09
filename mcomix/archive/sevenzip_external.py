@@ -149,8 +149,8 @@ class SevenZipArchive(archive_base.ExternalExecutableArchive):
                     creationflags=process._get_creationflags())
 
                 if len(proc.stderr) > 0:
-                    log.error(_("Extraction of %s might have failed: %s"),
-                              filename, proc.stderr.decode('utf-8'))
+                    log.error(_("Extraction of %(archivefile)s might have failed: %(error)s"),
+                              {'archivefile': filename, 'error': proc.stderr.decode('utf-8')})
             finally:
                 output.close()
         finally:
