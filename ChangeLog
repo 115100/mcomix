@@ -1,5 +1,12 @@
-MComix 2.0.1
+MComix 2.0.2
 In development
+
+    BUG FIXES
+
+    - Fixed bytes/unicode error in library 'Add collection' dialog.
+
+MComix 2.0.1
+Release date: 2022-03-09
 
     BUG FIXES
 

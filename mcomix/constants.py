@@ -1,14 +1,12 @@
 # -*- coding: utf-8 -*-
 """constants.py - Miscellaneous constants."""
 
-import re
 import os
-import operator
 
 from mcomix import tools
 
 APPNAME = 'MComix'
-VERSION = '2.0.1-dev'
+VERSION = '2.0.2.dev0'
 
 HOME_DIR = tools.get_home_directory()
 CONFIG_DIR = tools.get_config_directory()
