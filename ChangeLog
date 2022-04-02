@@ -5,6 +5,9 @@ In development
 
     - Fixed bytes/unicode error in library 'Add collection' dialog.
 
+    - Fixed missing localization and image resources after calling
+      "setup.py install"
+
 MComix 2.0.1
 Release date: 2022-03-09
 

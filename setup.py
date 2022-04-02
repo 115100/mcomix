@@ -11,44 +11,16 @@ Example usage:
     $ ./setup.py install --single-version-externally-managed --root /tmp/mcomix --prefix /usr
 """
 
-import os
-import glob
 import setuptools
 
 from mcomix import constants
 
 
-def get_data_patterns(directory, *patterns):
-    """ Build a list of patterns for all subdirectories of <directory>
-    to be passed into package_data. """
-
-    olddir = os.getcwd()
-    os.chdir(os.path.join(constants.BASE_PATH, directory))
-    allfiles = []
-    for dirpath, _, _ in os.walk("."):
-        for pattern in patterns:
-            current_pattern = os.path.normpath(os.path.join(dirpath, pattern))
-            if glob.glob(current_pattern):
-                # Forward slashes only for distutils.
-                allfiles.append(current_pattern.replace('\\', '/'))
-    os.chdir(olddir)
-    return allfiles
-
-# Filter unnecessary image files. Replace wildcard pattern with actual files.
-images = get_data_patterns('mcomix/images', '*.png')
-images.remove('*.png')
-images.extend([ os.path.basename(img)
-    for img in glob.glob(os.path.join(constants.BASE_PATH, 'mcomix/images', '*.png'))
-    if os.path.basename(img) not in
-        ('mcomix-large.png', )])
-
 setuptools.setup(
     name = constants.APPNAME.lower(),
     version = constants.VERSION,
     packages = ['mcomix', 'mcomix.archive', 'mcomix.library'],
-    package_data = {
-        'mcomix' : get_data_patterns('mcomix/messages', '*.mo') + images,
-    },
+    include_package_data=True,
     entry_points = {
         'console_scripts' : [ 'mcomix = mcomix.run:run' ],
         'setuptools.installation': [ 'eggsecutable=mcomix.run:run' ],

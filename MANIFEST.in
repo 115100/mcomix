@@ -1,5 +1,5 @@
 recursive-include mcomix/images *.png
-recursive-include mcomix/messages *.po *.mo *.pot
+recursive-include mcomix/messages *.mo
 recursive-include mime *.*
 include mime/comicthumb mime/comicthumb.thumbnailer
 include mcomix.1.gz ChangeLog COPYING mcomixstarter.py
