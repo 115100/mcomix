@@ -8,6 +8,8 @@ In development
     - Fixed missing localization and image resources after calling
       "setup.py install"
 
+    - Fixed bytes/unicode error in unrar executable extraction handler.
+
 MComix 2.0.1
 Release date: 2022-03-09
 
