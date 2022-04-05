@@ -4,6 +4,7 @@
 
 import os
 import sys
+import subprocess
 
 from mcomix import log
 from mcomix import process
@@ -98,9 +99,12 @@ class RarArchive(archive_base.ExternalExecutableArchive):
             self._state = self.STATE_HEADER
             #: Current path while listing contents.
             self._path = None
-            proc = process.popen(self._get_list_arguments(), stderr=process.STDOUT)
+            proc = subprocess.run(
+                self._get_list_arguments(), stdout=process.PIPE, stderr=process.STDOUT,
+                encoding="utf-8",
+                creationflags=process._get_creationflags())
             try:
-                for line in proc.stdout:
+                for line in proc.stdout.splitlines():
                     filename = self._parse_list_output_line(line.rstrip(os.linesep))
                     if filename is not None:
                         yield self._unicode_filename(filename)
@@ -109,9 +113,6 @@ class RarArchive(archive_base.ExternalExecutableArchive):
                 # if it was our first attempt.
                 if 0 == retry_count:
                     continue
-            finally:
-                proc.stdout.close()
-                proc.wait()
             # Last and/or successful attempt.
             break
 
@@ -176,12 +177,13 @@ class RarArchive(archive_base.ExternalExecutableArchive):
         global _rar_executable
         if _rar_executable == -1:
             if 'win32' == sys.platform:
-                is_not_unrar_free = lambda exe: True
+                def is_not_unrar_free(exe):
+                    return True
             else:
                 def is_not_unrar_free(exe):
                     real_exe = exe
                     while os.path.islink(real_exe):
-                          real_exe = os.readlink(real_exe)
+                        real_exe = os.readlink(real_exe)
                     if real_exe.endswith(os.path.sep + 'unrar-free'):
                         log.warning('RAR executable %s is unrar-free, ignoring', exe)
                         return False
