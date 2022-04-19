@@ -10,6 +10,8 @@ In development
 
     - Fixed bytes/unicode error in unrar executable extraction handler.
 
+    - Fixed one more instance of incorrect color conversion from preferences.
+
 MComix 2.0.1
 Release date: 2022-03-09
 
