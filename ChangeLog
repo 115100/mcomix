@@ -1,3 +1,10 @@
+MComix 2.0.3
+In development
+
+    BUG FIXES
+
+    - Fixed byte/unicode error in library search text field.
+
 MComix 2.0.2
 Release date: 2022-05-20
 
